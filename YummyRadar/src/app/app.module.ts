@@ -31,9 +31,7 @@ import {MatToolbarModule,
     AppComponent
   ],
   imports: [
-    SearchingComponent
-  ],
-  imports: [
+    SearchingComponent,
     BrowserModule,
     routing,
     HttpModule,
