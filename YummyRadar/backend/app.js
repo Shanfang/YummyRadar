@@ -1,41 +1,60 @@
 var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+var oracledb = require('oracledb');
+var dbConfig = require('./dbconfig');
 
-var appRoutes = require('./routes/app');
+const app = express();
+const PORT = 3000;
 
-var app = express();
-mongoose.connect('localhost:27017/yummyradar');
+// Get a non-pooled connection
+oracledb.getConnection(
+  {
+    user          : dbConfig.user,
+    password      : dbConfig.password,
+    connectString : dbConfig.connectString
+  },
+  function(err, connection)
+  {
+    if (err) {
+      console.error(err.message);
+      return;
+    }
+    connection.execute(
+      `SELECT *
+       FROM professors
+       WHERE id = :id`,
+      [1],
+      { maxRows: 1
+      },
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+      // The callback function handles the SQL execution results
+      function(err, result)
+      {
+        if (err) {
+          console.error(err.message);
+          doRelease(connection);
+          return;
+        }
+        console.log(result.metaData); 
+        console.log(result.rows);     
+        doRelease(connection);
+      });
+  });
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// Note: connections should always be released when not needed
+function doRelease(connection)
+{
+  connection.close(
+    function(err) {
+      if (err) {
+        console.error(err.message);
+      }
+    });
+}
 
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
-    next();
-});
+app.get('/', (req, res) => 
+    res.send(`Node server is running on port ${PORT}`)
+);
 
-app.use('/', appRoutes);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    return res.render('index');
-});
-
-
-module.exports = app;
+app.listen(PORT, () =>
+    console.log(`Server is listening on port ${PORT}`)
+);
