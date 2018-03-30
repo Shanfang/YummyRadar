@@ -23,7 +23,9 @@ import {MatToolbarModule,
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
+  ],
+  imports: [
     SearchingComponent
   ],
   imports: [
@@ -42,7 +44,7 @@ import {MatToolbarModule,
     MatChipsModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    MatDialogModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
