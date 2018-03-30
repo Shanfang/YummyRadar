@@ -1,24 +1,50 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AnalysisComponent } from './analysis/analysis.component';
-import { AnalysisAreaComponent } from './analysis/analysis-area/analysis-area.component';
-import { AnalysisTypeComponent } from './analysis/analysis-type/analysis-type.component';
-// import { AppRoutingModule } from './app-routing.module';
-// import { HeaderComponent } from './header.component';
+import { SearchingComponent } from './components/searching/searching.component';
+import { routing } from './app.router';
+
+import {MatToolbarModule, 
+  MatInputModule, 
+  MatMenuModule, 
+  MatIconModule, 
+  MatButtonModule, 
+  MatCardModule, 
+  MatExpansionModule,
+  MatProgressSpinnerModule,
+  MatChipsModule,
+  MatTooltipModule,
+  MatDialogModule
+  } from '@angular/material';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AnalysisComponent,
-    AnalysisAreaComponent,
-    AnalysisTypeComponent
+    AppComponent
   ],
   imports: [
-    // AppRoutingModule,
-    BrowserModule
+    SearchingComponent
+  ],
+  imports: [
+    BrowserModule,
+    routing,
+    HttpModule,
+    FormsModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
