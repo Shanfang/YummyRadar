@@ -28,10 +28,10 @@ import {MatToolbarModule,
     AppComponent,
     AnalysisAreaComponent,
     AnalysisTypeComponent,
-    AppComponent
+    AppComponent,
+    SearchingComponent
   ],
   imports: [
-    SearchingComponent,
     BrowserModule,
     routing,
     HttpModule,
