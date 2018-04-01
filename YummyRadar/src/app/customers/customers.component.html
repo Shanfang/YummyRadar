@@ -1,0 +1,41 @@
+<h2>Logged Customer</h2>
+<ul class="customer1">
+  <li *ngFor="let customer of customer1"
+    [class.selected]="customer === selectedCustomer"
+    (click)="onSelect(customer)">
+    <span class="badge">{{customer.id}}</span> Edit Profies
+  </li>
+</ul>
+
+
+
+
+
+<h2>Review Lists</h2>
+<ul class="review1">
+  <li *ngFor="let review of review1">
+    <span class="badge">{{review.time}}</span> {{review.text}}
+  </li>
+</ul>
+
+
+<app-customer-profile [customer] = "selectedCustomer"></app-customer-profile>
+
+
+
+<!-- TODO: input areas -->
+<!--
+<div>
+    <div>
+      <label>User  Id :
+          <input  placeholder="">
+      </label>
+    </div>
+
+    <div>
+      <label>Password:
+          <input  placeholder="">
+      </label>
+    </div>
+</div>
+-->
