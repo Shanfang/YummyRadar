@@ -13,13 +13,6 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./customers.component.css']
 }) 
 export class CustomersComponent implements OnInit {
-
-  //the customer list, actually only one customer, can be clicked
-  // customer1 = CUSTOMER; //This is from mock-customers
-  customer1 : Customer[];//This is from customer service
-
-
-
   review1 = REVIEW;
 
   review: Review = {
@@ -27,8 +20,15 @@ export class CustomersComponent implements OnInit {
     text: 'sadklfja;lsdkjl'
   }
 
+
+  //the customer list, actually only one customer, can be clicked
+  // customer1 = CUSTOMER; //This is from mock-customers
+  customer1 : Customer[];//This is from customer service
+
   selectedCustomer: Customer;
 
+  constructor(private customerService: CustomerService) { }
+  
   onSelect (customer: Customer): void {
     this.selectedCustomer = customer;
   }
@@ -48,11 +48,6 @@ export class CustomersComponent implements OnInit {
   //   funny_num: 0,
   //   useful_num: 0
   // };
-
-
-
-
-  constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
     this.getCustomer();
