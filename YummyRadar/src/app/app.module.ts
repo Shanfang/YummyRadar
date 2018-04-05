@@ -22,13 +22,11 @@ import {MatToolbarModule,
   MatTooltipModule,
   MatDialogModule
   } from '@angular/material';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { AnalysisService } from './Services/analysis.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchingComponent,
-    NavBarComponent,
     AnalysisAreaComponent,
     AnalysisTypeComponent,
     AppComponent,
@@ -52,7 +50,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     ReactiveFormsModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [AnalysisService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
