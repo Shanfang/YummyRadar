@@ -13,3 +13,4 @@ export class NavBarComponent implements OnInit {
   }
 
 }
+

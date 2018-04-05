@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { AnalysisAreaComponent } from './components/analysis-area/analysis-area.component';
+import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.component';
 import { SearchingComponent } from './components/searching/searching.component';
 import { routing } from './app.router';
 
@@ -26,7 +28,11 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
   declarations: [
     AppComponent,
     SearchingComponent,
-    NavBarComponent
+    NavBarComponent,
+    AnalysisAreaComponent,
+    AnalysisTypeComponent,
+    AppComponent,
+    SearchingComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     MatChipsModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    MatDialogModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
