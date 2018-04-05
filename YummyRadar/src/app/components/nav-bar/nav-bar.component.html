@@ -1,7 +1,4 @@
-
-<!-- Navigation for searching page -->
-<app-nav-bar></app-nav-bar>
-<nav class="navbar navbar-expand-sm navbar-dark bg-danger fixed-top">
+<nav class="navbar navbar-expand-sm navbar-dark bg-danger">
   <a class="navbar-brand" href="#">Yummy Radar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -15,9 +12,18 @@
         <a class="nav-link" href="#">Link</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0 pull-right">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search Restaurant" aria-label="Search">
-      <button class="btn btn-outline-light border-white" type="submit">Search</button>
+    <form class="form-inline my-2 my-lg-0 d-none d-md-block pull-right">
+      <div class="input-group">
+        <label class="form-control">Find</label>
+        <input type="text" class="form-control" placeholder="Resturant...">
+        <label class="form-control">Near</label>
+        <input type="text" class="form-control " placeholder="Where..." >
+        <span class="input-group-btn">
+          <button class="btn btn-danger border-white" type="button">Gearch!</button>
+        </span>
+      </div>
     </form>
   </div>
 </nav>
+
+

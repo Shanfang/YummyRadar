@@ -1,0 +1,14 @@
+{
+  "name": "yummyradar_backend",
+  "version": "1.0.0",
+  "description": "YummyRadar backend",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DianeXie shangfangZhao JingmingYu ZunWong",
+  "license": "ISC",
+  "dependencies": {
+    "oracledb": "^2.1.2"
+  }
+}
