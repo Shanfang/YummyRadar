@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.post('/api/addRest', (req, res, next) => 
     console.log(req.body));
 
-// app.use('/analysis', analysisRoutes);
-// app.use('/', appRoutes);
+app.use('/analysis', analysisRoutes);
+app.use('/', appRoutes);
 
 app.listen(PORT, () =>
     console.log(`Server is listening on port ${PORT}`)
