@@ -30,7 +30,8 @@ import { AnalysisService } from './Services/analysis.service';
     AnalysisAreaComponent,
     AnalysisTypeComponent,
     AppComponent,
-    SearchingComponent
+    SearchingComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
