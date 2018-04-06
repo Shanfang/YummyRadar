@@ -5,9 +5,9 @@ import { AnalysisAreaComponent } from './components/analysis-area/analysis-area.
 import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.component';
 
 const appRoutes: Routes = [
-    {path: '', redirectTo: '/analysis/area', pathMatch: 'full'},
     {path: 'analysis/area', component: AnalysisAreaComponent},
-    {path: 'analysis/type', component: AnalysisTypeComponent}
+    {path: 'analysis/type', component: AnalysisTypeComponent},
+    {path: 'home', component: SearchingComponent},
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
