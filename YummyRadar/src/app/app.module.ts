@@ -23,6 +23,7 @@ import {MatToolbarModule,
   MatDialogModule
   } from '@angular/material';
 import { AnalysisService } from './Services/analysis.service';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [

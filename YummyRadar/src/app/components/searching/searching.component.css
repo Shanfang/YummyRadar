@@ -1,15 +1,26 @@
-.nav{
-    float: left;
-    width:100%;
-    height: 20 px;
-    margin-left: 50px;
-    margin: auto;
-    font: 15px/1.5 Arial, Helvetica, sans-serif;
-    background-color: skyblue;
-    color: white;
+
+.thumbnail {
+    position: relative;
 }
 
-.search{
-    margin-top: 50px;
-    position: relative;
+.caption {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    width: 70%;
+    margin-left: 15%
+}
+
+.header {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 100%;
+}
+.mainnav {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 100%;
+
 }

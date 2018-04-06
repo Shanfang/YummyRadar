@@ -25,16 +25,16 @@ export class AnalysisAreaComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSelectLocation() {
-    this.analysisService.getRestaurants(location)
-    .subscribe(
-      (response: Response) => {
-        const data = response.json();
-        console.log(data);
-      },
-      (error) => console.log(error)
-    )
-  }
+  // onSelectLocation() {
+  //   // this.analysisService.getRestaurants(location)
+  //   // .subscribe(
+  //   //   (response: Response) => {
+  //   //     const data = response.json();
+  //   //     console.log(data);
+  //   //   },
+  //   //   (error) => console.log(error)
+  //   // )
+  // }
   // onAddRestaurant(name: string) {
   //   this.restaurants.push({
   //     id: this.generateID(),
