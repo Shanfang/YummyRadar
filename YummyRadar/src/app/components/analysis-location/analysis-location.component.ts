@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AnalysisLocationComponent implements OnInit {
   @ViewChild('f') locationForm: NgForm;
-  location = {
+  location: Location = {
     state: '',
     city: '',
     zipCode: ''

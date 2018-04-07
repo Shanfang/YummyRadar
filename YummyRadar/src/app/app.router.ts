@@ -5,7 +5,7 @@ import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.
 import { AnalysisLocationComponent } from './components/analysis-location/analysis-location.component';
 
 const appRoutes: Routes = [
-    {path: '', redirectTo: '/analysis/location', pathMatch: 'full'},
+    {path: '', redirectTo: 'analysis/location', pathMatch: 'full'},
     {path: 'analysis/location', component: AnalysisLocationComponent},
     {path: 'analysis/type', component: AnalysisTypeComponent}
 ];
