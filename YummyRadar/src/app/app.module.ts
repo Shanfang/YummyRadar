@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-// import { AnalysisAreaComponent } from './components/analysis-area/analysis-area.component';
 import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.component';
 import { SearchingComponent } from './components/searching/searching.component';
 import { routing } from './app.router';
@@ -31,7 +30,6 @@ import { AnalysisLocationComponent } from './components/analysis-location/analys
     AppComponent,
     SearchingComponent,
     NavBarComponent,
-    // AnalysisAreaComponent,
     AnalysisTypeComponent,
     AppComponent,
     SearchingComponent,
