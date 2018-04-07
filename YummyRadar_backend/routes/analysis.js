@@ -7,10 +7,15 @@ var router = express.Router();
 
 router.post('/location', function(req, res, next) {
     handleDBConn(req, res, function(req, res, conn) {
-        var sqlStatement = `SELECT ID, state, zip_code FROM Test WHERE state = :state AND zip_code = :zip_code ORDER BY zip_code`;
+        // var sqlStatement = `SELECT ID, state, zip_code FROM Test WHERE state = :state AND zip_code = :zip_code ORDER BY zip_code`;
         // var state = 'FL'; // replace with whatever is in the req
         // var zip_code = '32603'; // replace with whatever is in the req
+        var sqlStatement = `SELECT ID, star_count, review_count FROM Test 
+                            WHERE state = :state AND city = :city AND zip_code = :zip_code 
+                            ORDER BY rest_category`;
+
         var state = req.body.state;
+        var city = req.body.city;
         var zip_code = req.body.zipCode;
         conn.execute(
             sqlStatement,

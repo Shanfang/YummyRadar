@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Location } from '../modules/location.module';
+import  'rxjs/add/operator/map';
 
 @Injectable()
 export class AnalysisService {
@@ -8,6 +9,7 @@ export class AnalysisService {
     apiURL: string = "http://127.0.0.1:3000";
     getBusinesses(location: Location) {
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(`${this.apiURL}/api/analysis/location`, location, {headers: headers});
+        return this.http.post(`${this.apiURL}/api/analysis/location`, location, {headers: headers})
+                .map(response => response);
     }
 }
