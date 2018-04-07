@@ -22,6 +22,7 @@ import {MatToolbarModule,
   MatTooltipModule,
   MatDialogModule
   } from '@angular/material';
+import { AnalysisService } from './Services/analysis.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import {MatToolbarModule,
     ReactiveFormsModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [AnalysisService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

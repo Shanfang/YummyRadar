@@ -1,1 +1,5 @@
-<h1>Welcome to the analysis page, let's do some analysis based on selected areas!</h1>
+<input type="text" #restaurant>
+<button class="btn btn-primary" (click)="onAddRestaurant(restaurant.value)">Add Restaurant</button>
+<br><br>
+
+<button class="btn btn-primary" (click)="onSave()">Save Restaurant</button>
