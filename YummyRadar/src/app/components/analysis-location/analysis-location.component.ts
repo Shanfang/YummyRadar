@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AnalysisService } from '../../Services/analysis.service';
 import { Response } from '@angular/http';
-import { Location } from '../../modules/location.module';
+import { Location } from '../../models/location.module';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -29,7 +29,7 @@ export class AnalysisLocationComponent implements OnInit {
     this.location.state = this.locationForm.value.state;
     this.location.city = this.locationForm.value.city;
     this.location.zipCode = this.locationForm.value.zipCode;
-    
+
     this.analysisService.getBusinesses(this.location)
     .subscribe(
       (response: Response) => {
