@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AnalysisAreaComponent } from './components/analysis-area/analysis-area.component';
+// import { AnalysisAreaComponent } from './components/analysis-area/analysis-area.component';
 import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.component';
 import { SearchingComponent } from './components/searching/searching.component';
 import { routing } from './app.router';
@@ -24,16 +24,18 @@ import {MatToolbarModule,
   } from '@angular/material';
 import { AnalysisService } from './Services/analysis.service';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { AnalysisLocationComponent } from './components/analysis-location/analysis-location.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchingComponent,
     NavBarComponent,
-    AnalysisAreaComponent,
+    // AnalysisAreaComponent,
     AnalysisTypeComponent,
     AppComponent,
-    SearchingComponent
+    SearchingComponent,
+    AnalysisLocationComponent
   ],
   imports: [
     BrowserModule,

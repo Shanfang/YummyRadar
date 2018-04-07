@@ -1,0 +1,59 @@
+<div class="analysis-container">
+  <form (ngSubmit)='onSelectLocation()' #f="ngForm"> 
+    <div class="form-group">
+      <label for="state">Select a state</label>
+      <select 
+        id="state" 
+        class="form-control" 
+        [(ngModel)]="selectState" 
+        name="state"
+        required>
+        <option>AL</option>
+        <option>AK</option>
+        <option>AZ</option>
+        <option>AR</option>
+        <option>CA</option>
+        <option>CO</option>
+        <option>CT</option>
+        <option>DE</option>
+        <option>FL</option>
+      </select>
+    </div> 
+    <div class="form-group">
+        <label for="city">Select a city</label>
+        <select 
+          id="city" 
+          class="form-control" 
+          [(ngModel)]="selectCity" 
+          name="city"
+          required>
+          <option>Gainesville</option>
+          <option>Orlando</option>
+          <option>Tampa</option>
+          <option>Maimi</option>
+          <option>Talahasse</option>
+          <option>Ocala</option>
+          <option>West Plam Beach</option>
+        </select>
+      </div> 
+      <div class="form-group">
+          <label for="zipCode">Select zip code</label>
+          <select 
+            id="zipCode" 
+            class="form-control" 
+            [(ngModel)]="selectZipCode" 
+            name="zipCode"
+            required>
+            <option>32601</option>
+            <option>32602</option>
+            <option>32603</option>
+            <option>32604</option>
+            <option>32605</option>
+            <option>32606</option>
+            <option>32607</option>
+          </select>
+        </div> 
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
+
