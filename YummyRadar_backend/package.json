@@ -26,6 +26,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
+    "jsonlines": "^0.1.1",
+    "morgan": "^1.9.0",
     "oracledb": "github:oracle/node-oracledb#v2.1.2"
   }
 }
