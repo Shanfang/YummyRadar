@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalysisService } from '../../Services/analysis.service';
 import { Response } from '@angular/http';
-import { Location } from '../../modules/location.module';
+import { Location } from '../../models/location.module';
 
 @Component({
   selector: 'app-analysis-area',
@@ -26,14 +26,14 @@ export class AnalysisAreaComponent implements OnInit {
   }
 
   onSelectLocation() {
-    this.analysisService.getRestaurants(location)
-    .subscribe(
-      (response: Response) => {
-        const data = response.json();
-        console.log(data);
-      },
-      (error) => console.log(error)
-    )
+    // this.analysisService.getRestaurants(location)
+    // .subscribe(
+    //   (response: Response) => {
+    //     const data = response.json();
+    //     console.log(data);
+    //   },
+    //   (error) => console.log(error)
+    // )
   }
   // onAddRestaurant(name: string) {
   //   this.restaurants.push({

@@ -10,12 +10,12 @@ import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.
 import { SearchingComponent } from './components/searching/searching.component';
 import { routing } from './app.router';
 
-import {MatToolbarModule, 
-  MatInputModule, 
-  MatMenuModule, 
-  MatIconModule, 
-  MatButtonModule, 
-  MatCardModule, 
+import {MatToolbarModule,
+  MatInputModule,
+  MatMenuModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
   MatChipsModule,
@@ -23,6 +23,10 @@ import {MatToolbarModule,
   MatDialogModule
   } from '@angular/material';
 import { AnalysisService } from './Services/analysis.service';
+import { BusinessComponent } from './components/business/business.component';
+import { ReviewComponent } from './components/review/review.component';
+import {BusinessService} from './Services/business.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,9 @@ import { AnalysisService } from './Services/analysis.service';
     AnalysisAreaComponent,
     AnalysisTypeComponent,
     AppComponent,
-    SearchingComponent
+    SearchingComponent,
+    BusinessComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +54,10 @@ import { AnalysisService } from './Services/analysis.service';
     MatChipsModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
-  providers: [AnalysisService],
+  providers: [AnalysisService, BusinessService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
