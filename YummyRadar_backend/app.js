@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 
 var appRouter = require('./routes/app');
+var businessRouter = require('./routes/business');
 
 var app = express();
 
@@ -31,7 +32,10 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+app.use('/v1/business', businessRouter);
 app.use('/', appRouter);
+
 
 
 // error handler
