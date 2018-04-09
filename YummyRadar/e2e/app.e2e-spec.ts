@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('yummy-radar App', () => {
+describe('yummy-radar-customer App', () => {
   let page: AppPage;
 
   beforeEach(() => {

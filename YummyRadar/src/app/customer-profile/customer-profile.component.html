@@ -1,21 +1,24 @@
 <div *ngIf="customer">
     <h2>{{customer.name | uppercase}} Profile</h2>
+    
     <div><span>ID: </span>{{customer.id}}</div>
     <div><span>Email: </span>{{customer.email}}</div>
+    
     <!--Bi-directional binding between input and customer.email-->
     <br/>
     <div>
-      <div>
-      <label>New Name:
-          <input [(ngModel)] = "customer.name" placeholder="      "/>
-      </label>
-    </div>
-    <div>
-      <label>New Email:
-          <input [(ngModel)] = "customer.email" placeholder="      "/>
-      </label>
-    </div>
+        <div>
+            <label>New Name:
+                <input [(ngModel)]="customer.name" placeholder="      " />
+            </label>
+        </div>
+        <div>
+            <label>New Email:
+                <input [(ngModel)]="customer.email" placeholder="      " />
+            </label>
+        </div>
 
 
     </div>
+    <button (click)="save()">save</button>
 </div>

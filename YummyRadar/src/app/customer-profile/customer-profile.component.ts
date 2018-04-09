@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from '../customer';
+import { CustomerService } from '../customer.service';
 
 
 
@@ -12,9 +13,14 @@ import { Customer } from '../customer';
 export class CustomerProfileComponent implements OnInit {
   @Input() customer: Customer;
   
-  constructor() { }
+  constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
   }
+
+  // save(): void {
+  //   this.customerService.updateCustomer(this.customer)
+  //     .subscribe(() => this.goBack());
+  // }
 
 }
