@@ -5,31 +5,32 @@ var router = express.Router();
 
 // TODO: pooling connections
 
-router.get('/customer', function(req, res, next) {
-    handleDBConn(req, res, function(req, res, conn) {
-        var sqlStatement = `SELECT id, password, name, email, review_num, cool_num, funny_num, useful_num
-                             FROM Customer WHERE id = :id`;
-        var id = 'tom1'; // replace with user input id when logging
+router.post('/', function(req, res, next) {
+    // handleDBConn(req, res, function(req, res, conn) {
+    //     var sqlStatement = `SELECT id, password, name, email, review_num, cool_num, funny_num, useful_num
+    //                          FROM Customer WHERE id = :id`;
+    //     var id = 'tom1'; // replace with user input id when logging
         
-        // var sqlStatement = 'select * from country';
+    //     // var sqlStatement = 'select * from country';
         
-        conn.execute(
-            sqlStatement,
-            [id],
-            {outFormat: oracledb.OBJECT},
-            function (err, result) {
-                if (err) {
-                    console.log(err.message);
-                    return;
-                }
-                console.log(`The result is: `);
-                console.log(result.metaData);
-                console.log(result.rows);                  
-                res.send(result.rows);
-                doRelease(conn);
-            }
-        );
-    });
+    //     conn.execute(
+    //         sqlStatement,
+    //         [id],
+    //         {outFormat: oracledb.OBJECT},
+    //         function (err, result) {
+    //             if (err) {
+    //                 console.log(err.message);
+    //                 return;
+    //             }
+    //             console.log(`The result is: `);
+    //             console.log(result.metaData);
+    //             console.log(result.rows);                  
+    //             res.send(result.rows);
+    //             doRelease(conn);
+    //         }
+    //     );
+    // });
+    console.log(req.body);
 });
 
 function handleDBConn(req, res, callback) {

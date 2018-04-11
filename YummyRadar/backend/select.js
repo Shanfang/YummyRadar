@@ -7,12 +7,19 @@ oracledb.getConnection(
 	connectString : "oracle.cise.ufl.edu:1521/orcl"
 },
 function(err, connection){
+	var sqlStatement = `SELECT id, password, name, email, review_count, cool_num, funny_num, useful_num
+	FROM Customer WHERE id =: id`;
+
+	// var sqlStatement = `select * from customer`;
+	var id = 'tom1'; // replace with user input id when logging
+
 	if (err) {
 		console.error(err.message);
 		return;
 	}
 	connection.execute(
-		'select * from country',
+		sqlStatement,
+    [id],
 		
       
 

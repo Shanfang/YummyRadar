@@ -10,8 +10,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomerService } from './customer.service';
 import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -26,14 +27,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule,
-
-// The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-// and returns simulated server responses.
-// Remove it when a real server is ready to receive requests.
-HttpClientInMemoryWebApiModule.forRoot(
-  InMemoryDataService, { dataEncapsulation: false }
-)
+    HttpModule
   ],
   providers: [CustomerService, MessageService],  
   bootstrap: [AppComponent]

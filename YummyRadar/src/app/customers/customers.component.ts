@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Customer } from '../customer';
 import { CUSTOMER } from '../mock-customers';
 import { Review } from '../review';
 import { REVIEW } from '../mock-reviews';
 import { CustomerService } from '../customer.service';
-
+import { Response } from '@angular/http';
 
 
 @Component({
@@ -31,7 +31,13 @@ export class CustomersComponent implements OnInit {
 
   getCustomer(): void {
     // this.customer1 = this.customerService.getCustomer();
-    this.customerService.getCustomer().subscribe(customer1 => this.customer1 = customer1);
+    this.customerService.getCustomer('tom1').subscribe(
+      (response: Response) => {
+        const data = response.json();
+        console.log(data);
+      },
+      (error) => console.log(error)
+    )
   }
 
   ngOnInit() {
