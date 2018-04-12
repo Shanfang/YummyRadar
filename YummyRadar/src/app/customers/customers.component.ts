@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Customer } from '../customer';
+import { Customer } from '../models/customer';
 import { CUSTOMER } from '../mock-customers';
-import { Review } from '../review';
+import { Review } from '../models/review';
 import { REVIEW } from '../mock-reviews';
 import { CustomerService } from '../customer.service';
 import { Response } from '@angular/http';
+import { NgForm } from '@angular/forms';
+import { CustomerID } from '../models/customerID';
+
 
 
 @Component({
@@ -13,34 +16,41 @@ import { Response } from '@angular/http';
   styleUrls: ['./customers.component.css']
 }) 
 export class CustomersComponent implements OnInit {
-  review1 = REVIEW;
-
-
-
   //the customer list, actually only one customer, can be clicked
   // customer1 = CUSTOMER; //This is from mock-customers
-  customer1: Customer[];//This is from customer service
-
-  selectedCustomer: Customer;
+  // customer1: Customer[];//This is from customer service
+  // selectedCustomer: Customer;
+  
+  @ViewChild('f') idForm: NgForm;
+  id : CustomerID = {
+    id: ''
+  };
+  
+  
+  review1 = REVIEW;
+  
 
   constructor(private customerService: CustomerService) { }
   
-  onSelect (customer: Customer): void {
-    this.selectedCustomer = customer;
+  ngOnInit() {
+    this.id.id = "";
+    // console.log(this.idForm);
+    // this.getCustomer();
   }
 
-  getCustomer(): void {
-    // this.customer1 = this.customerService.getCustomer();
-    this.customerService.getCustomer('tom1').subscribe(
+  onSelectCustomer() {
+    console.log(this.idForm);
+    this.id.id = this.idForm.value.id;
+   
+
+    this.customerService.getCustomer(this.id)
+    .subscribe(
       (response: Response) => {
         const data = response.json();
         console.log(data);
       },
       (error) => console.log(error)
     )
-  }
-
-  ngOnInit() {
-    this.getCustomer();
+    this.idForm.reset();
   }
 }

@@ -8,7 +8,34 @@
 </ul>
 
 
+<!-- <div class="customers-container">
+  <form (ngSubmit)='onSelectCustomer()' #f="ngForm"> 
+    <div class="form-group">
+      <label for="id">Select an id</label>
+      <select 
+        id="id" 
+        class="form-control" 
+        [(ngModel)]="selectID" 
+        name="id"
+        required>
+        <option>tom1</option>
+      </select>
+    </div> 
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div> -->
 
+<div class="customers-container">
+  <form (ngSubmit)='onSelectCustomer()' #f = "ngForm">
+      <div class="form-group">
+          First Name: <input type="text" id="id" 
+          class="form-control" 
+          [(ngModel)]="selectID" 
+          name="id">
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
 
 
 <h2>Review Lists</h2>

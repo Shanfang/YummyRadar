@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
-import { Customer } from './customer';
+import { Customer } from './models/customer';
 import { CUSTOMER } from './mock-customers';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Customer} from '../customer';
-import { Review } from '../review';
+import {Customer} from '../models/customer';
+import { Review } from '../models/review';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

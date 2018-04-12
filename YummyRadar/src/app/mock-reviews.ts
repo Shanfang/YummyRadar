@@ -1,4 +1,4 @@
-import { Review } from './review'
+import { Review } from './models/review'
 
 export const REVIEW: Review[] = [
   {
