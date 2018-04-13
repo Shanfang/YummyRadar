@@ -6,7 +6,6 @@ import { REVIEW } from '../mock-reviews';
 import { CustomerService } from '../customer.service';
 import { Response } from '@angular/http';
 import { NgForm } from '@angular/forms';
-import { CustomerID } from '../models/customerID';
 
 
 
@@ -22,8 +21,12 @@ export class CustomersComponent implements OnInit {
   // selectedCustomer: Customer;
   
   @ViewChild('f') idForm: NgForm;
-  id : CustomerID = {
-    id: ''
+  // id : CustomerID = {
+  //   id: ''
+  // };
+
+  customerOnline : Customer = {
+    id : ''
   };
   
   
@@ -33,17 +36,17 @@ export class CustomersComponent implements OnInit {
   constructor(private customerService: CustomerService) { }
   
   ngOnInit() {
-    this.id.id = "";
+    this.customerOnline.id = "";
     // console.log(this.idForm);
     // this.getCustomer();
   }
 
   onSelectCustomer() {
     console.log(this.idForm);
-    this.id.id = this.idForm.value.id;
+    this.customerOnline.id = this.idForm.value.id;
    
 
-    this.customerService.getCustomer(this.id)
+    this.customerService.getCustomer(this.customerOnline)
     .subscribe(
       (response: Response) => {
         const data = response.json();
