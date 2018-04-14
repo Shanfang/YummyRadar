@@ -18,15 +18,17 @@
       <h1 class="text-light">YummyRadar</h1>
     </div>
     <div class="caption" align="center">
-        <div class="input-group input-group-md">
-            <span class="input-group-addon">Find</span>
-            <input type="text " class="form-control" placeholder="Restuarant...">
-            <span class="input-group-addon">Where</span>
-            <input type="text " class="form-control" placeholder="Place...">
-            <span class="input-group-btn">
-              <button class="btn btn-outline-light border-white" type="submit">Search</button>
-            </span>
-        </div>
+        <form (ngSubmit)='searchSubmit(form.value)' [formGroup]="form">
+            <div class="input-group input-group-md">
+                <span class="input-group-addon">Find</span>
+                <input type="text " class="form-control" placeholder="Restuarant..." formControlName="restName">
+                <span class="input-group-addon">Where</span>
+                <input type="text " class="form-control" placeholder="Place..." formControlName="restPost">
+                <span class="input-group-btn">
+                <button class="btn btn-outline-light border-white" type="submit">Search</button>
+                </span>
+            </div>
+        </form>
     </div>
 </div>
 

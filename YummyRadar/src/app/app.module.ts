@@ -1,14 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AnalysisAreaComponent } from './components/analysis-area/analysis-area.component';
 import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.component';
 import { SearchingComponent } from './components/searching/searching.component';
 import { routing } from './app.router';
+import { DataService } from './Services/data.service';
 
 import {MatToolbarModule, 
   MatInputModule, 
@@ -52,7 +53,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     ReactiveFormsModule,
     MatDialogModule
   ],
-  providers: [AnalysisService],
+  providers: [
+    AnalysisService,
+    { provide: 'data', useClass: DataService },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
