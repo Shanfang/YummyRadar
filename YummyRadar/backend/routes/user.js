@@ -32,24 +32,31 @@ var router = express.Router();
 router.post('/signup', function (req, res, next) {//signup
     handleDBConn(req, res, function(req, res, conn) {
         var sqlStatement = `INSERT INTO Customer (id, password, name, review_count, 
-            cool_num, funny_num, useful_num) values (id, password, name, 0, 0, 0, 0)`;
-
-        var id = req.body.id; // replace with user input id when logging
-        var password = req.body.password;
-        var name = req.body.name;
+            cool_num, funny_num, useful_num) values (:id, :password, :name, 0, 0, 0, 0)`;
+        // var sqlStatement2 = `INSERT INTO Customer (id, password, name, review_count, 
+        //         cool_num, funny_num, useful_num) values ('21231', '2123', '3123', 0, 0, 0, 0)`;
+        var Vid = req.body.id; // replace with user input id when logging
+        var Vpassword = req.body.password;
+        var Vname = req.body.name;
                 
+        console.log(1);
+        console.log(sqlStatement);
+        console.log(2);
         conn.execute(
             sqlStatement,
-            [id, password, name],
-            {outFormat: oracledb.OBJECT},
+            [Vid, Vpassword, Vname],
+            // binds,
+            // options,
+            // {outFormat: oracledb.OBJECT},
+            { autoCommit: true},
             function (err, result) {
                 if (err) {
                     console.log(err.message);
                     return;
                 }
-                console.log(`The result is: `);
-                console.log(result.metaData);
-                console.log(result.rows);                  
+                //console.log(`The result is: `);
+                //console.log(result.metaData);
+                //console.log(result.rows);                  
                 res.send(result.rows);
                 doRelease(conn);
             }
