@@ -12,6 +12,7 @@ import {AUTH_ROUTES} from './components/auth/auth.routes';
 const routes: Routes = [
   { path: 'customers', component: CustomersComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'profiles', component: CustomerProfileComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
   

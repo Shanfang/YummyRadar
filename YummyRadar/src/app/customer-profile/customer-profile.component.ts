@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, NgForm, Validators, ReactiveFormsModule} from '@angular/forms';
+
 import { Customer } from '../models/customer';
-import { CustomerService } from '../customer.service';
+import { CustomerService } from '../services/customer.service';
 
 
 
@@ -11,16 +13,39 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./customer-profile.component.css']
 })
 export class CustomerProfileComponent implements OnInit {
-  @Input() customer: Customer;
-  
+  myForm: FormGroup;
+  customer: Customer = {
+    id: '',
+    name: ''
+  }
   constructor(private customerService: CustomerService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.myForm = new FormGroup({
+      id: new FormControl(
+        null, [
+        Validators.required,
+        Validators.pattern('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?')
+      ]),
+      name: new FormControl(
+        null,
+        Validators.required
+      )
+    });
   }
-
-  // save(): void {
-  //   this.customerService.updateCustomer(this.customer)
-  //     .subscribe(() => this.goBack());
-  // }
+  onSubmit() {
+    console.log(this.myForm);
+    this.customer.id = this.myForm.value.id;
+    this.customer.name = this.myForm.value.name;
+    this.customerService.updateProfile(this.customer).subscribe(
+      data => {
+        // localStorage.setItem('token', data.token);
+        // localStorage.setItem('user_id', data.user_id);
+        console.log(data);
+      },
+      err => console.error(err)
+    );
+    this.myForm.reset();
+  }
 
 }

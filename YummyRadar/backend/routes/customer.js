@@ -33,6 +33,66 @@ router.post('/', function(req, res, next) {
     console.log(req.body);
 });
 
+router.post('/review', function (req, res, next) {
+    handleDBConn(req, res, function(req, res, conn) {
+        var sqlStatement = `SELECT text FROM REVIEWS WHERE USER_ID =: id and rownum<3`;
+        var id = req.body.USER_ID; // replace with user input id when logging   
+        conn.execute(
+            sqlStatement,
+            [id],
+            {outFormat: oracledb.OBJECT},
+            function (err, result) {
+                if (err) {
+                    console.log(err.message);
+                    return;
+                }
+                console.log(`The result is: `);
+                console.log(result.metaData);
+                console.log(result.rows);                  
+                res.send(result.rows);
+
+                // displayResults(res, result, id);
+                doRelease(conn);
+            }
+
+        );
+    });
+    console.log(req.body);
+});
+
+router.post('/updateProfile', function (req, res, next) {
+    handleDBConn(req, res, function(req, res, conn) {
+        var sqlStatement = `UPDATE USERS SET NAME =: name 
+        where USER_ID =: id`;
+        
+        var Vname = req.body.name;  
+        var Vid = req.body.id; // replace with user input id when logging
+        
+        conn.execute(
+            sqlStatement,
+            [Vname, Vid],
+            { autoCommit: true},
+            
+            // {outFormat: oracledb.OBJECT},
+            function (err, result) {
+                if (err) {
+                    console.log(err.message);
+                    return;
+                }
+                console.log(`The result is: `);
+                // console.log(result.metaData);
+                // console.log(result.rows);                  
+                // res.send(result.rows);
+
+                // displayResults(res, result, id);
+                doRelease(conn);
+            }
+
+        );
+    });
+    console.log(req.body);
+});
+
 function handleDBConn(req, res, callback) {
     oracledb.getConnection({
         user          : dbConfig.user,

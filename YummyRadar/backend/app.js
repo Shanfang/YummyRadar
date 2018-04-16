@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 // app.post('/api/addRest', (req, res, next) => 
 //     console.log(req.body));
 
-app.use('/api/customers', customerRoutes);
+app.use('/api/customer', customerRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/api', appRoutes);
 

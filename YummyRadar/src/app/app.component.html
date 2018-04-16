@@ -1,23 +1,12 @@
 <h1>{{title}}</h1>
 <!-- COMBAK: Navigator linkage -->
 <br/>
-<div>
-    <div>
-      <label>User  Id :
-          <input  placeholder="">
-      </label>
-    </div>
-    <div>
-      <label>Password:
-          <input  placeholder="">
-      </label>
-    </div>
-</div>
 
 <nav>
-  <a routerLink="/dashboard">Login Page</a>
-  <a routerLink="/customers">Login</a>
-  <a routerLink="/auth">Authentication Page</a>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/customers">Customer Profiles</a>
+  <a routerLink="/auth">Login (Auth) Page</a>
+  <!-- <a routerLink="/profiles">Edit Profiles</a> -->
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

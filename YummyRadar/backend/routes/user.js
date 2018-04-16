@@ -31,10 +31,10 @@ var router = express.Router();
 
 router.post('/signup', function (req, res, next) {//signup
     handleDBConn(req, res, function(req, res, conn) {
-        var sqlStatement = `INSERT INTO Customer (id, password, name, review_count, 
-            cool_num, funny_num, useful_num) values (:id, :password, :name, 0, 0, 0, 0)`;
-        // var sqlStatement2 = `INSERT INTO Customer (id, password, name, review_count, 
-        //         cool_num, funny_num, useful_num) values ('21231', '2123', '3123', 0, 0, 0, 0)`;
+        var sqlStatement = `INSERT INTO USERS (user_id, password, name, review_count, 
+             useful, funny, cool) values (:id, :password, :name, 0, 0, 0, 0)`;
+        
+             //need to add a password column
         var Vid = req.body.id; // replace with user input id when logging
         var Vpassword = req.body.password;
         var Vname = req.body.name;
@@ -68,28 +68,54 @@ router.post('/signup', function (req, res, next) {//signup
 
 router.post('/signin', function (req, res, next) {
     handleDBConn(req, res, function(req, res, conn) {
-        var sqlStatement = `SELECT * FROM Customer WHERE id =: id and password =: password`;
+        var sqlStatement = `SELECT * FROM USERS WHERE user_id =: id and password =: password`;
         var id = req.body.id; // replace with user input id when logging   
         var password = req.body.password;     
         conn.execute(
             sqlStatement,
             [id, password],
-            {outFormat: oracledb.OBJECT},
+            // {outFormat: oracledb.OBJECT},
             function (err, result) {
                 if (err) {
                     console.log(err.message);
                     return;
                 }
-                console.log(`The result is: `);
-                console.log(result.metaData);
-                console.log(result.rows);                  
+                // console.log(`The result is: `);
+                // console.log(result.metaData);
+                // console.log(result.rows);                  
                 res.send(result.rows);
+
+                // displayResults(res, result, id);
                 doRelease(conn);
             }
+
         );
     });
     console.log(req.body);
 });
+
+
+function displayResults(response, result, deptid) {
+    response.write("<h2>" + "Employees in Department " + deptid + "</h2>");
+    response.write("<table>");
+  
+    // Column Title
+    response.write("<tr>");
+    for (var col = 0; col < result.metaData.length; col++) {
+      response.write("<th>" + result.metaData[col].name + "</th>");
+    }
+    response.write("</tr>");
+  
+    // Rows
+    for (var row = 0; row < result.rows.length; row++) {
+      response.write("<tr>");
+      for (col = 0; col < result.rows[row].length; col++) {
+        response.write("<td>" + result.rows[row][col] + "</td>");
+      }
+      response.write("</tr>");
+    }
+    response.write("</table>");
+  }
 
 // router.post('/signin', function (req, res, next) {
 //   User.findOne({email: req.body.email}, function (err, user) {

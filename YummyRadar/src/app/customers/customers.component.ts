@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Customer } from '../models/customer';
 import { CUSTOMER } from '../mock-customers';
 import { Review } from '../models/review';
-import { REVIEW } from '../mock-reviews';
-import { CustomerService } from '../customer.service';
+// import { REVIEW } from '../mock-reviews';
+import { CustomerService } from '../services/customer.service';
 import { Response } from '@angular/http';
 import { NgForm } from '@angular/forms';
 
@@ -30,7 +30,7 @@ export class CustomersComponent implements OnInit {
   };
   
   
-  review1 = REVIEW;
+  // review1 = REVIEW;
   
 
   constructor(private customerService: CustomerService) { }

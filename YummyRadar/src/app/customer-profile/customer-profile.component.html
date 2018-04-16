@@ -1,24 +1,30 @@
-<div *ngIf="customer">
-    <h2>{{customer.name | uppercase}} Profile</h2>
-    
-    <div><span>ID: </span>{{customer.id}}</div>
-    <div><span>Email: </span>{{customer.email}}</div>
-    
-    <!--Bi-directional binding between input and customer.email-->
-    <br/>
-    <div>
-        <div>
-            <label>New Name:
-                <input [(ngModel)]="customer.name" placeholder="      " />
-            </label>
-        </div>
-        <div>
-            <label>New Email:
-                <input [(ngModel)]="customer.email" placeholder="      " />
-            </label>
-        </div>
+<h3>Update your profiles</h3>
 
 
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  
+  
+    <div class="form-group">
+    <label for="id">Customer ID</label>
+    <input
+      type="text"
+      id="id"
+      class="form-control"
+      formControlName="id">
     </div>
-    <button (click)="save()">save</button>
-</div>
+
+    <div class="form-group">
+        <label for="name">New Customer NAME: </label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          formControlName="name">
+        </div>
+
+
+  <button
+    class="btn btn-primary"
+    type="submit">Submit
+  </button>
+</form>

@@ -1,14 +1,25 @@
-<h3>Login Page Dashboard Panel</h3>
+<h3>Review Dashboard</h3>
 
 
-<div><span>id: </span>{{review.id}}</div>
-<div><span>content: </span>{{review.text}}</div>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="USER_ID">Customer ID</label>
+    <input
+      type="text"
+      id="USER_ID"
+      class="form-control"
+      formControlName="USER_ID">
+  </div>
+  <button
+    class="btn btn-primary"
+    type="submit">Submit
+  </button>
+</form>
 
-<div class="grid grid-pad">
-  <a *ngFor="let customer of customers" class="col-1-4"
-  routerLink="/profile/{{customer.id}}">
-    <div class="module customer">
-      <h4>{{customer.name}}</h4>
-    </div>
-  </a>
-</div>
+
+<nav>
+  <a routerLink="/profiles">Edit Profiles</a>
+</nav>
+<router-outlet></router-outlet>
+
+

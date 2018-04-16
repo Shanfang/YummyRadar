@@ -7,7 +7,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CustomerService } from './customer.service';
+import { CustomerService } from './services/customer.service';
 import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
