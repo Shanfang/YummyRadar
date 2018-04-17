@@ -8,6 +8,7 @@
         [(ngModel)]="selectState" 
         name="state"
         required>
+        <option>WI</option>
         <option>AL</option>
         <option>AK</option>
         <option>AZ</option>
@@ -27,6 +28,7 @@
           [(ngModel)]="selectCity" 
           name="city"
           required>
+          <option>Madison</option>
           <option>Gainesville</option>
           <option>Orlando</option>
           <option>Tampa</option>
@@ -44,16 +46,67 @@
             [(ngModel)]="selectZipCode" 
             name="zipCode"
             required>
+            <option>53703</option>
             <option>32601</option>
             <option>32602</option>
             <option>32603</option>
             <option>32604</option>
             <option>32605</option>
             <option>32606</option>
-            <option>32607</option>
+          </select>
+        </div> 
+        <div class="form-group">
+          <label for="stars">Select number of stars </label>
+          <select 
+            id="stars" 
+            class="form-control" 
+            [(ngModel)]="selectStars" 
+            name="stars"
+            required>
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div> 
+        <div class="form-group">
+          <label for="reviewCount">Select number of stars </label>
+          <select 
+            id="reviewCount" 
+            class="form-control" 
+            [(ngModel)]="selectReviewCounts" 
+            name="reviewCount"
+            required>
+            <option>0</option>
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>40</option>
+            <option>50</option>
           </select>
         </div> 
     <button class="btn btn-primary" type="submit">Submit</button>
   </form>
 </div>
 
+
+
+<!-- <div class="row">
+  <div class="col-md-8">
+    <div class="btn-group">
+      <button 
+      type="button" 
+      class="btn btn-primary dropdown-toggle">
+      Select city <span class="caret"></span>
+    </button>
+    <ul class="dropdown-meanu">
+      <li>
+        <a href="#">FL</a>
+        <a href="#">CA</a>
+      </li>
+    </ul>
+    </div>
+  </div>
+</div> -->
