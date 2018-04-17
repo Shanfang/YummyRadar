@@ -1,17 +1,5 @@
 var oracledb = require('oracledb');
 
-//var obj = require('./test.json');
-
-var jsonlines = require('jsonlines')
-var parser = jsonlines.parse({ emitInvalidLines: true })
-
-parser.on('test.json', function (data) {
-    console.log('Got json:', data)
-});
-parser.on('invalid-line', function (err) {
-    console.log('Got text:', err.source)
-});
-
 
 oracledb.getConnection(
     {
@@ -26,7 +14,7 @@ oracledb.getConnection(
             return;
         }
         connection.execute(
-            'select * from country',  // bind value for :id
+            'select * from user where rownum < 10',  // bind value for :id
             function(err, result)
             {
                 if (err) {
@@ -34,7 +22,7 @@ oracledb.getConnection(
                     doRelease(connection);
                     return;
                 }
-                //console.log(result.rows);
+                console.log(result.rows);
                 doRelease(connection);
             });
 

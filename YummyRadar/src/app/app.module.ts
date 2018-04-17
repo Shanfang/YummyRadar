@@ -27,6 +27,9 @@ import { BusinessComponent } from './components/business/business.component';
 import { ReviewComponent } from './components/review/review.component';
 import {BusinessService} from './Services/business.service';
 import {HttpClientModule} from '@angular/common/http';
+import {ReviewListComponent} from './components/review/review-list.component';
+import { BusinessDetailComponent } from './components/business/business-detail.component';
+import { PictureListComponent } from './components/business/picture-list/picture-list.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     SearchingComponent,
     BusinessComponent,
-    ReviewComponent
+    ReviewComponent,
+    ReviewListComponent,
+    BusinessDetailComponent,
+    PictureListComponent
   ],
   imports: [
     BrowserModule,

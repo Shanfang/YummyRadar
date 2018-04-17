@@ -1,3 +1,37 @@
-<p>
-  business works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-9">
+      <div>
+        <div>{{business.name}}</div>
+      </div>
+      <div>
+        <div>{{business.address}},{{business.city}},{{business.state}}, {{business.postal_code}}</div>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <button>write a review</button>
+    </div>
+  </div>
+
+
+
+<hr>
+
+<div>
+  <app-picture-list></app-picture-list>
+  <img src="http://35.196.58.1/yelp-business-photos/-EgKmv2dcfZPP9sKPrpFRQ.jpg">
+</div>
+
+<hr>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-6 border-right">
+      <app-review-list></app-review-list>
+    </div>
+    <div class="col-sm-6 col-md-6">
+      <app-business-detail [hours]="business.hours"></app-business-detail>
+    </div>
+  </div>
+
+</div>
+
