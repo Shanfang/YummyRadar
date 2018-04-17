@@ -74,16 +74,16 @@ router.post('/signin', function (req, res, next) {
         conn.execute(
             sqlStatement,
             [id, password],
-            // {outFormat: oracledb.OBJECT},
+            {outFormat: oracledb.OBJECT},
             function (err, result) {
                 if (err) {
                     console.log(err.message);
                     return;
                 }
-                // console.log(`The result is: `);
-                // console.log(result.metaData);
-                // console.log(result.rows);                  
-                res.send(result.rows);
+                //console.log(`The result is: `);
+                //console.log(result.json);
+                //console.log(result.rows);                  
+                res.status("200").json(result.rows);
 
                 // displayResults(res, result, id);
                 doRelease(conn);

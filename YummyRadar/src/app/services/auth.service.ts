@@ -28,6 +28,11 @@ export class AuthService {
     const body = JSON.stringify(customer);
     const headers = new HttpHeaders({'Content-type':'Application/json'});
     return this.http.post('http://localhost:3000/api/auth/signin', body, {headers: headers})
+    .map((response: Response) => {
+      console.log(response);
+      //console.log(response[0]);
+      return response[0];
+    })
       .catch((err: HttpErrorResponse) => {
         this.errorService.handleError(err.error);
         return Observable.throw(err.error);

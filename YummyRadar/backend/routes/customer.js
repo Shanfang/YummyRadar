@@ -47,10 +47,10 @@ router.post('/review', function (req, res, next) {
                     return;
                 }
                 console.log(`The result is: `);
-                console.log(result.metaData);
-                console.log(result.rows);                  
-                res.send(result.rows);
-
+                // console.log(result.metaData);
+                // console.log(result.rows);                  
+                // res.send(result.rows);
+                res.status("200").json(result.rows);
                 // displayResults(res, result, id);
                 doRelease(conn);
             }

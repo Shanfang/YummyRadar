@@ -40,10 +40,12 @@ export class SigninComponent implements OnInit {
 
     this.authService.signin(this.customer).subscribe(
       data => {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user_id', data.user_id);
+        // localStorage.setItem('token', data.token);
+        // localStorage.setItem('user_id', data.user_id);
         console.log(data);
-        this.router.navigateByUrl('/dashboard');
+        console.log(data.USER_ID);
+        this.customer.id = data.USER_ID;
+        //this.router.navigateByUrl('/dashboard');
       },
       err => console.error(err)
     );
