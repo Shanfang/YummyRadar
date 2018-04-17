@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var appRouter = require('./routes/app');
 var businessRouter = require('./routes/business');
+var reviewRouter = require('./routes/review');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use(function (req, res, next) {
 
 
 app.use('/v1/business', businessRouter);
+app.use('/v1/review', reviewRouter);
 app.use('/', appRouter);
 
 

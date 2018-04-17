@@ -7,13 +7,13 @@ import { BusinessService } from '../../Services/business.service';
   styleUrls: ['./business.component.css']
 })
 export class BusinessComponent implements OnInit {
-  business: Business;
+  business: Business = new Business();
   constructor(private businessService: BusinessService) {}
 
   ngOnInit() {
-    this.businessService.getBusinesses().subscribe(
+    this.businessService.getBusiness().subscribe(
       (data: Business) => {
-        this.business = data;
+        Object.assign(this.business, data);
         console.log(this.business);
       },
       (error: any) => {

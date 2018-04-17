@@ -14,13 +14,9 @@ export class BusinessService {
 
   private businesses: Business[] = [];
 
-  getBusinesses() {
+  getBusiness() {
     return this.http.get('http://localhost:3000/v1/business')
-      .map((response: Response) => {
-        const businesses = response['obj'];
-        console.log(response);
-        return businesses;
-      })
+      .map(response => response['obj'])
       .catch((error: Response) => Observable.throw(error));
   }
 }
