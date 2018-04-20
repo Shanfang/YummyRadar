@@ -8,7 +8,7 @@ import { Chart } from 'chart.js';
 @Component({
   selector: 'app-analysis-location',
   templateUrl: './analysis-location.component.html',
-  styleUrls: ['./analysis-location.component.scss']
+  styleUrls: ['./analysis-location.component.scss'],
 })
 export class AnalysisLocationComponent implements OnInit {
   @ViewChild('f') locationForm: NgForm;
@@ -17,50 +17,41 @@ export class AnalysisLocationComponent implements OnInit {
   location: Location = {
     state: '',
     city: '',
-    zipCode: ''
+    zipCode: '',
+    reviewCount: 0,
+    stars: 0,
   };
-  constructor(private _analysisService: AnalysisService) {
+  chart = [];
+  categories = [];
+  numbers = [];
+
+  constructor(private analysisService: AnalysisService) {
    }
 
   ngOnInit() {
     this.location.state = "";
     this.location.city = "";
     this.location.zipCode = "";
+    this.location.reviewCount = 0;
+    this.location.stars = 0;
   }
   onSelectLocation() {
     console.log(this.locationForm);
     this.location.state = this.locationForm.value.state;
     this.location.city = this.locationForm.value.city;
     this.location.zipCode = this.locationForm.value.zipCode;
-    
-    this._analysisService.getBusinesses(this.location)
-    .subscribe(
-      // (response: Response) => { 
-        // const data = response.json();
-      response => {
-        let ID = response['ID'].map(response => response.ID);
-        let star = response['star_count'].map(response => response.star_count);
-        let review = response['review_count'].map(response => response.review_count);
-        // console.log(data);
-        var myBarChart = new Chart('canvas', {
-          type: 'horizontalBar',
-          data: ID,
-          options: {
-            legend: {
-              display: false
-            },
-            scales: {
-              xAxes: [{
-                display: true
-              }],
-              yAxes: [{
-                display: true
-              }]
+    this.location.reviewCount = this.locationForm.value.reviewCount;
+    this.location.stars = this.locationForm.value.stars;
+
+    this.analysisService.getBusinesses(this.location)
+      .subscribe(
+          (data: any[]) => {
+            for (const category of data) {
+              console.log(`Data from analysis component ${category}`);
             }
-          }
-      })},
-      (error) => console.log(error)
-    )
-    this.locationForm.reset();
+          },
+          (error) => console.log(error)
+        );
+    // this.locationForm.reset();
   }
 }
