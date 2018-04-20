@@ -128,9 +128,10 @@ router.post('/category/distribution', function(req, res, next) {
                 console.log(`The result is: `);
                 console.log(result.metaData);
                 console.log(result.rows); 
-                var categories = result.rows.CATEGORIES; 
-                var counts = result.rows.NUM;              
-                res.send(categories);
+                res.send(result.rows);
+                // var categories = result.rows.CATEGORIES; 
+                // var counts = result.rows.NUM;              
+                // res.send(categories);
 
                 doRelease(conn);
             }

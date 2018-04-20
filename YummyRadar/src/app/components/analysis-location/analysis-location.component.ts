@@ -42,14 +42,14 @@ export class AnalysisLocationComponent implements OnInit {
     this.location.stars = this.locationForm.value.stars;
 
     this.analysisService.getBusinesses(this.location)
-    .subscribe(
-      (response: Response) => {
-        const data = response.json();
-        console.log(data);
-        // console.log(data.categories);
-      },
-      (error) => console.log(error)
-    )
-    this.locationForm.reset();
+      .subscribe(
+          (data: any[]) => {
+            for (const category of data) {
+              console.log(`Data from analysis component ${category}`);
+            }
+          },
+          (error) => console.log(error)
+        );
+    // this.locationForm.reset();
   }
 }
