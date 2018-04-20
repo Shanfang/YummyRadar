@@ -3,6 +3,7 @@ import { AnalysisService } from '../../Services/analysis.service';
 import { Location } from '../../modules/location.module';
 import { NgForm } from '@angular/forms';
 import { Chart } from 'chart.js';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-analysis-location',
@@ -12,17 +13,19 @@ import { Chart } from 'chart.js';
 export class AnalysisLocationComponent implements OnInit {
   @ViewChild('f') locationForm: NgForm;
 
-  location: Location = {
+  private location: Location = {
     state: '',
     city: '',
     zipCode: '',
     reviewCount: 0,
     stars: 0,
   };
-  chart = [];
+  private chart = [];
 
-  constructor(private _analysisService: AnalysisService) {
-   }
+  constructor(
+    private _analysisService: AnalysisService,
+    private _router: Router
+  ) {}
 
   ngOnInit() {
     this.location.state = "";
@@ -44,31 +47,35 @@ export class AnalysisLocationComponent implements OnInit {
           (data: any) => {
             let categories = data.categories;
             let numbers = data.counts;
-            this.chart = new Chart('pie-chart-canvas', {
-              type: 'pie',
-              data: {
-                datasets: [
-                  {
-                    data: numbers,
-                    borderColor: '#ffcc00',
-                    backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"],
-                    fill: true
+            if (categories.length > 0) {
+              this.chart = new Chart('pie-chart-canvas', {
+                type: 'pie',
+                data: {
+                  datasets: [
+                    {
+                      data: numbers,
+                      borderColor: '#ffcc00',
+                      backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"],
+                      fill: true
+                    }
+                  ],
+                  labels:categories
+                },
+                options: {
+                  responsive: true,
+                  title: {
+                    display: true,
+                    text: "Number of Differet Restaurants"
                   }
-                ],
-                labels:categories
-              },
-              options: {
-                responsive: true,
-                title: {
-                  display: true,
-                  text: "Number of Differet Restaurants"
                 }
-              }
-            })
-
+              })
+              this.locationForm.reset();
+            } else {
+              this.locationForm.reset();
+              alert("Oops, there is no matching data");
+            }
           },
           (error) => console.log(error)
         );
-    this.locationForm.reset();
   }
 }
