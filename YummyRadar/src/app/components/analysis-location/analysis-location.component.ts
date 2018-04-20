@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AnalysisService } from '../../Services/analysis.service';
-// import { Response } from '@angular/http';
 import { Location } from '../../modules/location.module';
 import { NgForm } from '@angular/forms';
 import { Chart } from 'chart.js';
@@ -21,10 +20,8 @@ export class AnalysisLocationComponent implements OnInit {
     stars: 0,
   };
   chart = [];
-  categories = [];
-  numbers = [];
 
-  constructor(private analysisService: AnalysisService) {
+  constructor(private _analysisService: AnalysisService) {
    }
 
   ngOnInit() {
@@ -42,12 +39,33 @@ export class AnalysisLocationComponent implements OnInit {
     this.location.reviewCount = this.locationForm.value.reviewCount;
     this.location.stars = this.locationForm.value.stars;
 
-    this.analysisService.getBusinesses(this.location)
+    this._analysisService.getBusinesses(this.location)
       .subscribe(
           (data: any) => {
-            console.log(`Category is: ${data.categories[0]}`);
-            console.log(`Count: is ${data.counts[0]}`);
-            console.log(data);
+            let categories = data.categories;
+            let numbers = data.counts;
+            this.chart = new Chart('pie-chart-canvas', {
+              type: 'pie',
+              data: {
+                datasets: [
+                  {
+                    data: numbers,
+                    borderColor: '#ffcc00',
+                    backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"],
+                    fill: true
+                  }
+                ],
+                labels:categories
+              },
+              options: {
+                responsive: true,
+                title: {
+                  display: true,
+                  text: "Number of Differet Restaurants"
+                }
+              }
+            })
+
           },
           (error) => console.log(error)
         );
