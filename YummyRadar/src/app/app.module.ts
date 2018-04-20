@@ -9,12 +9,12 @@ import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.
 import { SearchingComponent } from './components/searching/searching.component';
 import { routing } from './app.router';
 
-import {MatToolbarModule, 
-  MatInputModule, 
-  MatMenuModule, 
-  MatIconModule, 
-  MatButtonModule, 
-  MatCardModule, 
+import {MatToolbarModule,
+  MatInputModule,
+  MatMenuModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
   MatChipsModule,
@@ -24,6 +24,8 @@ import {MatToolbarModule,
 import { AnalysisService } from './Services/analysis.service';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AnalysisLocationComponent } from './components/analysis-location/analysis-location.component';
+import {AuthService} from './Services/auth.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { AnalysisLocationComponent } from './components/analysis-location/analys
     BrowserModule,
     routing,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     MatToolbarModule,
     MatInputModule,
@@ -53,7 +56,7 @@ import { AnalysisLocationComponent } from './components/analysis-location/analys
     ReactiveFormsModule,
     MatDialogModule
   ],
-  providers: [AnalysisService],
+  providers: [AnalysisService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
