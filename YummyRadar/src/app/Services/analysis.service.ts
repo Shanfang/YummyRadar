@@ -4,6 +4,7 @@ import { Location } from '../Models/location.model';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 
+
 @Injectable()
 export class AnalysisService {
     constructor(private http: Http) {}
