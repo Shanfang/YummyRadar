@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AnalysisService } from '../../Services/analysis.service';
-import { Location } from '../../modules/location.module';
+import { Location } from '../../Models/location.model';
 import { NgForm } from '@angular/forms';
 import { Chart } from 'chart.js';
 import { ActivatedRoute, Router } from '@angular/router';
