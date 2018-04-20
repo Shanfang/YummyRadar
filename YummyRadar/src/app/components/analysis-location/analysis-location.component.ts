@@ -13,7 +13,6 @@ import { Chart } from 'chart.js';
 export class AnalysisLocationComponent implements OnInit {
   @ViewChild('f') locationForm: NgForm;
 
-   chart = [];
   location: Location = {
     state: '',
     city: '',
