@@ -44,13 +44,13 @@ export class AnalysisLocationComponent implements OnInit {
 
     this.analysisService.getBusinesses(this.location)
       .subscribe(
-          (data: any[]) => {
-            for (const category of data) {
-              console.log(`Data from analysis component ${category}`);
-            }
+          (data: any) => {
+            console.log(`Category is: ${data.categories[0]}`);
+            console.log(`Count: is ${data.counts[0]}`);
+            console.log(data);
           },
           (error) => console.log(error)
         );
-    // this.locationForm.reset();
+    this.locationForm.reset();
   }
 }

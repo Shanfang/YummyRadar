@@ -126,12 +126,16 @@ router.post('/category/distribution', function(req, res, next) {
                     return;
                 }
                 console.log(`The result is: `);
-                console.log(result.metaData);
                 console.log(result.rows); 
                 res.send(result.rows);
-                // var categories = result.rows.CATEGORIES; 
-                // var counts = result.rows.NUM;              
-                // res.send(categories);
+
+                let categories = [];
+                let counts = [];
+                for (const tuple of result.rows) {
+                    categories.push(tuple.category);
+                    counts.push(tuple.num);
+                }
+                res.send({categories, counts});
 
                 doRelease(conn);
             }

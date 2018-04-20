@@ -15,14 +15,14 @@ export class AnalysisService {
             .map(
                 (res: Response) => {
                     const data = res.json();
-                    var categories = [];
-                    var counts = [];
-                    for (const loc of data) {
-                        categories.push(loc.CATEGORY);
-                        counts.push(loc.NUM);
-                    }
-                    // return data;
-                    return {categories, counts};
+                    // let categories = [];
+                    // let counts = [];
+                    // for (const loc of data) {
+                    //     categories.push(loc.CATEGORY);
+                    //     counts.push(loc.NUM);
+                    // }
+                    // return {categories, counts};
+                    return data;
                 }
             )
             .catch(
