@@ -128,15 +128,7 @@ router.post('/category/distribution', function(req, res, next) {
                 console.log(`The result is: `);
                 console.log(result.rows); 
                 res.send(result.rows);
-
-                let categories = [];
-                let counts = [];
-                for (const tuple of result.rows) {
-                    categories.push(tuple.category);
-                    counts.push(tuple.num);
-                }
-                res.send({categories, counts});
-
+                
                 doRelease(conn);
             }
         );
