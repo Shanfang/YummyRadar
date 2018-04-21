@@ -1,15 +1,16 @@
 var express = require('express');
 var router  = express.Router();
 var oracledb = require('oracledb');
+var dbConfig = require('./dbconfig');
+
 oracledb.fetchAsString = [ oracledb.CLOB ];
 
 router.get('/', function(req, res, next) {
-
     oracledb.getConnection(
         {
-            user: "jingmin",
-            password: "jmyu1994",
-            connectString: "oracle.cise.ufl.edu:1521/orcl"
+            user: dbConfig.user,
+            password: dbConfig.password,
+            connectString: dbConfig.connectString
         },
         function (err, connection) {
             if (err) {
@@ -20,13 +21,14 @@ router.get('/', function(req, res, next) {
                 'select * from wzun.reviews where rownum < 2',
                 [],
                 {outFormat: oracledb.OBJECT},
-                //{fetchInfo: {"text": {type: oracledb.STRING}}},
             function (err, result) {
                     if (err) {
                         console.error(err.message);
                         doRelease(connection);
                         return;
                     }
+                    console.log(result);
+                    //console.log(result.rows);
                     doRelease(connection);
                     return res.json(result.rows);
                 });
