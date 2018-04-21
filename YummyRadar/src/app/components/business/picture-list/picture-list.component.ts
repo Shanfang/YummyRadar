@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {BusinessService} from '../../../Services/business.service';
+import {Business} from '../../../models/business.model';
 
 @Component({
   selector: 'app-picture-list',
@@ -6,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./picture-list.component.css']
 })
 export class PictureListComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
+    throw new Error("Method not implemented.");
   }
+
 
 }

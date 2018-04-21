@@ -30,6 +30,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReviewListComponent} from './components/review/review-list.component';
 import { BusinessDetailComponent } from './components/business/business-detail.component';
 import { PictureListComponent } from './components/business/picture-list/picture-list.component';
+import { BusinessListComponent } from './components/business/business-list.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PictureListComponent } from './components/business/picture-list/picture
     ReviewComponent,
     ReviewListComponent,
     BusinessDetailComponent,
-    PictureListComponent
+    PictureListComponent,
+    BusinessListComponent
   ],
   imports: [
     BrowserModule,
