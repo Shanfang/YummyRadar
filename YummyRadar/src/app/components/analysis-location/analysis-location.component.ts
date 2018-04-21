@@ -53,6 +53,10 @@ export class AnalysisLocationComponent implements OnInit {
             let categories = data.categories;
             let numbers = data.counts;
             if (categories.length > 0) {
+              var colors: string[] = new Array(categories.length);
+              for (var i = 0; i < colors.length; i++) {
+                colors[i] = this.getRandomColor();
+              }
               this.chart = new Chart('pie-chart-canvas', {
                 type: 'pie',
                 data: {
@@ -60,7 +64,7 @@ export class AnalysisLocationComponent implements OnInit {
                     {
                       data: numbers,
                       borderColor: '#ffcc00',
-                      backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"],
+                      backgroundColor: colors,
                       fill: true
                     }
                   ],
@@ -85,6 +89,15 @@ export class AnalysisLocationComponent implements OnInit {
             this.chart = null;
           },
           (error) => console.log(error)
-        );
+      );
+  }
+
+  private getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 }
