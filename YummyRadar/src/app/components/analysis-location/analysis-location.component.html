@@ -1,67 +1,31 @@
 <div class="analysis-container">
-  <form (ngSubmit)='onSelectLocation()' #f="ngForm"> 
+  <form (ngSubmit)='onSubmitSelection()' #f="ngForm"> 
     <div class="form-group">
-      <label for="state">Select a state</label>
-      <select 
-        id="state" 
-        class="form-control" 
-        [(ngModel)]="selectState" 
-        name="state"
-        required>
-        <option>WI</option>
-        <option>AL</option>
-        <option>AK</option>
-        <option>AZ</option>
-        <option>AR</option>
-        <option>CA</option>
-        <option>CO</option>
-        <option>CT</option>
-        <option>DE</option>
-        <option>FL</option>
+      <label for="states">Select a State</label>
+      <select (change)="onSelectState($event.target.value)" [(ngModel)]="selectState" name="selectedState">
+        <option *ngFor="let state of stateOptions" [ngValue]="state">{{state}}</option>
       </select>
     </div> 
     <div class="form-group">
-        <label for="city">Select a city</label>
-        <select 
-          id="city" 
-          class="form-control" 
-          [(ngModel)]="selectCity" 
-          name="city"
-          required>
-          <option>Madison</option>
-          <option>Gainesville</option>
-          <option>Orlando</option>
-          <option>Tampa</option>
-          <option>Maimi</option>
-          <option>Talahasse</option>
-          <option>Ocala</option>
-          <option>West Plam Beach</option>
+      <label for="city">Select a City</label>
+        <select id="city" class="form-control" [(ngModel)]="selectCity" name="selectedCity">
+          <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+      </select>
+    </div> 
+
+    <div class="form-group">
+        <label for="zipCode">Select Zip Code</label>
+        <select id="zipCode" class="form-control" [(ngModel)]="selectZipCode" name="selectedZipCode">
+          <option *ngFor="let zipCode of zipCodes" [ngValue]="zipCode">{{zipCode}}</option>
         </select>
       </div> 
-      <div class="form-group">
-          <label for="zipCode">Select zip code</label>
-          <select 
-            id="zipCode" 
-            class="form-control" 
-            [(ngModel)]="selectZipCode" 
-            name="zipCode"
-            required>
-            <option>53703</option>
-            <option>32601</option>
-            <option>32602</option>
-            <option>32603</option>
-            <option>32604</option>
-            <option>32605</option>
-            <option>32606</option>
-          </select>
-        </div> 
         <div class="form-group">
-          <label for="stars">Select number of stars </label>
+          <label for="stars">Select Range of Stars </label>
           <select 
             id="stars" 
             class="form-control" 
             [(ngModel)]="selectStars" 
-            name="stars"
+            name="selectedStars"
             required>
             <option>0</option>
             <option>1</option>
@@ -72,12 +36,12 @@
           </select>
         </div> 
         <div class="form-group">
-          <label for="reviewCount">Select review count </label>
+          <label for="reviewCount">Select Range of Review Count </label>
           <select 
             id="reviewCount" 
             class="form-control" 
             [(ngModel)]="selectReviewCounts" 
-            name="reviewCount"
+            name="selectedReviewCount"
             required>
             <option>0</option>
             <option>10</option>
@@ -96,8 +60,8 @@
     <canvas id="pie-chart-canvas"></canvas>
   </div>
 </div>
-
-<!-- <div class="row">
+<!-- 
+<div class="row">
   <div class="col-md-8">
     <div class="btn-group">
       <button 

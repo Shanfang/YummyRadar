@@ -26,7 +26,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AnalysisLocationComponent } from './components/analysis-location/analysis-location.component';
 import {AuthService} from './Services/auth.service';
 import {HttpClientModule} from '@angular/common/http';
-
+import { GeoInfoService } from './Services/geo-info.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +56,7 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     MatDialogModule
   ],
-  providers: [AnalysisService, AuthService],
+  providers: [AnalysisService, AuthService, GeoInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
