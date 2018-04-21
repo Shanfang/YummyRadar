@@ -10,10 +10,10 @@ The dataset we used can be found at [Yelp dataset](https://www.yelp.com/dataset/
 
 - Use Oracle SQL *Loader to load data into Oracle database. Documentation can be found at [SQL *Loader](https://docs.oracle.com/cd/B19306_01/server.102/b14215/ldr_concepts.htm)
 
-# Start the server #
+## Start the server ##
 - run `npm install` to install dependencies
 - Navigate to YummyRadar_backend directory, then run `npm start` to start server.
-# Start the angular application #
+## Start the angular application ##
 - run `npm install` to install dependencies.
 - Navigate to YummyRadar directory, then run `ng serve` to start angular application. 
 - Try to search comments from users, restaurant information, or whatever you are interested in. Checkout visiualiztion for restaurants analysis with pie chart, bar chart, line graphs, and more. 
