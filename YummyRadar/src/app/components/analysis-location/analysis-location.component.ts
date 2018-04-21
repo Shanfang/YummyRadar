@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AnalysisService } from '../../Services/analysis.service';
+import { GeoInfoService } from '../../Services/geo-info.service';
 import { Location } from '../../Models/location.model';
-
 import { NgForm } from '@angular/forms';
 import { Chart } from 'chart.js';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-analysis-location',
@@ -25,23 +24,28 @@ export class AnalysisLocationComponent implements OnInit {
 
   constructor(
     private _analysisService: AnalysisService,
-    private _router: Router
+    private _geoInfoService: GeoInfoService
   ) {}
 
-  ngOnInit() {
-    this.location.state = "";
-    this.location.city = "";
-    this.location.zipCode = "";
-    this.location.reviewCount = 0;
-    this.location.stars = 0;
+  stateOptions = ["IL", "WI", "SC"];
+  cities: string[] = [];
+  zipCodes: number[] = [];
+  selectedState = "IL";
+  ngOnInit() {}
+
+  onSelectState(stateName:  string) {
+    this.selectedState = this.locationForm.controls['selectedState'].value;
+    this.cities = this._geoInfoService.getCities(this.selectedState);
+    this.zipCodes = this._geoInfoService.getZipCodes(this.selectedState);
   }
-  onSelectLocation() {
-    console.log(this.locationForm);
-    this.location.state = this.locationForm.value.state;
-    this.location.city = this.locationForm.value.city;
-    this.location.zipCode = this.locationForm.value.zipCode;
-    this.location.reviewCount = this.locationForm.value.reviewCount;
-    this.location.stars = this.locationForm.value.stars;
+
+
+  onSubmitSelection() {
+    this.location.state = this.locationForm.value.selectedState;
+    this.location.city = this.locationForm.value.selectedCity;
+    this.location.zipCode = this.locationForm.value.selectedZipCode;
+    this.location.reviewCount = this.locationForm.value.selectedReviewCount;
+    this.location.stars = this.locationForm.value.selectedStars;
 
     this._analysisService.getBusinesses(this.location)
       .subscribe(
@@ -64,17 +68,21 @@ export class AnalysisLocationComponent implements OnInit {
                 },
                 options: {
                   responsive: true,
+                  scaleOverride:true,
+                  scaleSteps:10,
+                  scaleStartValue:0,
+                  scaleStepWidth:1,
                   title: {
                     display: true,
                     text: "Number of Differet Restaurants"
                   }
                 }
               })
-              this.locationForm.reset();
             } else {
-              this.locationForm.reset();
               alert("Oops, there is no matching data");
             }
+            this.locationForm.reset();
+            this.chart = null;
           },
           (error) => console.log(error)
         );
