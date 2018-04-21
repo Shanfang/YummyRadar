@@ -19,8 +19,8 @@ export class AnalysisService {
                     let categories = [];
                     let counts = [];
                     for (const loc of data) {
-                        categories.push(loc.CATEGORY);
-                        counts.push(loc.NUM);
+                        categories.push(loc.category);
+                        counts.push(loc.num);
                     }
                     return {categories, counts};
                 }
@@ -31,4 +31,39 @@ export class AnalysisService {
                 }
             );
     }
+
+    /*
+    Get reviewCounts and stars data to calculate popularity for a specific restaurant
+    */
+    getTrend(id: string, year: string) {
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.get(`${this.apiURL}/api/analysis/popularity/${id}/${year}`, {headers: headers})
+            .map(
+                (res: Response) => {
+                    const data = res.json();
+                    let reviewCounts = [];
+                    let stars = [];
+                    for (const t of data) {
+                        reviewCounts.push(t.reviewCounts);
+                        stars.push(t.stars);
+                    }
+                    return {reviewCounts, stars};
+                }
+            )
+            .catch(
+                (error: Response) => {
+                    return Observable.throw("Something is wrong");
+                }
+            );
+    }
+
+    // /* 
+    // Header for http request
+    // */
+    // getHeader(): RequestOptions {
+    //     // let access_token: string = localStorage.getItem("access_token");
+    //     let headers: Headers = new Headers({'Content-Type': 'application/json'});
+    //     // headers.append('Authorization', 'Bearer ' + access_token);
+    //     return new RequestOptions({ headers: headers });
+    // }
 }

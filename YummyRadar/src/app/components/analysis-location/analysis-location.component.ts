@@ -36,14 +36,14 @@ export class AnalysisLocationComponent implements OnInit {
   onSelectState(stateName:  string) {
     this.selectedState = this.locationForm.controls['selectedState'].value;
     this.cities = this._geoInfoService.getCities(this.selectedState);
-    this.zipCodes = this._geoInfoService.getZipCodes(this.selectedState);
+    // this.zipCodes = this._geoInfoService.getZipCodes(this.selectedState);
   }
 
 
   onSubmitSelection() {
     this.location.state = this.locationForm.value.selectedState;
     this.location.city = this.locationForm.value.selectedCity;
-    this.location.zipCode = this.locationForm.value.selectedZipCode;
+    // this.location.zipCode = this.locationForm.value.selectedZipCode;
     this.location.reviewCount = this.locationForm.value.selectedReviewCount;
     this.location.stars = this.locationForm.value.selectedStars;
 
@@ -72,13 +72,9 @@ export class AnalysisLocationComponent implements OnInit {
                 },
                 options: {
                   responsive: true,
-                  scaleOverride:true,
-                  scaleSteps:10,
-                  scaleStartValue:0,
-                  scaleStepWidth:1,
                   title: {
                     display: true,
-                    text: "Number of Differet Restaurants"
+                    text: "Number of Differet Restaurants for : " + this.location.city + " in " + this.location.state
                   }
                 }
               })
@@ -86,7 +82,6 @@ export class AnalysisLocationComponent implements OnInit {
               alert("Oops, there is no matching data");
             }
             this.locationForm.reset();
-            this.chart = null;
           },
           (error) => console.log(error)
       );

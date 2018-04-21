@@ -1,80 +1,78 @@
-<div class="analysis-container">
+<div class="row">
+    <div class="col-md-4">
+      <a href="#">Location Based Analysis</a>
+    </div>
+    <div class="col-md-4">
+      <a href="#">Business Based Analysis</a>
+    </div>
+  </div>
+<div class="analysis-container col-md-12 mx-t" style="padding: 20px">
   <form (ngSubmit)='onSubmitSelection()' #f="ngForm"> 
-    <div class="form-group">
-      <label for="states">Select a State</label>
-      <select (change)="onSelectState($event.target.value)" [(ngModel)]="selectState" name="selectedState">
-        <option *ngFor="let state of stateOptions" [ngValue]="state">{{state}}</option>
-      </select>
-    </div> 
-    <div class="form-group">
-      <label for="city">Select a City</label>
-        <select id="city" class="form-control" [(ngModel)]="selectCity" name="selectedCity">
-          <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
-      </select>
-    </div> 
-
-    <div class="form-group">
-        <label for="zipCode">Select Zip Code</label>
-        <select id="zipCode" class="form-control" [(ngModel)]="selectZipCode" name="selectedZipCode">
-          <option *ngFor="let zipCode of zipCodes" [ngValue]="zipCode">{{zipCode}}</option>
-        </select>
-      </div> 
-        <div class="form-group">
-          <label for="stars">Select Range of Stars </label>
-          <select 
-            id="stars" 
-            class="form-control" 
-            [(ngModel)]="selectStars" 
-            name="selectedStars"
-            required>
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div> 
-        <div class="form-group">
-          <label for="reviewCount">Select Range of Review Count </label>
-          <select 
-            id="reviewCount" 
-            class="form-control" 
-            [(ngModel)]="selectReviewCounts" 
-            name="selectedReviewCount"
-            required>
-            <option>0</option>
-            <option>10</option>
-            <option>20</option>
-            <option>30</option>
-            <option>40</option>
-            <option>50</option>
-          </select>
-        </div> 
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <div class="row" class="mx-auto" style="width: 1000px;">
+        <div class="form-group col-md-3">
+            <label for="states">Select a State</label>
+            <select (change)="onSelectState($event.target.value)" [(ngModel)]="selectState" name="selectedState">
+              <option *ngFor="let state of stateOptions" [ngValue]="state">{{state}}</option>
+            </select>
+          </div> 
+          <div class="form-group col-md-3">
+            <label for="city">Select a City</label>
+              <select id="city" class="form-control" [(ngModel)]="selectCity" name="selectedCity">
+                <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+            </select>
+          </div> 
+      <!-- For some cities there are not enough data to specify the location with zipcode
+           So I comment out the selection for zip code -->
+          <!-- <div class="form-group">
+              <label for="zipCode">Select Zip Code</label>
+              <select id="zipCode" class="form-control" [(ngModel)]="selectZipCode" name="selectedZipCode">
+                <option *ngFor="let zipCode of zipCodes" [ngValue]="zipCode">{{zipCode}}</option>
+              </select>
+            </div>  -->
+          <div class="form-group col-md-3">
+            <label for="stars">Select Range of Stars </label>
+            <select 
+              id="stars" 
+              class="form-control" 
+              [(ngModel)]="selectStars" 
+              name="selectedStars"
+              required>
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div> 
+          <div class="form-group col-md-3">
+            <label for="reviewCount">Select Range of Review Count </label>
+            <select 
+              id="reviewCount" 
+              class="form-control" 
+              [(ngModel)]="selectReviewCounts" 
+              name="selectedReviewCount"
+              required>
+              <option>0</option>
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+            </select>
+          </div> 
+    </div>
+    <div class="row">
+      <div>
+          <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </div>
   </form>
 </div>
 
 <div class="chart-container">
-  <div class="pie-chart">
+  <div *ngIf="chart" class="pie-chart">
     <canvas id="pie-chart-canvas"></canvas>
   </div>
 </div>
-<!-- 
-<div class="row">
-  <div class="col-md-8">
-    <div class="btn-group">
-      <button 
-      type="button" 
-      class="btn btn-primary dropdown-toggle">
-      Select city <span class="caret"></span>
-    </button>
-    <ul class="dropdown-meanu">
-      <li>
-        <a href="#">FL</a>
-        <a href="#">CA</a>
-      </li>
-    </ul>
-    </div>
-  </div>
-</div> -->
+
