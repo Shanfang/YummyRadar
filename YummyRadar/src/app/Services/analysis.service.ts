@@ -19,8 +19,8 @@ export class AnalysisService {
                     let categories = [];
                     let counts = [];
                     for (const loc of data) {
-                        categories.push(loc.category);
-                        counts.push(loc.num);
+                        categories.push(loc.CATEGORY);
+                        counts.push(loc.NUM);
                     }
                     return {categories, counts};
                 }
