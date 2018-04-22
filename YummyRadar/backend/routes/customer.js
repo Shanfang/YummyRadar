@@ -62,15 +62,16 @@ router.post('/review', function (req, res, next) {
 
 router.post('/updateProfile', function (req, res, next) {
     handleDBConn(req, res, function(req, res, conn) {
-        var sqlStatement = `UPDATE jingmin.USERS SET NAME =: name 
+        var sqlStatement = `UPDATE jingmin.USERS SET NAME =: name, EMAIL =: email 
         where USER_ID =: id`;
         
         var Vname = req.body.name;  
-        var Vid = req.body.id; // replace with user input id when logging
+        var Vid = req.body.id;
+        var Vemail = req.body.email;
         
         conn.execute(
             sqlStatement,
-            [Vname, Vid],
+            [Vname, Vemail, Vid],
             { autoCommit: true},
             
             // {outFormat: oracledb.OBJECT},
