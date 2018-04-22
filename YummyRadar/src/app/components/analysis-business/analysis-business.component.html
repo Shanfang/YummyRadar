@@ -13,7 +13,7 @@
       <div class="form-group col-md-3">
         <label for="charts">Please Select Type of Chart</label>
         <select id="chart" class="form-control" [(ngModel)]="chartType" name="selectType">
-          <option *ngFor="let chart of charts" [ngValue]="chart">{{chart}}</option>
+          <option *ngFor="let chart of chartOptions" [ngValue]="chart">{{chart}}</option>
         </select>
       </div>
       <div class="row">

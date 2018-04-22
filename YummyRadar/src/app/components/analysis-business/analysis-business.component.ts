@@ -21,7 +21,7 @@ export class AnalysisBusinessComponent implements OnInit {
   ) {}
 
   years = ['2010', '2011', '2012', '2013','2014', '2015'];
-  charts = ['Line Graph', 'Pie Chart'];
+  chartOptions = ['Line Graph', 'Pie Chart'];
   ngOnInit() {}
 
   onSubmitInfo() {
