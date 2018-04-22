@@ -5,8 +5,6 @@ import { Customer } from '../models/customer';
 import { CustomerService } from '../services/customer.service';
 
 
-
-
 @Component({
   selector: 'app-customer-profile',
   templateUrl: './customer-profile.component.html',
@@ -15,12 +13,18 @@ import { CustomerService } from '../services/customer.service';
 export class CustomerProfileComponent implements OnInit {
   myForm: FormGroup;
   customer: Customer = {
-    id: '',
+    id: 'abc',
     name: ''
   }
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
+    
+    this.customer.id = localStorage.getItem('id');
+    this.customer.name = localStorage.getItem('name');
+    console.log(localStorage.getItem('id'));
+    console.log(localStorage.getItem('name'));
+
     this.myForm = new FormGroup({
       id: new FormControl(
         null, [

@@ -3,7 +3,7 @@ export class Customer {
   password?: string;
   name?: string;
   review_count?: number;
-  cool_num?: number;
-  funny_num?: number;
-  useful_num?: number;
+  cool?: number;
+  funny?: number;
+  useful?: number;
 }

@@ -31,7 +31,7 @@ var router = express.Router();
 
 router.post('/signup', function (req, res, next) {//signup
     handleDBConn(req, res, function(req, res, conn) {
-        var sqlStatement = `INSERT INTO USERS (user_id, password, name, review_count, 
+        var sqlStatement = `INSERT INTO jingmin.USERS (user_id, password, name, review_count, 
              useful, funny, cool) values (:id, :password, :name, 0, 0, 0, 0)`;
         
              //need to add a password column
@@ -68,7 +68,7 @@ router.post('/signup', function (req, res, next) {//signup
 
 router.post('/signin', function (req, res, next) {
     handleDBConn(req, res, function(req, res, conn) {
-        var sqlStatement = `SELECT * FROM USERS WHERE user_id =: id and password =: password`;
+        var sqlStatement = `SELECT * FROM jingmin.USERS WHERE user_id =: id and password =: password`;
         var id = req.body.id; // replace with user input id when logging   
         var password = req.body.password;     
         conn.execute(

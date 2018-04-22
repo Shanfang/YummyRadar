@@ -44,8 +44,19 @@ export class SigninComponent implements OnInit {
         // localStorage.setItem('user_id', data.user_id);
         console.log(data);
         console.log(data.USER_ID);
+        console.log(data.REVIEW_COUNT);
         this.customer.id = data.USER_ID;
-        //this.router.navigateByUrl('/dashboard');
+        
+        
+        localStorage.setItem('id', data.USER_ID);
+        localStorage.setItem('name', data.NAME);
+        localStorage.setItem('review_count', data.REVIEW_COUNT.toString());
+        localStorage.setItem('cool', data.COOL.toString());
+        localStorage.setItem('funny', data.FUNNY.toString());
+        localStorage.setItem('useful', data.USEFUL.toString());
+        
+        
+        this.router.navigateByUrl('/customers');
       },
       err => console.error(err)
     );

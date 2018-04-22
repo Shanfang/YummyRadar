@@ -62,7 +62,7 @@ router.post('/review', function (req, res, next) {
 
 router.post('/updateProfile', function (req, res, next) {
     handleDBConn(req, res, function(req, res, conn) {
-        var sqlStatement = `UPDATE USERS SET NAME =: name 
+        var sqlStatement = `UPDATE jingmin.USERS SET NAME =: name 
         where USER_ID =: id`;
         
         var Vname = req.body.name;  

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/
 import {AuthService} from '../../services/auth.service';
 import { Customer } from '../../models/customer';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html'
@@ -10,6 +11,7 @@ import { Customer } from '../../models/customer';
 
 export class SignupComponent implements OnInit {
   myForm: FormGroup;
+  
 
   constructor(private authService: AuthService) {}
 

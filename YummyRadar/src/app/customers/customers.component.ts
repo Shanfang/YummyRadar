@@ -29,7 +29,14 @@ export class CustomersComponent implements OnInit {
     id : ''
   };
   
-  
+  customer : Customer = {
+    id :'',
+    name : '',
+    review_count: 0,
+    cool: 0,
+    useful: 0,
+    funny: 0
+  }
   // review1 = REVIEW;
   
 
@@ -37,6 +44,13 @@ export class CustomersComponent implements OnInit {
   
   ngOnInit() {
     this.customerOnline.id = "";
+    this.customer.id = localStorage.getItem('id');
+    this.customer.name = localStorage.getItem('name');
+    this.customer.review_count = parseInt(localStorage.getItem('review_count'));
+    this.customer.cool = parseInt(localStorage.getItem('cool'));
+    this.customer.useful = parseInt(localStorage.getItem('useful'));
+    this.customer.funny = parseInt(localStorage.getItem('funny'));
+
     // console.log(this.idForm);
     // this.getCustomer();
   }
