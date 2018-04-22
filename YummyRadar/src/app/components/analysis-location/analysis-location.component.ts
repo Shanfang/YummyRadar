@@ -20,17 +20,21 @@ export class AnalysisLocationComponent implements OnInit {
     reviewCount: 0,
     stars: 0,
   };
-  private chart = [];
+  chart = [];
+  chartType = '';
 
   constructor(
     private _analysisService: AnalysisService,
     private _geoInfoService: GeoInfoService
   ) {}
 
-  stateOptions = ["IL", "WI", "SC"];
+  stateOptions = ['IL', 'WI', 'SC'];
   cities: string[] = [];
   zipCodes: number[] = [];
-  selectedState = "IL";
+  selectedState = 'IL';
+  chartOptions = ['Line Graph', 'Pie Chart'];
+  charType = '';
+
   ngOnInit() {}
 
   onSelectState(stateName:  string) {
@@ -52,12 +56,12 @@ export class AnalysisLocationComponent implements OnInit {
           (data: any) => {
             let categories = data.categories;
             let numbers = data.counts;
-            if (categories.length > 0) {
+            if (categories.length > 0 && this.chartType == 'Pie Chart') {
               var colors: string[] = new Array(categories.length);
               for (var i = 0; i < colors.length; i++) {
                 colors[i] = this.getRandomColor();
               }
-              this.chart = new Chart('pie-chart-canvas', {
+              this.chart = new Chart('pie-chart-location', {
                 type: 'pie',
                 data: {
                   datasets: [
@@ -72,6 +76,37 @@ export class AnalysisLocationComponent implements OnInit {
                 },
                 options: {
                   responsive: true,
+                  title: {
+                    display: true,
+                    text: "Number of Different Restaurants for : " + this.location.city + " in " + this.location.state
+                  }
+                }
+              })
+            } else if (categories.length > 0 && this.chartType == 'Line Graph') {
+              this.chart = new Chart('line-chart-location', {
+                type: 'line',
+                data: {
+                  labels: categories,
+                  datasets: [                   
+                    {
+                      data: numbers,
+                      borderColor: '#ffcc00',
+                      fill: false
+                    }
+                  ]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  },
+                  scales: {
+                    xAxes: [{
+                      display: true
+                    }],
+                    yAxes: [{
+                      display: true
+                    }]
+                  },
                   title: {
                     display: true,
                     text: "Number of Different Restaurants for : " + this.location.city + " in " + this.location.state
