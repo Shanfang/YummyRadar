@@ -15,64 +15,17 @@ Completed:
     Calculating popularity changes for each month throughout the year(for a specific year)
 */
 
-router.post('/location', function(req, res, next) {
-    handleDBConn(req, res, function(req, res, conn) {
-        // var sqlStatement = `SELECT business_id, state, postal_code 
-        //                     FROM shanfang.business 
-        //                     WHERE state = :state AND city = :city AND postal_code = :zipCode 
-        //                     ORDER BY postal_code`;
-
-
-        var sqlStatement = `SELECT r.category, num
-                            FROM (
-                                SELECT bc.category, COUNT(*) AS num
-                                FROM shanfang.business b, shanfang.business_category bc
-                                WHERE b.business_id = bc.business_id AND b.state = :state AND b.city = :city
-                                    AND b.postal_code = :zipCode AND b.stars >= :stars
-                                GROUP BY bc.category
-                                ) r
-                            WHERE num >= 10`;
-
-        var state = req.body.state;
-        var city = req.body.city;
-        var stars = req.body.stars;
-
-        var zipCode = req.body.zipCode;
-        conn.execute(
-            sqlStatement,
-            [state, city, zipCode, stars],
-            {outFormat: oracledb.OBJECT},
-            function (err, result) {
-                if (err) {
-                    console.log(err.message);
-                    return;
-                }
-                // console.log(`The city is: ${city} and state is: ${state}, star is: ${stars}`);
-                console.log(`The result is: `);
-                console.log(result.metaData);
-                console.log(result.rows);                  
-                res.send(result.rows);
-
-                doRelease(conn);
-            }
-        );
-    });
-});
-
 /*
 Calculating popularity changes for each month throughout the year(for a specific year)
 */
 router.get('/popularity/:id/:year', function(req, res, next) {
     handleDBConn(req, res, function(req, res, conn) {   
-        var year = req.params.year.toString();
-        var id = req.params.id.toString();
-        // console.log(`The requested year is ${year}`);
-        // console.log(`The requested is is ${id}`);
-
+        var year = req.params.year;
+        var id = req.params.id;
         var sqlStatement = `
                             WITH targetReviews AS (SELECT r.create_date, r.stars
                                 FROM wzun.reviews r
-                                WHERE r.business_id = 'RJNAeNA-209sctUO0dmwuA' AND (SUBSTR(r.create_date, 1, 4) = '2014')) 
+                                WHERE r.business_id = :id AND (SUBSTR(r.create_date, 1, 4) = :year))  
                                 
                             SELECT temp2.month, SUM(temp2.total_per_star_month) AS monthly_total
                             FROM (SELECT temp.month, temp.stars * COUNT(*) AS total_per_star_month
@@ -80,34 +33,17 @@ router.get('/popularity/:id/:year', function(req, res, next) {
                                         FROM targetReviews) temp
                                 GROUP BY temp.month, temp.stars) temp2
                             GROUP BY temp2.month
-                            ORDER BY temp2.month`
-        
-        
-        
-        
-                            // `WITH targetReviews AS (SELECT r.create_date, r.stars
-                            //     FROM wzun.reviews r
-                            //     WHERE r.business_id = :id AND (SELECT SUBSTR(r.create_date, 1, 4) IN ${year})) 
-                                
-                            // SELECT temp2.month, temp2.total_per_star_month AS monthly_total
-                            // FROM (SELECT temp.month, temp.stars * COUNT(*) AS total_per_star_month
-                            //       FROM (SELECT SUBSTR(targetReviews.create_date, 6, 2) AS month, targetReviews.stars
-                            //             FROM targetReviews) temp
-                            //       GROUP BY temp.month, temp.stars) temp2
-                            // GROUP BY temp2.month, temp2.total_per_star_month
-                            // ORDER BY temp2.month`
+                            ORDER BY temp2.month`;
 
         conn.execute(
             sqlStatement,
-            [],
+            [id, year],
             {outFormat: oracledb.OBJECT},
             function (err, result) {
                 if (err) {
                     console.log(err.message);
                     return;
                 }
-                console.log(`The result is: `);
-                console.log(`The result is: ${sqlStatement}`);
                 console.log(result.metaData);
                 console.log(result.rows); 
             
@@ -130,15 +66,11 @@ router.post('/category/distribution', function(req, res, next) {
                                 AND b.stars >= :stars AND b.review_count >= :reviewCount
                             GROUP BY bc.category`;
         
-
         var state = req.body.state;
         var city = req.body.city;
         // var zipCode = req.body.zipCode;
         var reviewCount = req.body.reviewCount;
         var stars = req.body.stars;
-        // console.log(`state is ${state}`);
-        // console.log(`city is ${city}`);
-        // console.log(`stars is ${stars}`);
 
         conn.execute(
             sqlStatement,
@@ -149,7 +81,6 @@ router.post('/category/distribution', function(req, res, next) {
                     console.log(err.message);
                     return;
                 }
-                console.log(`The result is: `);
                 console.log(result.rows); 
                 res.send(result.rows);
                 
