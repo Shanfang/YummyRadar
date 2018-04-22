@@ -10,6 +10,10 @@ export class AnalysisService {
     constructor(private http: Http) {}
     apiURL: string = "http://127.0.0.1:3000";
 
+    /*
+    Get number of business for different food types in a selected location  
+    */
+    
     getBusinesses(location: Location) {
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post(`${this.apiURL}/api/analysis/category/distribution`, location, {headers: headers})
@@ -41,13 +45,18 @@ export class AnalysisService {
             .map(
                 (res: Response) => {
                     const data = res.json();
-                    let reviewCounts = [];
-                    let stars = [];
+                    let months: string[] = [];
+                    let popularity: number[] = [];
+
+
                     for (const t of data) {
-                        reviewCounts.push(t.reviewCounts);
-                        stars.push(t.stars);
+                        months.push(t.MONTH);
+                        popularity.push(t.MONTHLY_TOTAL);
                     }
-                    return {reviewCounts, stars};
+                    // console.log(`The months are ${months}`);
+                    // console.log(`The popularity are ${popularity}`);
+
+                    return {months, popularity};
                 }
             )
             .catch(

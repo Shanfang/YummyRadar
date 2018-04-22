@@ -74,7 +74,7 @@ export class AnalysisLocationComponent implements OnInit {
                   responsive: true,
                   title: {
                     display: true,
-                    text: "Number of Differet Restaurants for : " + this.location.city + " in " + this.location.state
+                    text: "Number of Different Restaurants for : " + this.location.city + " in " + this.location.state
                   }
                 }
               })
