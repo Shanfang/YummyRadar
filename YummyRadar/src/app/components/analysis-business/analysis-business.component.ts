@@ -38,26 +38,56 @@ export class AnalysisBusinessComponent implements OnInit {
                 colors[i] = this.getRandomColor();
               }
               this.chart = new Chart('pie-chart-business', {
-                type: 'pie',
+                type: 'line',
                 data: {
-                  datasets: [
+                  labels: months,
+                  datasets: [                   
                     {
                       data: popularity,
                       borderColor: '#ffcc00',
-                      backgroundColor: colors,
-                      fill: true
+                      fill: false
                     }
-                  ],
-                  labels:months
+                  ]
                 },
                 options: {
-                  responsive: true,
+                  legend: {
+                    display: false
+                  },
+                  scales: {
+                    xAxes: [{
+                      display: true
+                    }],
+                    yAxes: [{
+                      display: true
+                    }]
+                  },
                   title: {
                     display: true,
-                    text: "Popularity of Different Month for : " + this.businessID + " in " + this.selectedYear;
+                    text: "Popularity Changes for : " + this.businessID + " in " + this.selectedYear
                   }
                 }
               })
+              // this.chart = new Chart('pie-chart-business', {
+              //   type: 'pie',
+              //   data: {
+              //     datasets: [
+              //       {
+              //         data: popularity,
+              //         borderColor: '#ffcc00',
+              //         backgroundColor: colors,
+              //         fill: true
+              //       }
+              //     ],
+              //     labels:months
+              //   },
+              //   options: {
+              //     responsive: true,
+              //     title: {
+              //       display: true,
+              //       text: "Popularity of Different Month for : " + this.businessID + " in " + this.selectedYear;
+              //     }
+              //   }
+              // })
             } else {
               alert("Oops, there is no matching data");
             }
