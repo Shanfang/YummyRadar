@@ -1,16 +1,20 @@
 <div class="analysis-container col-md-12 mx-t" style="padding: 20px">
   <form (ngSubmit)='onSubmitInfo()' #f="ngForm"> 
-    <div class="row" class="mx-auto" style="width: 1000px;">
+      <div class="form-group col-md-3">
+          <label for="businessID">Please Enter Your Business ID</label>
+          <input type="text" name="businessID" [(ngModel)]="businessID">
+        </div> 
         <div class="form-group col-md-3">
-            <label for="businessID">Please Enter Your Business ID</label>
-            <input type="text" name="businessID" [(ngModel)]="businessID">
-          </div> 
-          <div class="form-group col-md-3">
-            <label for="years">Please Select Year of Interest</label>
-              <select id="year" class="form-control" [(ngModel)]="selectedYear" name="selectYear">
-                <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
-            </select>
-          </div> 
+          <label for="years">Please Select Year of Interest</label>
+            <select id="year" class="form-control" [(ngModel)]="selectedYear" name="selectYear">
+              <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
+          </select>
+        </div> 
+      <div class="form-group col-md-3">
+        <label for="charts">Please Select Type of Chart</label>
+        <select id="chart" class="form-control" [(ngModel)]="chartType" name="selectType">
+          <option *ngFor="let chart of charts" [ngValue]="chart">{{chart}}</option>
+        </select>
       </div>
       <div class="row">
         <div>
@@ -19,6 +23,10 @@
       </div>
   </form>
 </div>
+<div class="chart-container">
+  <canvas id="line-chart-business"></canvas>
+</div>
+<br>
 <div class="chart-container">
   <canvas id="pie-chart-business"></canvas>
 </div>

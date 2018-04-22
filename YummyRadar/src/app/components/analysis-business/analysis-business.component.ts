@@ -12,15 +12,16 @@ export class AnalysisBusinessComponent implements OnInit {
 
   @ViewChild('f') businessInfoForm: NgForm;
   chart = [];
-
+  chartType = '';
   businessID = '';
   selectedYear = '';
+
   constructor(
     private _analysisService: AnalysisService,
   ) {}
 
   years = ['2010', '2011', '2012', '2013','2014', '2015'];
-
+  charts = ['Line Graph', 'Pie Chart'];
   ngOnInit() {}
 
   onSubmitInfo() {
@@ -32,12 +33,12 @@ export class AnalysisBusinessComponent implements OnInit {
             // console.log(`The months are ${months}`);
             // console.log(`The popularity are ${popularity}`);
 
-            if (months.length > 0) {
+            if (this.chartType == 'Line Graph') {
               var colors: string[] = new Array(months.length);
               for (var i = 0; i < colors.length; i++) {
                 colors[i] = this.getRandomColor();
               }
-              this.chart = new Chart('pie-chart-business', {
+              this.chart = new Chart('line-chart-business', {
                 type: 'line',
                 data: {
                   labels: months,
@@ -67,27 +68,32 @@ export class AnalysisBusinessComponent implements OnInit {
                   }
                 }
               })
-              // this.chart = new Chart('pie-chart-business', {
-              //   type: 'pie',
-              //   data: {
-              //     datasets: [
-              //       {
-              //         data: popularity,
-              //         borderColor: '#ffcc00',
-              //         backgroundColor: colors,
-              //         fill: true
-              //       }
-              //     ],
-              //     labels:months
-              //   },
-              //   options: {
-              //     responsive: true,
-              //     title: {
-              //       display: true,
-              //       text: "Popularity of Different Month for : " + this.businessID + " in " + this.selectedYear;
-              //     }
-              //   }
-              // })
+            } else if (this.chartType == 'Pie Chart') {
+              var colors: string[] = new Array(12);
+              for (var i = 0; i < 12; i++) {
+                colors[i] = this.getRandomColor();
+              }
+              this.chart = new Chart('pie-chart-business', {
+                type: 'pie',
+                data: {
+                  datasets: [
+                    {
+                      data: popularity,
+                      borderColor: '#ffcc00',
+                      backgroundColor: colors,
+                      fill: true
+                    }
+                  ],
+                  labels:months
+                },
+                options: {
+                  responsive: true,
+                  title: {
+                    display: true,
+                    text: "Popularity Changes for : " + this.businessID + " in " + this.selectedYear;
+                  }
+                }
+              })
             } else {
               alert("Oops, there is no matching data");
             }
