@@ -27,6 +27,7 @@ import { AnalysisLocationComponent } from './components/analysis-location/analys
 import {AuthService} from './Services/auth.service';
 import {HttpClientModule} from '@angular/common/http';
 import { GeoInfoService } from './Services/geo-info.service';
+import { AnalysisBusinessComponent } from './components/analysis-business/analysis-business.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { GeoInfoService } from './Services/geo-info.service';
     AnalysisTypeComponent,
     AppComponent,
     SearchingComponent,
-    AnalysisLocationComponent
+    AnalysisLocationComponent,
+    AnalysisBusinessComponent
   ],
   imports: [
     BrowserModule,

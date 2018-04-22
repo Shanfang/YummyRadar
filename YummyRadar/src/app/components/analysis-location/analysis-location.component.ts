@@ -20,30 +20,34 @@ export class AnalysisLocationComponent implements OnInit {
     reviewCount: 0,
     stars: 0,
   };
-  private chart = [];
+  chart = [];
+  chartType = '';
 
   constructor(
     private _analysisService: AnalysisService,
     private _geoInfoService: GeoInfoService
   ) {}
 
-  stateOptions = ["IL", "WI", "SC"];
+  stateOptions = ['IL', 'WI', 'SC'];
   cities: string[] = [];
   zipCodes: number[] = [];
-  selectedState = "IL";
+  selectedState = 'IL';
+  chartOptions = ['Line Graph', 'Pie Chart'];
+  charType = '';
+
   ngOnInit() {}
 
   onSelectState(stateName:  string) {
     this.selectedState = this.locationForm.controls['selectedState'].value;
     this.cities = this._geoInfoService.getCities(this.selectedState);
-    this.zipCodes = this._geoInfoService.getZipCodes(this.selectedState);
+    // this.zipCodes = this._geoInfoService.getZipCodes(this.selectedState);
   }
 
 
   onSubmitSelection() {
     this.location.state = this.locationForm.value.selectedState;
     this.location.city = this.locationForm.value.selectedCity;
-    this.location.zipCode = this.locationForm.value.selectedZipCode;
+    // this.location.zipCode = this.locationForm.value.selectedZipCode;
     this.location.reviewCount = this.locationForm.value.selectedReviewCount;
     this.location.stars = this.locationForm.value.selectedStars;
 
@@ -52,15 +56,19 @@ export class AnalysisLocationComponent implements OnInit {
           (data: any) => {
             let categories = data.categories;
             let numbers = data.counts;
-            if (categories.length > 0) {
-              this.chart = new Chart('pie-chart-canvas', {
+            if (categories.length > 0 && this.chartType == 'Pie Chart') {
+              var colors: string[] = new Array(categories.length);
+              for (var i = 0; i < colors.length; i++) {
+                colors[i] = this.getRandomColor();
+              }
+              this.chart = new Chart('pie-chart-location', {
                 type: 'pie',
                 data: {
                   datasets: [
                     {
                       data: numbers,
                       borderColor: '#ffcc00',
-                      backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"],
+                      backgroundColor: colors,
                       fill: true
                     }
                   ],
@@ -68,13 +76,40 @@ export class AnalysisLocationComponent implements OnInit {
                 },
                 options: {
                   responsive: true,
-                  scaleOverride:true,
-                  scaleSteps:10,
-                  scaleStartValue:0,
-                  scaleStepWidth:1,
                   title: {
                     display: true,
-                    text: "Number of Differet Restaurants"
+                    text: "Number of Different Restaurants for : " + this.location.city + " in " + this.location.state
+                  }
+                }
+              })
+            } else if (categories.length > 0 && this.chartType == 'Line Graph') {
+              this.chart = new Chart('line-chart-location', {
+                type: 'line',
+                data: {
+                  labels: categories,
+                  datasets: [                   
+                    {
+                      data: numbers,
+                      borderColor: '#ffcc00',
+                      fill: false
+                    }
+                  ]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  },
+                  scales: {
+                    xAxes: [{
+                      display: true
+                    }],
+                    yAxes: [{
+                      display: true
+                    }]
+                  },
+                  title: {
+                    display: true,
+                    text: "Number of Different Restaurants for : " + this.location.city + " in " + this.location.state
                   }
                 }
               })
@@ -82,9 +117,17 @@ export class AnalysisLocationComponent implements OnInit {
               alert("Oops, there is no matching data");
             }
             this.locationForm.reset();
-            this.chart = null;
           },
           (error) => console.log(error)
-        );
+      );
+  }
+
+  private getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 }

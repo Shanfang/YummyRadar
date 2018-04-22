@@ -62,19 +62,44 @@ router.post('/location', function(req, res, next) {
 /*
 Calculating popularity changes for each month throughout the year(for a specific year)
 */
-router.post('/popularity/:id/:year', function(req, res, next) {
-    handleDBConn(req, res, function(req, res, conn) {
-        var sqlStatement = `SELECT r.create_date, b.business_id, r.stars
-                            FROM  shanfang.business b, wzun.reviews r
-                            WHERE b.business_id = r.business_id AND b.business_id = '-kOAY_7PlNBzezdo6jNvqw'
-                            GROUP BY r.create_date, b.business_id, r.stars
-                            ORDER BY r.create_date DESC`;
+router.get('/popularity/:id/:year', function(req, res, next) {
+    handleDBConn(req, res, function(req, res, conn) {   
+        var year = req.params.year.toString();
+        var id = req.params.id.toString();
+        // console.log(`The requested year is ${year}`);
+        // console.log(`The requested is is ${id}`);
 
-        var year = req.parms.year;
-        var business_id = req.parms.ID;
+        var sqlStatement = `
+                            WITH targetReviews AS (SELECT r.create_date, r.stars
+                                FROM wzun.reviews r
+                                WHERE r.business_id = 'RJNAeNA-209sctUO0dmwuA' AND (SUBSTR(r.create_date, 1, 4) = '2014')) 
+                                
+                            SELECT temp2.month, SUM(temp2.total_per_star_month) AS monthly_total
+                            FROM (SELECT temp.month, temp.stars * COUNT(*) AS total_per_star_month
+                                FROM (SELECT SUBSTR(targetReviews.create_date, 6, 2) AS month, targetReviews.stars
+                                        FROM targetReviews) temp
+                                GROUP BY temp.month, temp.stars) temp2
+                            GROUP BY temp2.month
+                            ORDER BY temp2.month`
+        
+        
+        
+        
+                            // `WITH targetReviews AS (SELECT r.create_date, r.stars
+                            //     FROM wzun.reviews r
+                            //     WHERE r.business_id = :id AND (SELECT SUBSTR(r.create_date, 1, 4) IN ${year})) 
+                                
+                            // SELECT temp2.month, temp2.total_per_star_month AS monthly_total
+                            // FROM (SELECT temp.month, temp.stars * COUNT(*) AS total_per_star_month
+                            //       FROM (SELECT SUBSTR(targetReviews.create_date, 6, 2) AS month, targetReviews.stars
+                            //             FROM targetReviews) temp
+                            //       GROUP BY temp.month, temp.stars) temp2
+                            // GROUP BY temp2.month, temp2.total_per_star_month
+                            // ORDER BY temp2.month`
+
         conn.execute(
             sqlStatement,
-            [year, business_id],
+            [],
             {outFormat: oracledb.OBJECT},
             function (err, result) {
                 if (err) {
@@ -82,10 +107,11 @@ router.post('/popularity/:id/:year', function(req, res, next) {
                     return;
                 }
                 console.log(`The result is: `);
+                console.log(`The result is: ${sqlStatement}`);
                 console.log(result.metaData);
-                console.log(result.rows);                  
+                console.log(result.rows); 
+            
                 res.send(result.rows);
-
                 doRelease(conn);
             }
         );
@@ -101,22 +127,22 @@ router.post('/category/distribution', function(req, res, next) {
         var sqlStatement = `SELECT bc.category, COUNT(*) AS num
                             FROM shanfang.business b, shanfang.business_category bc
                             WHERE b.business_id = bc.business_id AND b.state = :state AND b.city = :city
-                                AND b.postal_code = :zipCode AND b.stars >= :stars AND b.review_count >= :reviewCount
+                                AND b.stars >= :stars AND b.review_count >= :reviewCount
                             GROUP BY bc.category`;
         
 
         var state = req.body.state;
         var city = req.body.city;
-        var zipCode = req.body.zipCode;
+        // var zipCode = req.body.zipCode;
         var reviewCount = req.body.reviewCount;
         var stars = req.body.stars;
-        console.log(`state is ${state}`);
-        console.log(`city is ${city}`);
-        console.log(`stars is ${stars}`);
+        // console.log(`state is ${state}`);
+        // console.log(`city is ${city}`);
+        // console.log(`stars is ${stars}`);
 
         conn.execute(
             sqlStatement,
-            [state, city, zipCode, stars, reviewCount],
+            [state, city, stars, reviewCount],
             {outFormat: oracledb.OBJECT},
             function (err, result) {
                 if (err) {
