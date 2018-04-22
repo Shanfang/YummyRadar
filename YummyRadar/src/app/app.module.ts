@@ -25,6 +25,8 @@ import {MatToolbarModule,
   } from '@angular/material';
 import { AnalysisService } from './Services/analysis.service';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
+import { SearchFilterBarComponent } from './components/search-filter-bar/search-filter-bar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     AppComponent,
     SearchingComponent,
     NavBarComponent,
+    SearchResultComponent,
+    SearchFilterBarComponent,
   ],
   imports: [
     BrowserModule,

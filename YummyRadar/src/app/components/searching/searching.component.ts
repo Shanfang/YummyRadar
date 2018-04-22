@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,} from '@angular/core';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,29 +12,47 @@ import 'rxjs/add/operator/toPromise';
 })
 export class SearchingComponent implements OnInit {
   form: FormGroup;
-  //  Set input limitation of characters
-  constructor(@Inject('data')  private dataservice,
-              private _route:Router) { 
-              this.form = new FormGroup({
-                restName: new FormControl('', Validators.compose([
-                  Validators.required,
-                  Validators.pattern('[\\w\\-\\s\\/]+$'),
-                ])),
+  searchRestList: Object;
 
-                restPost: new FormControl('', Validators.compose([
-                  Validators.required,
-                  Validators.maxLength(200),
-                ])),
-              });
+  constructor(@Inject('data')  private dataservice,
+    private _route:Router) { 
+    this.form = new FormGroup({
+      restName: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[\\w\\-\\s\\/]+$'),
+      ])),
+
+      restPost: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.maxLength(200),
+      ])),
+    });
   }
 
   ngOnInit() {
   }
 
-  // Handle searching function:
+  /**
+   * Handle homepage searching function
+   */
   searchSubmit(searchInfo){
-    //console.log("search info is:restaurant name"+searchInfo.restName+"  place:"+searchInfo.restPost);
-    this.dataservice.getRestNameFromRestandAddr(searchInfo.restName, searchInfo.restPost);
+    localStorage.setItem('searchInfo', JSON.stringify(searchInfo));
+    this.dataservice.getRestNameFromRestandAddr(searchInfo)
+      .subscribe(
+        searchList => {
+        console.log("-----------");
+        console.log(searchList);
+        localStorage.setItem('searchList', searchList);
+
+        this.searchRestList = searchList;
+        this._route.navigate(['/searchResult']);
+      },
+
+        // err => {
+        //   console.log("cannot find the result");
+        // } 
+      );
   }
+
 
 }

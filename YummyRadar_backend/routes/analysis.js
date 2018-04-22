@@ -31,19 +31,21 @@ router.get('/area', function(req, res, next) {
 });
 
 function handleDBConn(req, res, callback) {
-    oracledb.getConnection({
+    oracledb.getConnection(
+        {
         user          : dbConfig.user,
         password      : dbConfig.password,
         connectString : dbConfig.connectString
         }, 
         function(err, conn) {
-        if (err) {
-            console.log('Error in acquiring connection ...');
-            console.log('Error message '+err.message);           
-            return;
-        }        
-        callback(req, res, conn);
-    });
+            if (err) {
+                console.log('Error in acquiring connection ...');
+                console.log('Error message '+err.message);           
+                return;
+            }        
+            callback(req, res, conn);
+        }
+    );
 }
 
 function doRelease(conn) {
