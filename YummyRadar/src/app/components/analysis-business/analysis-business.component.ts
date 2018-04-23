@@ -25,6 +25,7 @@ export class AnalysisBusinessComponent implements OnInit {
   ngOnInit() {}
 
   onSubmitInfo() {
+    this.chart = [];
     this._analysisService.getTrend(this.businessID, this.selectedYear)
       .subscribe(
           (data: any) => {
@@ -120,7 +121,8 @@ export class AnalysisBusinessComponent implements OnInit {
             } else {
               alert("Oops, there is no matching data");
             }
-            this.resetData();
+            this.businessInfoForm.reset();
+            // this.resetData();
           },
           (error) => console.log(error)
       );
@@ -135,10 +137,10 @@ export class AnalysisBusinessComponent implements OnInit {
     return color;
   }
 
-  private resetData() {
-    this.chart = null;
-    this.chartType = '';
-    this.businessID = '';
-    this.selectedYear = '';
-  }
+  // private resetData() {
+  //   this.chart = null;
+  //   this.chartType = '';
+  //   this.businessID = '';
+  //   this.selectedYear = '';
+  // }
 }

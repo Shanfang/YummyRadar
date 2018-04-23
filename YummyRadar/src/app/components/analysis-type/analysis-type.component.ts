@@ -45,6 +45,7 @@ export class AnalysisTypeComponent implements OnInit {
 
 
   onSubmitSelection() {
+    this.chart = [];
     this.location.state = this.locationForm.value.selectedState;
     this.location.city = this.locationForm.value.selectedCity;
     this.businessTpye = this.locationForm.value.selectedBusinessType;
@@ -145,7 +146,6 @@ export class AnalysisTypeComponent implements OnInit {
               alert("Oops, there is no matching data");
             }
             this.locationForm.reset();
-            this.resetData();
           },
           (error) => console.log(error)
       );
@@ -158,12 +158,6 @@ export class AnalysisTypeComponent implements OnInit {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-  }
-
-  private resetData() {
-    this.chart = [];
-    this.chartType = '';
-    this.selectedState = '';
   }
 
 }

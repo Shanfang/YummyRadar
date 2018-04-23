@@ -30,6 +30,7 @@ import { GeoInfoService } from './Services/geo-info.service';
 import { AnalysisBusinessComponent } from './components/analysis-business/analysis-business.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { SearchFilterBarComponent } from './components/search-filter-bar/search-filter-bar.component';
+import { SummaryComponent } from './components/summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SearchFilterBarComponent } from './components/search-filter-bar/search-
     SearchResultComponent,
     SearchFilterBarComponent,
     AnalysisLocationComponent,
-    AnalysisBusinessComponent
+    AnalysisBusinessComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,

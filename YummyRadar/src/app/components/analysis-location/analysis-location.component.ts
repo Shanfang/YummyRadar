@@ -50,7 +50,8 @@ export class AnalysisLocationComponent implements OnInit {
     // this.location.zipCode = this.locationForm.value.selectedZipCode;
     this.reviewCount = this.locationForm.value.selectedReviewCount;
     this.stars = this.locationForm.value.selectedStars;
-    // this.chart = null;
+    this.chart = [];
+    
     this.businessInfo = {
         "state": this.location.state,
         "city": this.location.city,
