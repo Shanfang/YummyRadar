@@ -4,6 +4,7 @@ var cors = require('cors');
 
 var appRoutes = require('./routes/app');
 var analysisRoutes = require('./routes/analysis');
+var searchingRoutes = require('./routes/searching');
 
 const app = express();
 const PORT = 3000;
@@ -15,6 +16,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 // app.post('/api/addRest', (req, res, next) => 
 //     console.log(req.body));
 
+// app.use('/analysis', analysisRoutes);
+// app.use('/', appRoutes);
+app.use('/api/searching', searchingRoutes);
+app.use('/', appRoutes);
 app.use('/api/analysis', analysisRoutes);
 app.use('/api', appRoutes);
 

@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.component';
 import { SearchingComponent } from './components/searching/searching.component';
 import { routing } from './app.router';
+import { DataService } from './Services/data.service';
 
 import {MatToolbarModule,
   MatInputModule,
@@ -25,9 +26,11 @@ import { AnalysisService } from './Services/analysis.service';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AnalysisLocationComponent } from './components/analysis-location/analysis-location.component';
 import {AuthService} from './Services/auth.service';
-import {HttpClientModule} from '@angular/common/http';
 import { GeoInfoService } from './Services/geo-info.service';
 import { AnalysisBusinessComponent } from './components/analysis-business/analysis-business.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
+import { SearchFilterBarComponent } from './components/search-filter-bar/search-filter-bar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +39,9 @@ import { AnalysisBusinessComponent } from './components/analysis-business/analys
     AnalysisTypeComponent,
     AppComponent,
     SearchingComponent,
+    NavBarComponent,
+    SearchResultComponent,
+    SearchFilterBarComponent,
     AnalysisLocationComponent,
     AnalysisBusinessComponent
   ],
@@ -58,7 +64,11 @@ import { AnalysisBusinessComponent } from './components/analysis-business/analys
     ReactiveFormsModule,
     MatDialogModule
   ],
-  providers: [AnalysisService, AuthService, GeoInfoService],
+  providers: [
+    AnalysisService,
+    { provide: 'data', useClass: DataService },
+    AuthService, GeoInfoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
