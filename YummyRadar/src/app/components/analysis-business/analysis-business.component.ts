@@ -38,10 +38,6 @@ export class AnalysisBusinessComponent implements OnInit {
               colors[i] = this.getRandomColor();
             }
             if (this.chartType == 'Line Graph') {
-              // var colors: string[] = new Array(months.length);
-              // for (var i = 0; i < colors.length; i++) {
-              //   colors[i] = this.getRandomColor();
-              // }
               this.chart = new Chart('line-chart-business', {
                 type: 'line',
                 data: {
@@ -73,10 +69,6 @@ export class AnalysisBusinessComponent implements OnInit {
                 }
               })
             } else if (this.chartType == 'Bar Chart') {
-              // var colors: string[] = new Array(12);
-              // for (var i = 0; i < 12; i++) {
-              //   colors[i] = this.getRandomColor();
-              // }
               this.chart = new Chart('bar-chart-business', {
                 type: 'bar',
                 data: {
