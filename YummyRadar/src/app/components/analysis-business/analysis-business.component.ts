@@ -83,6 +83,9 @@ export class AnalysisBusinessComponent implements OnInit {
                   labels:months
                 },
                 options: {
+                  legend: {
+                    display: false,
+                  },
                   responsive: true,
                   title: {
                     display: true,

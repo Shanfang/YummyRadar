@@ -32,7 +32,7 @@ export class AnalysisLocationComponent implements OnInit {
   cities: string[] = [];
   zipCodes: number[] = [];
   selectedState = 'IL';
-  chartOptions = ['Line Graph', 'Pie Chart'];
+  chartOptions = ['Line Graph', 'Bar Chart', 'Pie Chart'];
   charType = '';
 
   ngOnInit() {}
@@ -56,11 +56,15 @@ export class AnalysisLocationComponent implements OnInit {
           (data: any) => {
             let categories = data.categories;
             let numbers = data.counts;
+            var colors: string[] = new Array(categories.length);
+            for (var i = 0; i < colors.length; i++) {
+              colors[i] = this.getRandomColor();
+            }
             if (categories.length > 0 && this.chartType == 'Pie Chart') {
-              var colors: string[] = new Array(categories.length);
-              for (var i = 0; i < colors.length; i++) {
-                colors[i] = this.getRandomColor();
-              }
+              // var colors: string[] = new Array(categories.length);
+              // for (var i = 0; i < colors.length; i++) {
+              //   colors[i] = this.getRandomColor();
+              // }
               this.chart = new Chart('pie-chart-location', {
                 type: 'pie',
                 data: {
@@ -75,6 +79,31 @@ export class AnalysisLocationComponent implements OnInit {
                   labels:categories
                 },
                 options: {
+                  responsive: true,
+                  title: {
+                    display: true,
+                    text: "Number of Different Restaurants for : " + this.location.city + " in " + this.location.state
+                  }
+                }
+              })
+            } else if (categories.length > 0 && this.chartType == 'Bar Chart') {
+              this.chart = new Chart('bar-chart-location', {
+                type: 'bar',
+                data: {
+                  datasets: [
+                    {
+                      data: numbers,
+                      borderColor: '#ffcc00',
+                      backgroundColor: colors,
+                      fill: true
+                    }
+                  ],
+                  labels:categories
+                },
+                options: {
+                  legend: {
+                    display: false,
+                  },
                   responsive: true,
                   title: {
                     display: true,
