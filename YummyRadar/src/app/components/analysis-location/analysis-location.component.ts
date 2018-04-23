@@ -16,13 +16,13 @@ export class AnalysisLocationComponent implements OnInit {
   private location: Location = {
     state: '',
     city: '',
-    zipCode: '',
-    reviewCount: 0,
-    stars: 0,
+    zipCode: ''
   };
+  reviewCount: number = 0;
+  stars: number = 0;
   chart = [];
   chartType = '';
-
+  businessInfo: Object;
   constructor(
     private _analysisService: AnalysisService,
     private _geoInfoService: GeoInfoService
@@ -48,10 +48,16 @@ export class AnalysisLocationComponent implements OnInit {
     this.location.state = this.locationForm.value.selectedState;
     this.location.city = this.locationForm.value.selectedCity;
     // this.location.zipCode = this.locationForm.value.selectedZipCode;
-    this.location.reviewCount = this.locationForm.value.selectedReviewCount;
-    this.location.stars = this.locationForm.value.selectedStars;
-
-    this._analysisService.getBusinesses(this.location)
+    this.reviewCount = this.locationForm.value.selectedReviewCount;
+    this.stars = this.locationForm.value.selectedStars;
+    // this.chart = null;
+    this.businessInfo = {
+        "state": this.location.state,
+        "city": this.location.city,
+        "reviewCount": this.reviewCount,
+        "stars": this.stars
+    };
+    this._analysisService.getBusinesses(this.businessInfo)
       .subscribe(
           (data: any) => {
             let categories = data.categories;
@@ -61,10 +67,6 @@ export class AnalysisLocationComponent implements OnInit {
               colors[i] = this.getRandomColor();
             }
             if (categories.length > 0 && this.chartType == 'Pie Chart') {
-              // var colors: string[] = new Array(categories.length);
-              // for (var i = 0; i < colors.length; i++) {
-              //   colors[i] = this.getRandomColor();
-              // }
               this.chart = new Chart('pie-chart-location', {
                 type: 'pie',
                 data: {
@@ -145,7 +147,7 @@ export class AnalysisLocationComponent implements OnInit {
             } else {
               alert("Oops, there is no matching data");
             }
-            this.locationForm.reset();
+            // this.locationForm.reset();
           },
           (error) => console.log(error)
       );

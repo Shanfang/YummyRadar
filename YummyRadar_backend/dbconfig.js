@@ -1,5 +1,5 @@
 module.exports = {
-    user          : "***",
-    password      : "***",
+    user          : "shanfang",
+    password      : "yummyradar",
     connectString : "oracle.cise.ufl.edu:1521/orcl",
   };

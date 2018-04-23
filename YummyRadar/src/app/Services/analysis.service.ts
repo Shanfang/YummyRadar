@@ -14,9 +14,9 @@ export class AnalysisService {
     Get number of business for different food types in a selected location  
     */
     
-    getBusinesses(location: Location) {
+    getBusinesses(businessInfo: Object) {
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(`${this.apiURL}/api/analysis/category/distribution`, location, {headers: headers})
+        return this.http.post(`${this.apiURL}/api/analysis/category/distribution`, businessInfo, {headers: headers})
             .map(
                 (res: Response) => {
                     const data = res.json();
@@ -66,13 +66,29 @@ export class AnalysisService {
             );
     }
 
-    // /* 
-    // Header for http request
-    // */
-    // getHeader(): RequestOptions {
-    //     // let access_token: string = localStorage.getItem("access_token");
-    //     let headers: Headers = new Headers({'Content-Type': 'application/json'});
-    //     // headers.append('Authorization', 'Bearer ' + access_token);
-    //     return new RequestOptions({ headers: headers });
-    // }
+    /*
+    Get top 10(other number can be easily cofigured) restaurants in a specified location
+    */
+
+    getTop10(businessInfo: Object) {
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.post(`${this.apiURL}/api/analysis/popularity/top10`, businessInfo, {headers: headers})
+            .map(
+                (res: Response) => {
+                    const data = res.json();
+                    let names = [];
+                    let numbers = [];
+                    for (const d of data) {
+                        names.push(d.NAME);
+                        numbers.push(d.NUM);
+                    }
+                    return {names, numbers};
+                }
+            )
+            .catch(
+                (error: Response) => {
+                    return Observable.throw("Something is wrong");
+                }
+            );
+    }
 }
