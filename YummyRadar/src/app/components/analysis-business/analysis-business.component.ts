@@ -90,7 +90,7 @@ export class AnalysisBusinessComponent implements OnInit {
                   responsive: true,
                   title: {
                     display: true,
-                    text: "Popularity Changes for : " + this.businessID + " in " + this.selectedYear;
+                    text: "Popularity Changes for : " + this.businessID + " in " + this.selectedYear
                   }
                 }
               })
