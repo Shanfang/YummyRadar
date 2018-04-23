@@ -2,7 +2,7 @@ var express = require('express');
 var oracledb = require('oracledb');
 var dbConfig = require('../dbconfig');
 var router = express.Router();
-
+oracledb.fetchAsString = [ oracledb.CLOB ];
 // TODO: pooling connections
 
 router.post('/', function(req, res, next) {
@@ -25,8 +25,8 @@ router.post('/', function(req, res, next) {
                 console.log(`The result is: `);
                 console.log(result.metaData);
                 console.log(result.rows);                  
-                res.send(result.rows);
                 doRelease(conn);
+                return res.send(result.rows);
             }
         );
     });
@@ -35,7 +35,7 @@ router.post('/', function(req, res, next) {
 
 router.post('/review', function (req, res, next) {
     handleDBConn(req, res, function(req, res, conn) {
-        var sqlStatement = `SELECT text FROM REVIEWS WHERE USER_ID =: id and rownum<3`;
+        var sqlStatement = `SELECT * FROM REVIEWS WHERE USER_ID =: id and rownum<11`;
         var id = req.body.USER_ID; // replace with user input id when logging   
         conn.execute(
             sqlStatement,
@@ -47,14 +47,11 @@ router.post('/review', function (req, res, next) {
                     return;
                 }
                 console.log(`The result is: `);
-                // console.log(result.metaData);
-                // console.log(result.rows);                  
-                // res.send(result.rows);
-                res.status("200").json(result.rows);
+                // res.status("200").json(result.rows); 
                 // displayResults(res, result, id);
                 doRelease(conn);
+                return res.json(result.rows);
             }
-
         );
     });
     console.log(req.body);
