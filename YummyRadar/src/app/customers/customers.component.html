@@ -1,45 +1,8 @@
 <h2>Logged Customer</h2>
-<ul class="customer1">
-  <li *ngFor="let customer of customer1"
-    [class.selected]="customer === selectedCustomer"
-    (click)="onSelect(customer)">
-    <span class="badge">{{customer.id}}</span> Edit Profies
-  </li>
-</ul>
-
-
-<!-- <div class="customers-container">
-  <form (ngSubmit)='onSelectCustomer()' #f="ngForm"> 
-    <div class="form-group">
-      <label for="id">Select an id</label>
-      <select 
-        id="id" 
-        class="form-control" 
-        [(ngModel)]="selectID" 
-        name="id"
-        required>
-        <option>tom1</option>
-      </select>
-    </div> 
-    <button class="btn btn-primary" type="submit">Submit</button>
-  </form>
-</div> -->
-<!-- 
-<div class="customers-container">
-  <form (ngSubmit)='onSelectCustomer()' #f = "ngForm">
-      <div class="form-group">
-          Customer ID: <input type="text" id="id" 
-          class="form-control" 
-          [(ngModel)]="selectID" 
-          name="id">
-      </div>
-      <button class="btn btn-primary" type="submit">Submit</button>
-  </form>
-</div> -->
-
 
 <div> <label>Customer ID: </label>{{this.customer.id}} </div>
 <div> <label>Customer Name: </label>{{this.customer.name}} </div>
+<div> <label>E-mail: </label>{{this.customer.email}} </div>
 <div> <label>Review Count: </label>{{this.customer.review_count}} </div>
 <div> <label>Cool Number: </label>{{this.customer.cool}} </div>
 <div> <label>Useful Number: </label>{{this.customer.useful}} </div>
@@ -51,12 +14,17 @@
 </nav>
 
 <h2>Review Lists</h2>
-<ul class="review1">
-  <li *ngFor="let review of review1">
-    <span class="badge">{{review.time}}</span> {{review.text}}
-  </li>
-</ul>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <button
+      class="btn btn-primary"
+      type="submit">Show My Reviews
+    </button>
+</form>
 
+<div> <label>Review1: </label>{{this.reviews[0].TEXT}} </div>
+<br/>
 
-<!-- <app-customer-profile [customer] = "selectedCustomer"></app-customer-profile> -->
+<read-more [text]="this.reviews[0].TEXT" [maxLength]="100"></read-more>
+<!-- <div> <label>Review2: </label>{{this.reviews[1].TEXT}} </div> -->
+
 

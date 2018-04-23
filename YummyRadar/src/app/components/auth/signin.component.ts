@@ -50,6 +50,7 @@ export class SigninComponent implements OnInit {
         
         localStorage.setItem('id', data.USER_ID);
         localStorage.setItem('name', data.NAME);
+        localStorage.setItem('email', data.EMAIL);
         localStorage.setItem('review_count', data.REVIEW_COUNT.toString());
         localStorage.setItem('cool', data.COOL.toString());
         localStorage.setItem('funny', data.FUNNY.toString());

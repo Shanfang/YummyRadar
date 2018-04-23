@@ -29,7 +29,7 @@ export class CustomerService {
         .map((response: Response) => {
           console.log(response);
           //console.log(response[0]);
-          return response[0];
+          return response;
         })
           .catch((err: HttpErrorResponse) => {
             this.errorService.handleError(err.error);

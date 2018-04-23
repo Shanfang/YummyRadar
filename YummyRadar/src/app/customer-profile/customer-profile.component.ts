@@ -13,8 +13,9 @@ import { CustomerService } from '../services/customer.service';
 export class CustomerProfileComponent implements OnInit {
   myForm: FormGroup;
   customer: Customer = {
-    id: 'abc',
-    name: ''
+    id: '',
+    name: '',
+    email: ''
   }
   constructor(private customerService: CustomerService) { }
 
@@ -34,6 +35,10 @@ export class CustomerProfileComponent implements OnInit {
       name: new FormControl(
         null,
         Validators.required
+      ),
+      email: new FormControl(
+        null,
+        Validators.required
       )
     });
   }
@@ -41,6 +46,7 @@ export class CustomerProfileComponent implements OnInit {
     console.log(this.myForm);
     this.customer.id = this.myForm.value.id;
     this.customer.name = this.myForm.value.name;
+    this.customer.email = this.myForm.value.email;
     this.customerService.updateProfile(this.customer).subscribe(
       data => {
         // localStorage.setItem('token', data.token);
