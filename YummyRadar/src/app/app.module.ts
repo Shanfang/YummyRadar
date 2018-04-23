@@ -20,6 +20,12 @@ import {LogoutComponent} from './components/auth/logout.component';
 import {SignupComponent} from './components/auth/signup.component';
 import {AuthService} from './services/auth.service';
 import {ErrorService} from './services/error.service';
+import { ReadMoreDirective } from './read-more.directive';
+import {ReviewListComponent} from "./components/review/review-list.component";
+import {ReviewComponent} from "./components/review/review.component";
+
+
+
 // import { ErrorComponent } from './error/error.component';
 
 
@@ -34,7 +40,10 @@ import {ErrorService} from './services/error.service';
     AuthComponent ,
     SigninComponent,
     LogoutComponent,
-    SignupComponent
+    SignupComponent,
+    ReadMoreDirective,
+    ReviewListComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +51,9 @@ import {ErrorService} from './services/error.service';
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ],
-  providers: [CustomerService, MessageService, AuthService, ErrorService],  
+  providers: [CustomerService, MessageService, AuthService, ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

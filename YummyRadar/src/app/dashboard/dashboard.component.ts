@@ -5,6 +5,8 @@ import { CustomerService } from '.././services/customer.service';
 
 import {Customer} from '../models/customer';
 import { Review } from '../models/review';
+import { ReadMoreDirective } from '../read-more.directive';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

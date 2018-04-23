@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild, Input, ElementRef, AfterViewInit,OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Customer } from '../models/customer';
-import { CUSTOMER } from '../mock-customers';
 import { Review } from '../models/review';
-// import { REVIEW } from '../mock-reviews';
 import { CustomerService } from '../services/customer.service';
 import { Response } from '@angular/http';
 import { NgForm, FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -11,46 +9,14 @@ import { NgForm, FormGroup, FormControl, ReactiveFormsModule } from '@angular/fo
 
 @Component({
   selector: 'app-customers',
-  template: `
-        <div [innerHTML]="currentText">
-        </div>
-            <a [class.hidden]="hideToggle" (click)="toggleView()">Read {{isCollapsed? 'more':'less'}}</a>
-    `,
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.css']
-}) 
-export class CustomersComponent implements OnInit, OnChanges {
+})
+export class CustomersComponent implements OnInit {
   @ViewChild('f') idForm: NgForm;
-  @Input() text: string;
-  @Input() maxLength: number = 100;
-  currentText: string;
-  hideToggle: boolean = true;
 
-  public isCollapsed: boolean = true;
-  toggleView() {
-      this.isCollapsed = !this.isCollapsed;
-      this.determineView();
-  }
-  determineView() {
-      if (this.text.length <= this.maxLength) {
-          this.currentText = this.text;
-          this.isCollapsed = false;
-          this.hideToggle = true;
-          return;
-      }
-      this.hideToggle = false;
-      if (this.isCollapsed == true) {
-          this.currentText = this.text.substring(0, this.maxLength) + "...";
-      } else if(this.isCollapsed == false)  {
-          this.currentText = this.text;
-      }
 
-  }
-  ngOnChanges() {
-      this.determineView();       
-  }
-  
-  constructor(private customerService: CustomerService, private elementRef: ElementRef) { }
+  constructor(private customerService: CustomerService) { }
   myForm: FormGroup;
 
   customerOnline : Customer = {
@@ -61,21 +27,11 @@ export class CustomersComponent implements OnInit, OnChanges {
   review: Review = {
     USER_ID: '',
     TEXT: ''
-  }
+  };
 
-  reviews: Review[] = [
-    {TEXT: ''},
-    {TEXT: ''},
-    {TEXT: ''},
-    {TEXT: ''},
-    {TEXT: ''},
-    {TEXT: ''},
-    {TEXT: ''},
-    {TEXT: ''},
-    {TEXT: ''},
-    {TEXT: ''}
-  ]
-  
+  reviews: Review[];
+  showReviews: Review[];
+
   customer : Customer = {
     id :'',
     name : '',
@@ -84,11 +40,15 @@ export class CustomersComponent implements OnInit, OnChanges {
     cool: 0,
     useful: 0,
     funny: 0
-  }
+  };
   // review1 = REVIEW;
-  
 
-  
+  page: number = 1;
+  dataLength: number = 0;
+  pageOptions = [1];
+
+
+
   ngOnInit(): void {
     this.customerOnline.id = "";
     this.customer.id = localStorage.getItem('id');
@@ -104,48 +64,67 @@ export class CustomersComponent implements OnInit, OnChanges {
         null, [
       ])
     });
+    this.myForm.value.USER_ID = localStorage.getItem('id');
+    this.review.USER_ID = this.myForm.value.USER_ID;
+    this.reviews=[];
+    this.customerService.getReview(this.review).subscribe(
+      (data: Review[]) => {
+        console.log(data);
+        console.log(data.length);
+        this.dataLength = data.length;
+
+        for (let i = 2; i <= (data.length/10); i++){
+            this.pageOptions.push(i);
+        }
+
+        localStorage.setItem('text', data[1].TEXT);
+        for (const item of data){
+          let tempReview:Review = new Review();
+          Object.assign(tempReview, item);
+          this.reviews.push(tempReview);
+        }
+
+        // //console.log(localStorage.getItem('text'));
+        // this.reviews[0].TEXT = data[0].TEXT;
+        // this.reviews[1].TEXT = data[1].TEXT;
+        // console.log(this.reviews[0].TEXT);
+        console.log(this.reviews);
+
+      },
+      err => console.error(err)
+    );
 
 
     // console.log(this.idForm);
     // this.getCustomer();
   }
 
+
+
+
   onSubmit() {
     console.log(111);
     console.log(this.myForm);
-    
-    this.myForm.value.USER_ID = localStorage.getItem('id');
-    this.review.USER_ID = this.myForm.value.USER_ID;
-    
-    this.customerService.getReview(this.review).subscribe(
-      data => {
-        console.log(data);
-        console.log(data.length);
-        localStorage.setItem('text', data[1].TEXT);
-        console.log(localStorage.getItem('text'));
-        this.reviews[0].TEXT = data[0].TEXT;
-        this.reviews[1].TEXT = data[1].TEXT;
 
-        
-      },
-      err => console.error(err)
-    );
+
+    this.reviews[0].TEXT="21214423432";
+
     this.myForm.reset();
   }
 
-  onSelectCustomer() {
-    console.log(this.idForm);
-    this.customerOnline.id = this.idForm.value.id;
-   
+  onNextPage() {
+    this.showReviews=[];
+    console.log(this.page);//==1
+    if (this.dataLength < 10){
+      for (let i = 1; i < this.dataLength; i++){
+        this.showReviews.push(this.reviews[i]);
+      }
+    } else{
+      for (let i = (this.page*10-9); i < (this.page*10); i++){
+        this.showReviews.push(this.reviews[i]);
+      }
+    }
 
-    this.customerService.getCustomer(this.customerOnline)
-    .subscribe(
-      (response: Response) => {
-        const data = response.json();
-        console.log(data);
-      },
-      (error) => console.log(error)
-    )
-    this.idForm.reset();
+
   }
 }

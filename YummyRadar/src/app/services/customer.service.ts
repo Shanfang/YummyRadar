@@ -13,8 +13,8 @@ import {ErrorService} from './error.service';
 @Injectable()
 export class CustomerService {
     constructor(private  http: HttpClient, private errorService: ErrorService) {}
-    
-    
+
+
     getCustomer(customer: Customer) {
         const body = JSON.stringify(customer);
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -27,8 +27,6 @@ export class CustomerService {
         const headers = new HttpHeaders({'Content-type':'Application/json'});
         return this.http.post('http://localhost:3000/api/customer/review', body, {headers: headers})
         .map((response: Response) => {
-          console.log(response);
-          //console.log(response[0]);
           return response;
         })
           .catch((err: HttpErrorResponse) => {
@@ -45,5 +43,14 @@ export class CustomerService {
             this.errorService.handleError(err.error);
             return Observable.throw(err.error);
           });
+    }
+
+    nextPage(){
+      const headers = new HttpHeaders({'Content-type':'Application/json'});
+      return this.http.get('http://localhost:3000/api/customer/review', {headers: headers})
+        .catch((err: HttpErrorResponse) => {
+          this.errorService.handleError(err.error);
+          return Observable.throw(err.error);
+        });
     }
 }

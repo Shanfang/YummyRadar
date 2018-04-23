@@ -13,18 +13,22 @@
   <a routerLink="/profiles">Edit Profiles</a>
 </nav>
 
-<h2>Review Lists</h2>
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <button
-      class="btn btn-primary"
-      type="submit">Show My Reviews
-    </button>
-</form>
 
-<div> <label>Review1: </label>{{this.reviews[0].TEXT}} </div>
-<br/>
 
-<read-more [text]="this.reviews[0].TEXT" [maxLength]="100"></read-more>
-<!-- <div> <label>Review2: </label>{{this.reviews[1].TEXT}} </div> -->
+<app-review-list [reviews]="this.showReviews"></app-review-list>
 
+<div class="form-group col-md-3">
+  <label for="page">Select Page Number: </label>
+  <select
+    id="page"
+    class="form-control"
+    [(ngModel)]="page"
+    name="selectPage"
+    required>
+    <option *ngFor="let page of pageOptions" [ngValue]="page">{{page}}</option>
+  </select>
+</div>
+
+
+<button (click)="onNextPage()">Go!!</button>
 

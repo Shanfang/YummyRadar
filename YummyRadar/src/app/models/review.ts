@@ -8,4 +8,5 @@ export class Review {
   USEFUL?: number;
   FUNNY?: number;
   COOL?: number;
+  USER_NAME?: string;
 }
