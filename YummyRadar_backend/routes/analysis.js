@@ -162,17 +162,27 @@ router.get('/summary/total', function(req, res, next) {
         // } else if (tableName == "users")  {
         //     sqlStatement = `SELECT COUNT(*) AS user_count
         //                     FROM jingmin.users`;
+        // } else if (tableName == "total") {
+        //     sqlStatement = `SELECT num1+num2+num3+num4+num5+num6+num7 AS total 
+        //                     FROM 
+        //                     (SELECT COUNT(*) AS num1 FROM wzun.reviews),
+        //                     (SELECT COUNT(*) as num2 FROM jingmin.users),
+        //                     (SELECT COUNT(*) as num3 FROM shanfang.business),
+        //                     (SELECT COUNT(*) as num4 FROM shanfang.business_attribute),
+        //                     (SELECT COUNT(*) as num5 FROM shanfang.business_category),
+        //                     (SELECT COUNT(*) as num6 FROM shanfang.business_hours),
+        //                     (SELECT COUNT(*) as num7 FROM shanfang.photo)`
         // }
-
-        sqlStatement = `select num1+num2+num3+num4+num5+num6+num7 as total from 
-                        (select count(*) as num1 from wzun.reviews)
-                        , (select count(*) as num2 from jingmin.users)
-                        , (select count(*) as num3 from shanfang.business)
-                        , (select count(*) as num4 from shanfang.business_attribute)
-                        , (select count(*) as num5 from shanfang.business_category)
-                        , (select count(*) as num6 from shanfang.business_hours)
-                        , (select count(*) as num7 from shanfang.photo)`
-        
+       
+        sqlStatement = `SELECT num1+num2+num3+num4+num5+num6+num7 AS total 
+                        FROM 
+                        (SELECT COUNT(*) AS num1 FROM wzun.reviews),
+                        (SELECT COUNT(*) as num2 FROM jingmin.users),
+                        (SELECT COUNT(*) as num3 FROM shanfang.business),
+                        (SELECT COUNT(*) as num4 FROM shanfang.business_attribute),
+                        (SELECT COUNT(*) as num5 FROM shanfang.business_category),
+                        (SELECT COUNT(*) as num6 FROM shanfang.business_hours),
+                        (SELECT COUNT(*) as num7 FROM shanfang.photo)`;
         conn.execute(
             sqlStatement,
             [],
