@@ -8,12 +8,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {ErrorService} from './error.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable()
 
 export class AuthService {
 
-  constructor(private  http: HttpClient, private errorService: ErrorService) {}
+  constructor(private  http: HttpClient, private errorService: ErrorService, private router:Router) {}
 
   signup(customer: Customer) {
     const body = JSON.stringify(customer);
@@ -53,6 +54,8 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
+    this.router.navigate(['/home']);
+
   }
 
   isLoggedIn(){
