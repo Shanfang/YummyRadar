@@ -20,7 +20,8 @@ import {MatToolbarModule,
   MatProgressSpinnerModule,
   MatChipsModule,
   MatTooltipModule,
-  MatDialogModule
+  MatDialogModule,
+  MatCheckboxModule
   } from '@angular/material';
 import { AnalysisService } from './Services/analysis.service';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -30,6 +31,7 @@ import { GeoInfoService } from './Services/geo-info.service';
 import { AnalysisBusinessComponent } from './components/analysis-business/analysis-business.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { SearchFilterBarComponent } from './components/search-filter-bar/search-filter-bar.component';
+
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { SearchFilterBarComponent } from './components/search-filter-bar/search-
     MatChipsModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    
   ],
   providers: [
     AnalysisService,
