@@ -5,8 +5,7 @@ import {Review} from "../../Models/review";
 import {CustomerService} from "../../Services/customer.service";
 import {AuthService} from "../../Services/auth.service";
 import {Router} from '@angular/router';
-
-
+import { NavBarComponent} from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-customers',

@@ -16,8 +16,6 @@ import {CustomerProfileComponent} from "./components/customer-profile/customer-p
 import {AuthComponent} from "./components/auth/auth.component";
 import {AUTH_ROUTES} from "./components/auth/auth.routes";
 
-
-
 const appRoutes: Routes = [
     
     {path: 'analysis/location', component: AnalysisLocationComponent},
