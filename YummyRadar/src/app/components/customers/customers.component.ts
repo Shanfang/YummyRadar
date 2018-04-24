@@ -3,6 +3,8 @@ import { NgForm, FormGroup, FormControl, ReactiveFormsModule } from '@angular/fo
 import {Customer} from "../../Models/customer";
 import {Review} from "../../Models/review";
 import {CustomerService} from "../../Services/customer.service";
+import {AuthService} from "../../Services/auth.service";
+import {Router} from '@angular/router';
 
 
 
@@ -15,7 +17,7 @@ export class CustomersComponent implements OnInit {
   @ViewChild('f') idForm: NgForm;
 
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private authService: AuthService, private router: Router) { }
   myForm: FormGroup;
 
   customerOnline : Customer = {
@@ -131,9 +133,11 @@ export class CustomersComponent implements OnInit {
             this.showReviews.push(this.reviews[i-1]);
           }
         }
-
     }
+  }
 
-
+  onLogout(){
+      this.authService.logout();
+      this.router.navigateByUrl('/');
   }
 }

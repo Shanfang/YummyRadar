@@ -13,7 +13,9 @@
   <a routerLink="/profiles">Edit Profiles</a>
 </nav>
 
-
+<div calss="col-md-8 col-md-offset-2">
+  <button class="btn btn-danger" (click)="onLogout()">Logout</button>
+</div>
 
 <app-review-list [reviews]="this.showReviews"></app-review-list>
 
