@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
@@ -9,6 +10,7 @@ import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.
 import { SearchingComponent } from './components/searching/searching.component';
 import { routing } from './app.router';
 import { DataService } from './Services/data.service';
+
 
 //zun
 import {CustomersComponent} from "./components/customers/customers.component";
@@ -39,8 +41,18 @@ import {MatToolbarModule,
   MatProgressSpinnerModule,
   MatChipsModule,
   MatTooltipModule,
-  MatDialogModule
+  MatDialogModule,
+  MatCheckboxModule
   } from '@angular/material';
+import { BusinessComponent } from './components/business/business.component';
+import { ReviewBusinessComponent } from './components/review/review-business.component';
+import {BusinessService} from './Services/business.service';
+import {ReviewBusinessListComponent} from './components/review/review-business-list.component';
+import { BusinessDetailComponent } from './components/business/business-detail.component';
+import { BusinessListComponent } from './components/business/business-list.component';
+import { BusinessCardComponent } from './components/business/business-card/business-card.component';
+import { ReviewEditComponent } from './components/review/review-edit.component';
+
 import { AnalysisService } from './Services/analysis.service';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AnalysisLocationComponent } from './components/analysis-location/analysis-location.component';
@@ -49,9 +61,18 @@ import { AnalysisBusinessComponent } from './components/analysis-business/analys
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { SearchFilterBarComponent } from './components/search-filter-bar/search-filter-bar.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    BusinessComponent,
+    ReviewBusinessComponent,
+    ReviewBusinessListComponent,
+    BusinessDetailComponent,
+    BusinessListComponent,
+    BusinessCardComponent,
+    ReviewEditComponent,
+    ReadMoreDirective,
     SearchingComponent,
     NavBarComponent,
     AnalysisTypeComponent,
@@ -73,9 +94,6 @@ import { SearchFilterBarComponent } from './components/search-filter-bar/search-
     ReadMoreDirective,
     ReviewListComponent,
     ReviewComponent
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -94,12 +112,14 @@ import { SearchFilterBarComponent } from './components/search-filter-bar/search-
     MatChipsModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+
   ],
   providers: [
     AnalysisService,
     { provide: 'data', useClass: DataService },
-    AuthService, GeoInfoService, CustomerService, ErrorService
+    AuthService, GeoInfoService, CustomerService, ErrorService, BusinessService
   ],
   bootstrap: [AppComponent]
 })
