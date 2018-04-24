@@ -2,8 +2,8 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Review} from '../../models/review.model';
 
 @Component({
-  selector: 'app-review',
-  templateUrl: './review.component.html',
+  selector: 'app-review-business',
+  templateUrl: './review-business.component.html',
   styles: [`
         .less {
           color: blue;
@@ -25,7 +25,7 @@ import {Review} from '../../models/review.model';
         }
     `]
 })
-export class ReviewComponent implements OnInit{
+export class ReviewBusinessComponent implements OnInit{
 
   @Input() review: Review;
   @Input() index: number;

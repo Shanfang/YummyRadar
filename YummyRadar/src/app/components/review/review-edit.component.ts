@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Business} from '../../../models/business.model';
-import {Review} from '../../../models/review.model';
-import {BusinessService} from '../../../Services/business.service';
+import {Business} from '../../models/business.model';
+import {Review} from '../../models/review.model';
+import {BusinessService} from '../../Services/business.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
