@@ -3,4 +3,10 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="PreferredVcsStorage">
+    <preferredVcsName>ApexVCS</preferredVcsName>
+  </component>
+>>>>>>> eeeb54d5bafea8b8163b936ff63c8ace0a862549
 </project>

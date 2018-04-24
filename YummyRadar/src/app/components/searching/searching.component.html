@@ -1,0 +1,37 @@
+
+<div class="thumbnail text-center">
+    <img src="../../../assets/imgs/dishes.jpg" alt="" class="img-responsive">
+    <div class="mainnav">
+      <ul class="nav text-light">
+        <li class="nav-item">
+            <a class="nav-link text-light" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" href="#">Write a Review</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link text-light" href="#">Profile</a>
+        </li>
+      </ul>
+    </div>
+    <div class="header">
+      <h1 class="text-light">YummyRadar</h1>
+    </div>
+    <div class="caption" align="center">
+        <form (ngSubmit)='searchSubmit(form.value)' [formGroup]="form">
+            <div class="input-group input-group-md">
+                <span class="input-group-addon">Find</span>
+                <input type="text " class="form-control" placeholder="Restuarant..." formControlName="restName">
+                <span class="input-group-addon">Where</span>
+                <input type="text " class="form-control" placeholder="Place..." formControlName="restPost">
+                <span class="input-group-btn">
+                <button class="btn btn-outline-light border-white" type="submit">Search</button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+  
+
+

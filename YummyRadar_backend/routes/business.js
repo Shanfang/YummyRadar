@@ -203,7 +203,7 @@ router.get('/array/:ids', function (req, res, next){
             }
             var tempIDs = req.params.ids;
             var businessIDs = tempIDs.split(",");
-            sqlStatement = 'select * from shanfang.business where business_id in (';
+            var sqlStatement = 'select * from shanfang.business where business_id in (';
             for (var i=0; i < businessIDs.length; i++) sqlStatement += (i > 0) ? ', :' + i : ':' + i;
             sqlStatement += ')';
             connection.execute(

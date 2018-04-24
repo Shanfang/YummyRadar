@@ -1,0 +1,26 @@
+
+.thumbnail {
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    width: 70%;
+    margin-left: 15%
+}
+
+.header {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 100%;
+}
+.mainnav {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 100%;
+
+}
