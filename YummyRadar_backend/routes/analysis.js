@@ -79,6 +79,9 @@ router.post('/category/distribution', function(req, res, next) {
     });
 });
 
+/*
+Get top10 most popular business.
+*/
 router.post('/popularity/top10', function(req, res, next) {
     handleDBConn(req, res, function(req, res, conn) {
         var sqlStatement = `
@@ -116,6 +119,73 @@ router.post('/popularity/top10', function(req, res, next) {
                 console.log(result.rows); 
                 res.send(result.rows);
                 
+                doRelease(conn);
+            }
+        );
+    });
+});
+
+/*
+Get summary of database tables.
+*/
+router.get('/summary/total', function(req, res, next) {
+// router.get('/summary/:tableName', function(req, res, next) {
+    handleDBConn(req, res, function(req, res, conn) {   
+        var tableName = req.params.tableName;
+        var sqlStatement = '';
+
+        // console.log(`Table name is ${tableName}`);
+        // if (tableName == "business") {
+        //     sqlStatement = `SELECT COUNT(*) AS business_count
+        //                         FROM shanfang.business`;
+        // } else if (tableName == "businessAttr") {
+        //     sqlStatement = `SELECT COUNT(*) AS businessAttr_count
+        //                     FROM shanfang.business_attribute`;
+        // } else if (tableName == "businessCat") {
+        //     sqlStatement = `SELECT COUNT(*) AS businessCat_count
+        //                     FROM shanfang.business_category`;
+        // } else if (tableName == "businessCheckIn") {
+        //     sqlStatement = `SELECT COUNT(*) as business_checkin_count
+        //                     FROM shanfang.business_checkin`;
+        // } else if (tableName == "businessHours") {
+        //     sqlStatement = `SELECT COUNT(*) as business_hours_count
+        //                     FROM shanfang.business_hours`;
+        // } else if (tableName == "tip") {
+        //     sqlStatement = `SELECT COUNT(*) as tip_count
+        //                     FROM shanfang.tip`;
+        // } else if (tableName == "photo") {
+        //     sqlStatement = `SELECT COUNT(*) as photo_count
+        //                     FROM shanfang.photo`; 
+        // } else if (tableName == "review") {                                      
+        //     sqlStatement = `SELECT COUNT(*) AS review_count
+        //                     FROM wzun.reviews`;
+        // } else if (tableName == "users")  {
+        //     sqlStatement = `SELECT COUNT(*) AS user_count
+        //                     FROM jingmin.users`;
+        // }
+
+        sqlStatement = `select num1+num2+num3+num4+num5+num6+num7 as total from 
+                        (select count(*) as num1 from wzun.reviews)
+                        , (select count(*) as num2 from jingmin.users)
+                        , (select count(*) as num3 from shanfang.business)
+                        , (select count(*) as num4 from shanfang.business_attribute)
+                        , (select count(*) as num5 from shanfang.business_category)
+                        , (select count(*) as num6 from shanfang.business_hours)
+                        , (select count(*) as num7 from shanfang.photo)`
+        
+        conn.execute(
+            sqlStatement,
+            [],
+            {outFormat: oracledb.OBJECT},
+            function (err, result) {
+                if (err) {
+                    console.log(err.message);
+                    return;
+                }
+                console.log(result.metaData);
+                console.log(result.rows); 
+            
+                res.send(result.rows);
                 doRelease(conn);
             }
         );
