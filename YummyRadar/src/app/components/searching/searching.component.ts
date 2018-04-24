@@ -4,6 +4,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-searching',
@@ -13,8 +14,10 @@ import 'rxjs/add/operator/toPromise';
 export class SearchingComponent implements OnInit {
   form: FormGroup;
   searchRestList: Object;
+  userName: string;
 
   constructor(@Inject('data')  private dataservice,
+    private authService: AuthService,
     private _route:Router) {
     this.form = new FormGroup({
       restName: new FormControl('', Validators.compose([
@@ -30,6 +33,7 @@ export class SearchingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userName = JSON.parse(localStorage.getItem('name'));
   }
 
   /**

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, NgForm, Validators, ReactiveFormsModule} from '@
 import {AuthService} from '../../Services/auth.service';
 import { Customer } from '../../Models/customer';
 import {Router} from '@angular/router';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-signin',
@@ -57,7 +58,7 @@ export class SigninComponent implements OnInit {
         localStorage.setItem('useful', data.USEFUL.toString());
 
 
-        this.router.navigateByUrl('/customers');
+        this.router.navigateByUrl('/home');
       },
       err => console.error(err)
     );
