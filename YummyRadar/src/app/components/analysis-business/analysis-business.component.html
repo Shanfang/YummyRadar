@@ -23,13 +23,13 @@
       </div>
   </form>
 </div>
-<div class="chart-container">
+<div class="chart-container" *ngIf="chart">
   <canvas id="line-chart-business"></canvas>
 </div>
 <br>
-<div class="chart-container">
+<div class="chart-container" *ngIf="chart">
   <canvas id="bar-chart-business"></canvas>
 </div>
-<div class="chart-container">
+<div class="chart-container" *ngIf="chart">
   <canvas id="pie-chart-business"></canvas>
 </div>

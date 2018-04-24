@@ -9,6 +9,7 @@ import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.
 import { AnalysisLocationComponent } from './components/analysis-location/analysis-location.component';
 import { AnalysisBusinessComponent } from './components/analysis-business/analysis-business.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { SummaryComponent } from './components/summary/summary.component';
 
 //Zun
 import {CustomersComponent} from "./components/customers/customers.component";
@@ -17,7 +18,7 @@ import {AuthComponent} from "./components/auth/auth.component";
 import {AUTH_ROUTES} from "./components/auth/auth.routes";
 
 const appRoutes: Routes = [
-    
+    {path: 'analysis/summary', component: SummaryComponent},
     {path: 'analysis/location', component: AnalysisLocationComponent},
     {path: 'analysis/business', component: AnalysisBusinessComponent},
     {path: 'analysis/type', component: AnalysisTypeComponent},
