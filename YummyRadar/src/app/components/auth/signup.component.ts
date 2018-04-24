@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import {AuthService} from '../../Services/auth.service';
 import { Customer } from '../../Models/customer';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 
 @Component({
