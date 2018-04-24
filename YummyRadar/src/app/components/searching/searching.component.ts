@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject,} from '@angular/core';
+import {Component, OnInit, Inject, EventEmitter,} from '@angular/core';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,7 +15,7 @@ export class SearchingComponent implements OnInit {
   searchRestList: Object;
 
   constructor(@Inject('data')  private dataservice,
-    private _route:Router) { 
+    private _route:Router) {
     this.form = new FormGroup({
       restName: new FormControl('', Validators.compose([
         Validators.required,
@@ -43,14 +43,13 @@ export class SearchingComponent implements OnInit {
         console.log("-----------");
         console.log(searchList);
         localStorage.setItem('searchList', searchList);
-
         this.searchRestList = searchList;
         this._route.navigate(['/searchResult']);
       },
 
         // err => {
         //   console.log("cannot find the result");
-        // } 
+        // }
       );
   }
 
