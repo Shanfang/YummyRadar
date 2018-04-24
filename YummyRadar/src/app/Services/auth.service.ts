@@ -40,6 +40,16 @@ export class AuthService {
       });
   }
 
+  destroy(customer : Customer){
+    const body = JSON.stringify(customer);
+    const headers = new HttpHeaders({'Content-type':'Application/json'});
+    return this.http.post('http://localhost:3000/api/auth/destroy', body, {headers: headers})
+      .catch((err: HttpErrorResponse) => {
+        this.errorService.handleError(err.error);
+        return Observable.throw(err.error);
+      });
+  }
+
 
   logout() {
     localStorage.clear();

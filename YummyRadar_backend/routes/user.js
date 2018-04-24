@@ -94,28 +94,39 @@ router.post('/signin', function (req, res, next) {
     console.log(req.body);
 });
 
+router.post('/destroy', function (req, res, next) {//signup
+    handleDBConn(req, res, function(req, res, conn) {
+        var sqlStatement = `delete from jingmin.users where user_id =: id`;
 
-function displayResults(response, result, deptid) {
-    response.write("<h2>" + "Employees in Department " + deptid + "</h2>");
-    response.write("<table>");
-  
-    // Column Title
-    response.write("<tr>");
-    for (var col = 0; col < result.metaData.length; col++) {
-      response.write("<th>" + result.metaData[col].name + "</th>");
-    }
-    response.write("</tr>");
-  
-    // Rows
-    for (var row = 0; row < result.rows.length; row++) {
-      response.write("<tr>");
-      for (col = 0; col < result.rows[row].length; col++) {
-        response.write("<td>" + result.rows[row][col] + "</td>");
-      }
-      response.write("</tr>");
-    }
-    response.write("</table>");
-  }
+        //need to add a password column
+        var Vid = req.body.id; // replace with user input id when logging
+
+
+        console.log(1);
+        console.log(sqlStatement);
+        console.log(2);
+        conn.execute(
+            sqlStatement,
+            [Vid],
+            // binds,
+            // options,
+            // {outFormat: oracledb.OBJECT},
+            { autoCommit: true},
+            function (err, result) {
+                if (err) {
+                    console.log(err.message);
+                    return;
+                }
+                //console.log(`The result is: `);
+                //console.log(result.metaData);
+                //console.log(result.rows);
+                res.send(result.rows);
+                doRelease(conn);
+            }
+        );
+    });
+    console.log(req.body);
+});
 
 // router.post('/signin', function (req, res, next) {
 //   User.findOne({email: req.body.email}, function (err, user) {

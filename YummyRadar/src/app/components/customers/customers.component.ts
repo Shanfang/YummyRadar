@@ -72,7 +72,8 @@ export class CustomersComponent implements OnInit {
         console.log(data.length);
         this.dataLength = data.length;
 
-        for (let i = 2; i <= (data.length/10); i++){
+        //This is to control the page option numbers
+        for (let i = 2; i <= ((data.length-1)/10+1); i++){
             this.pageOptions.push(i);
         }
 
@@ -113,15 +114,24 @@ export class CustomersComponent implements OnInit {
 
   onNextPage() {
     this.showReviews=[];
-    console.log(this.page);//==1
+    console.log(this.page);//Initial is 1
+
+    //This is control the length of showReviews
     if (this.dataLength < 10){
-      for (let i = 1; i < this.dataLength; i++){
+      for (let i = 0; i < this.dataLength; i++){
         this.showReviews.push(this.reviews[i]);
       }
     } else{
-      for (let i = (this.page*10-9); i < (this.page*10); i++){
-        this.showReviews.push(this.reviews[i]);
-      }
+        if ((this.dataLength-(this.page*10)) > 0){
+            for (let i = (this.page*10-9); i <= (this.page*10); i++){
+              this.showReviews.push(this.reviews[i-1]);
+            }
+        } else {
+          for (let i = (this.page*10-9); i <= (this.dataLength); i++){
+            this.showReviews.push(this.reviews[i-1]);
+          }
+        }
+
     }
 
 

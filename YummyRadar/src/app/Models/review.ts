@@ -9,4 +9,5 @@ export class Review {
   FUNNY?: number;
   COOL?: number;
   USER_NAME?: string;
+  RECENT_BUSINESS_NAME?: string;
 }

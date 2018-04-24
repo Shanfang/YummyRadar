@@ -3,12 +3,6 @@
 
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
-
-  <div class="form-group">
-    <label for="id">Customer ID</label>
-    <input type="text" id="id" class="form-control" formControlName="id">
-  </div>
-
   <div class="form-group">
     <label for="name">New Customer NAME: </label>
     <input type="text" id="name" class="form-control" formControlName="name">
@@ -20,6 +14,9 @@
   </div>
 
 
-  <button class="btn btn-primary" type="submit">Submit
-  </button>
+  <button class="btn btn-primary" type="submit">Submit </button>
+</form>
+
+<form [formGroup]="myForm1" (ngSubmit)="onDestroy()">
+  <button class="btn btn-primary" type="submit">Destroy myself</button>
 </form>
