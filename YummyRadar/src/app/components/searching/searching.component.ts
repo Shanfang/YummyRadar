@@ -33,7 +33,7 @@ export class SearchingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userName = JSON.parse(localStorage.getItem('name'));
+    this.userName =localStorage.getItem('name');
   }
 
   /**

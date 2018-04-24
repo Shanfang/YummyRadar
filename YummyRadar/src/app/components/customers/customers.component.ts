@@ -139,4 +139,8 @@ export class CustomersComponent implements OnInit {
       this.authService.logout();
       this.router.navigateByUrl('/');
   }
+
+  goToUserProfile(){
+    this.router.navigateByUrl('/profiles');
+  }
 }

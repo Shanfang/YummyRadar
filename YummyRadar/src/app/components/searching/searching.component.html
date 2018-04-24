@@ -9,14 +9,14 @@
             <li class="nav-item">
                 <a class="nav-link text-light" [routerLink]="['/home']">Home</a>
             </li>
-            <li class="nav-item " [hidden]="!this.authService.isLoggedIn()">
+            <li class="nav-item" [hidden]="!this.authService.isLoggedIn()">
                 <a class="nav-link text-light" [routerLink]="['/customers']">UserProfile</a>
             </li>
             <li class="nav-item" [hidden]="this.authService.isLoggedIn()">
                 <a class="nav-link text-light" [routerLink]="['/auth/signin']">Login</a>
             </li>
             <li class="nav-item" [hidden]="!this.authService.isLoggedIn()">
-                <a class="nav-link text-light" [routerLink]="['/home']" (click) = "this.authService.logout()">Log Out</a>
+                <a class="nav-link text-light" (click) = "this.authService.logout()">Log Out</a>
             </li>
         </ul>
     </div>
