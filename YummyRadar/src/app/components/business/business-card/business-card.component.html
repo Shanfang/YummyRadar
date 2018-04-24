@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card">
+    <div class="row">
+      <div row="col-xs-4">
+        <img class="card-image" width="128" [src]="this.photo_url"/>
+      </div>
+      <div class="col-xs-5">
+        <div class="card-header">
+          {{this.business.name}}
+        </div>
+        <div class="card-body">
+          <div>
+            {{this.business.stars}}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-3">
+        <div>
+          {{this.business.address}},
+        </div>
+        <div>
+          {{this.business.city}}, {{this.business.state}}, {{this.business.postal_code}}
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <span>{{this.recent_user}}</span>
+      <span>{{this.business.recent_review}}</span>
+      <a href="#" class="btn-primary">readmore</a>
+    </div>
+  </div>
+</div>
+

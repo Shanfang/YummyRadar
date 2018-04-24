@@ -1,3 +1,6 @@
-<p>
-  business-list works!
-</p>
+<div>
+  <app-business-card
+    [business]="business"
+    *ngFor="let business of businesses">
+  </app-business-card>
+</div>

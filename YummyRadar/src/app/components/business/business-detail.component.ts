@@ -18,5 +18,6 @@ export class BusinessDetailComponent implements OnInit {
 
   onShowClick() {
     console.log(this.hours.Monday);
+
   }
 }

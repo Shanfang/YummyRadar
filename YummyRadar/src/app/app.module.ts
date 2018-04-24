@@ -29,8 +29,11 @@ import {BusinessService} from './Services/business.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ReviewListComponent} from './components/review/review-list.component';
 import { BusinessDetailComponent } from './components/business/business-detail.component';
-import { PictureListComponent } from './components/business/picture-list/picture-list.component';
 import { BusinessListComponent } from './components/business/business-list.component';
+import { BusinessCardComponent } from './components/business/business-card/business-card.component';
+import { ReviewEditComponent } from './components/business/review-edit/review-edit.component';
+import {ReadMoreDirective} from './read-more.directive';
+
 
 @NgModule({
   declarations: [
@@ -43,13 +46,14 @@ import { BusinessListComponent } from './components/business/business-list.compo
     ReviewComponent,
     ReviewListComponent,
     BusinessDetailComponent,
-    PictureListComponent,
-    BusinessListComponent
+    BusinessListComponent,
+    BusinessCardComponent,
+    ReviewEditComponent,
+    ReadMoreDirective
   ],
   imports: [
     BrowserModule,
     routing,
-    HttpModule,
     FormsModule,
     MatToolbarModule,
     MatInputModule,
@@ -63,7 +67,7 @@ import { BusinessListComponent } from './components/business/business-list.compo
     MatTooltipModule,
     ReactiveFormsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [AnalysisService, BusinessService],
   bootstrap: [AppComponent]

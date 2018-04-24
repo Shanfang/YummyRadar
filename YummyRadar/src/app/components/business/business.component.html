@@ -2,33 +2,44 @@
   <div class="row">
     <div class="col-xs-9">
       <div>
-        <div>{{business.name}}</div>
+        <div>{{this.business.name}}</div>
       </div>
       <div>
-        <div>{{business.address}},{{business.city}},{{business.state}}, {{business.postal_code}}</div>
+        <div>{{this.business.address}},{{this.business.city}},{{this.business.state}}, {{this.business.postal_code}}</div>
       </div>
     </div>
-    <div class="col-xs-3">
-      <button>write a review</button>
+    <div class="col-xs-3 text-right">
+      <button (click)="onRevieClick()">write a review</button>
     </div>
   </div>
 
-
-
+  <app-review-edit [hidden]="!isEdited" [business]="this.business"></app-review-edit>
 <hr>
 
 <div>
-  <app-picture-list></app-picture-list>
-  <img src="http://35.196.58.1/yelp-business-photos/-EgKmv2dcfZPP9sKPrpFRQ.jpg">
+  <div class="row">
+    <div class="col-sm-3 col-md-3">
+      <img class="img-responsive" [src]="getPhotoUrl(this.business.photos[0])">
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <img class="img-responsive" [src]="getPhotoUrl(this.business.photos[1])">
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <img class="img-responsive" [src]="getPhotoUrl(this.business.photos[2])">
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <img class="img-responsive" [src]="getPhotoUrl(this.business.photos[3])">
+    </div>
+  </div>
 </div>
 
 <hr>
 
   <div class="row">
-    <div class="col-sm-6 col-md-6 border-right">
-      <app-review-list></app-review-list>
+    <div class="col-sm-8 col-md-8 border-right">
+      <app-review-list [reviews]="this.business.reviews"></app-review-list>
     </div>
-    <div class="col-sm-6 col-md-6">
+    <div class="col-sm-4 col-md-4">
       <app-business-detail [hours]="business.hours"></app-business-detail>
     </div>
   </div>
