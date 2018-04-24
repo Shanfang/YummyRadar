@@ -33,14 +33,13 @@ export class ReviewEditComponent implements OnInit {
   }
 
   onSubmit() {
-    localStorage.setItem('user_id', "test_user_id");
-    localStorage.setItem('user_name', "Jimmy");
     const review: Review = new Review();
     review.STARS = this.myForm.value.stars;
     review.TEXT = this.myForm.value.text;
     review.BUSINESS_ID = this.business.business_id;
-    review.USER_ID = localStorage.getItem('user_id');
-    review.USER_NAME = localStorage.getItem('user_name');
+    review.USER_ID = localStorage.getItem('id');
+    review.USER_NAME = localStorage.getItem('name');
+    review.RECENT_BUSINESS_NAME = this.business.name;
     console.log(review);
 
     this.businessService.saveReviews(review).subscribe(

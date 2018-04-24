@@ -18,14 +18,16 @@ router.post('/saveReviews/', function(req, res, next) {
                 console.error(err.message);
                 return;
             }
+            console.log(req.body);
             var stars = req.body.STARS;
             var text = req.body.TEXT;
             var business_id = req.body.BUSINESS_ID;
             var user_id = req.body.USER_ID;
             var user_name = req.body.USER_NAME;
+            var business_name = req.body.RECENT_BUSINESS_NAME;
             connection.execute(
-                "INSERT INTO wzun.reviews values (1, :user_id, :business_id, :stars, '2018-04-24', :text, 0, 0, 0, :user_name)",
-                [user_id, business_id, stars, text, user_name],
+                "INSERT INTO wzun.reviews values (1, :user_id, :business_id, :stars, '2018-04-24', :text, 0, 0, 0, :user_name, :business_name)",
+                [user_id, business_id, stars, text, user_name, business_name],
                 { autoCommit: true},
                 //{fetchInfo: {"CAPTION": {type: oracledb.BUFFER}}},
                 function (err, result) {
