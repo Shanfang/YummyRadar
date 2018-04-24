@@ -1,6 +1,6 @@
-<a [routerLink]="getLink()" routerLinkActive="active-link">
-  <div class="container">
-    <div class="card">
+<div class="container">
+  <div class="card">
+    <a [routerLink]="getLink()" routerLinkActive="active-link">
       <div class="row">
         <div row="col-xs-4">
           <img class="card-image" width="128" [src]="this.photo_url"/>
@@ -24,6 +24,7 @@
           </div>
         </div>
       </div>
+    </a>
       <div class="card-footer text-muted">
         <span>{{this.business.recent_user}}</span>
         <div class="panel-body">
@@ -38,9 +39,8 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
-</a>
+</div>
 <br>
 <br>
 

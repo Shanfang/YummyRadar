@@ -12,7 +12,7 @@ export class NavBarComponent implements OnInit {
   form: FormGroup;
   searchRestList: Object;
   constructor(@Inject('data')  private dataservice,
-  private _route:Router) { 
+  private _route:Router) {
     this.form = new FormGroup({
       restName: new FormControl('', Validators.compose([
         Validators.required,
@@ -25,7 +25,7 @@ export class NavBarComponent implements OnInit {
       ])),
     });
   }
-  
+
   ngOnInit() {
   }
 
@@ -38,12 +38,12 @@ export class NavBarComponent implements OnInit {
         console.log(searchList);
         localStorage.setItem('searchList', searchList);
         this.searchRestList = searchList;
-        // this._route.navigate(['/searchResult']);
+        this._route.navigate(['/searchResult']);
       },
 
         // err => {
         //   console.log("cannot find the result");
-        // } 
+        // }
       );
   }
 

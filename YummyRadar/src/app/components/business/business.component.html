@@ -1,11 +1,15 @@
+<app-nav-bar></app-nav-bar>
 <div class="container">
   <div class="row">
     <div class="col-xs-9">
       <div>
         <h2>{{this.business.name}}</h2>
       </div>
-      <div>
+      <div class="col-xs-6 content-center">
         <div>{{this.business.address}},{{this.business.city}},{{this.business.state}}, {{this.business.postal_code}}</div>
+      </div>
+      <div class="col-xs-3 content-center">
+        <h3>Stars:{{this.business.stars}}</h3>
       </div>
     </div>
     <div class="col-xs-3 text-right">
