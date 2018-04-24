@@ -1,0 +1,30 @@
+
+<div class="container" [hidden]="show">
+  <div class="row" id="post-review-box">
+    <div class="col-md-12">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()" accept-charset="UTF-8">
+        <input id="ratings-hidden" type="hidden">
+        <textarea class="form-control animated" cols="50" formControlName="text" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
+
+        <div class="col-sm-4">
+          <select formControlName="stars" class="form-control">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="text-right col-sm-8">
+          <a class="btn btn-danger btn-sm" (click)="onCancelClick()" id="close-review-box" style="margin-right: 10px;">
+            <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+          <button class="btn btn-success btn-lg" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+

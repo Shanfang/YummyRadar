@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Review} from '../../models/review.model';
 
 @Component({
   selector: 'app-review-list',
-  templateUrl: './review-list.component.html'
+  template: `
+  <app-review *ngFor="let review of this.reviews; let i = index" [index]="i" [review]="review"></app-review>
+  `
 })
 export class ReviewListComponent implements OnInit {
 
-
+  @Input() reviews: Review[];
 
   constructor() { }
 

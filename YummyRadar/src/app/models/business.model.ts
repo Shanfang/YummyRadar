@@ -1,3 +1,5 @@
+import { Photo } from './photo.model';
+import {Review} from './review.model';
 export class Business {
   constructor(
   // string, 22 character unique string business id
@@ -34,6 +36,20 @@ export class Business {
 
   // integer, 0 or 1 for closed or open, respectively
   public is_open?: number,
+
+  // string to store photo_id
+  public recent_photo?: string,
+
+  // string to store most recent_review
+  public recent_review?: string,
+
+  // string to store most recent_user
+  public recent_user?: string,
+
+  // string to store photos for this business
+  public photos?: Photo[],
+
+  public reviews?: Review[],
 
   // object, business attributes to values. note: some attribute values might be objects
   public attributes?: {
