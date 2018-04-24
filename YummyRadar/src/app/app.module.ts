@@ -31,6 +31,7 @@ import { AnalysisBusinessComponent } from './components/analysis-business/analys
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { SearchFilterBarComponent } from './components/search-filter-bar/search-filter-bar.component';
 import { SummaryComponent } from './components/summary/summary.component';
+import { SummaryService } from './Services/summary.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import { SummaryComponent } from './components/summary/summary.component';
   providers: [
     AnalysisService,
     { provide: 'data', useClass: DataService },
-    AuthService, GeoInfoService
+    AuthService, GeoInfoService, SummaryService
   ],
   bootstrap: [AppComponent]
 })
