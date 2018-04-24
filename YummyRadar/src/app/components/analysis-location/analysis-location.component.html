@@ -74,15 +74,15 @@
   </form>
 </div>
 
-<div class="chart-container">
+<div class="chart-container" *ngIf="chart">
     <canvas id="pie-chart-location"></canvas>
 </div>
   <br>
-<div class="chart-container">
+<div class="chart-container" *ngIf="chart">
     <canvas id="bar-chart-location"></canvas>
 </div>
   <br>
-<div class="chart-container">
+<div class="chart-container" *ngIf="chart">
     <canvas id="line-chart-location"></canvas>
 </div>
 
