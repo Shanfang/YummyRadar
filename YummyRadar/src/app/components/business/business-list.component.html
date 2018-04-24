@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <app-business-card
     [business]="business"
     *ngFor="let business of this.showBusinesses; let i = index" [index]="i">
@@ -19,3 +19,4 @@
 
   <button (click)="onNextPage()">Go!!</button>
 </div>
+

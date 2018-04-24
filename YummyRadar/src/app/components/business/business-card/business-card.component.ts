@@ -16,7 +16,7 @@ export class BusinessCardComponent implements OnInit {
 
   ngOnInit() {
     this.photo_url = (this.business.recent_photo == null)
-      ? "http://35.196.58.1/yelp-business-photos/no-image-available.jpg"
+      ? "http://35.196.58.1/yelp-business-photos/no_image.jpg"
       : "http://35.196.58.1/yelp-business-photos/" + this.business.recent_photo + ".jpg";
     console.log('business/' + this.business.business_id);
   }

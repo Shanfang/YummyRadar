@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-xs-9">
       <div>
-        <div>{{this.business.name}}</div>
+        <h2>{{this.business.name}}</h2>
       </div>
       <div>
         <div>{{this.business.address}},{{this.business.city}},{{this.business.state}}, {{this.business.postal_code}}</div>
       </div>
     </div>
     <div class="col-xs-3 text-right">
-      <button (click)="onRevieClick()">write a review</button>
+      <button class="btn btn-primary" (click)="onRevieClick()">write a review</button>
     </div>
   </div>
   <app-review-edit [hidden]="!isEdited" [business]="this.business"></app-review-edit>
