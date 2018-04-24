@@ -1,0 +1,34 @@
+<h2>Logged Customer</h2>
+
+<div> <label>Customer ID: </label>{{this.customer.id}} </div>
+<div> <label>Customer Name: </label>{{this.customer.name}} </div>
+<div> <label>E-mail: </label>{{this.customer.email}} </div>
+<div> <label>Review Count: </label>{{this.customer.review_count}} </div>
+<div> <label>Cool Number: </label>{{this.customer.cool}} </div>
+<div> <label>Useful Number: </label>{{this.customer.useful}} </div>
+<div> <label>Funny Number: </label>{{this.customer.funny}} </div>
+
+
+<nav>
+  <a routerLink="/profiles">Edit Profiles</a>
+</nav>
+
+
+
+<app-review-list [reviews]="this.showReviews"></app-review-list>
+
+<div class="form-group col-md-3">
+  <label for="page">Select Page Number: </label>
+  <select
+    id="page"
+    class="form-control"
+    [(ngModel)]="page"
+    name="selectPage"
+    required>
+    <option *ngFor="let page of pageOptions" [ngValue]="page">{{page}}</option>
+  </select>
+</div>
+
+
+<button (click)="onNextPage()">Go!!</button>
+

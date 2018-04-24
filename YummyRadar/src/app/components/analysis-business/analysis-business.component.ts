@@ -21,7 +21,7 @@ export class AnalysisBusinessComponent implements OnInit {
   ) {}
 
   years = ['2010', '2011', '2012', '2013','2014', '2015'];
-  chartOptions = ['Line Graph', 'Pie Chart'];
+  chartOptions = ['Line Graph', 'Bar Chart','Pie Chart'];
   ngOnInit() {}
 
   onSubmitInfo() {
@@ -33,11 +33,11 @@ export class AnalysisBusinessComponent implements OnInit {
             // console.log(`The months are ${months}`);
             // console.log(`The popularity are ${popularity}`);
 
+            var colors: string[] = new Array(months.length);
+            for (var i = 0; i < colors.length; i++) {
+              colors[i] = this.getRandomColor();
+            }
             if (this.chartType == 'Line Graph') {
-              var colors: string[] = new Array(months.length);
-              for (var i = 0; i < colors.length; i++) {
-                colors[i] = this.getRandomColor();
-              }
               this.chart = new Chart('line-chart-business', {
                 type: 'line',
                 data: {
@@ -68,6 +68,31 @@ export class AnalysisBusinessComponent implements OnInit {
                   }
                 }
               })
+            } else if (this.chartType == 'Bar Chart') {
+              this.chart = new Chart('bar-chart-business', {
+                type: 'bar',
+                data: {
+                  datasets: [
+                    {
+                      data: popularity,
+                      borderColor: '#ffcc00',
+                      backgroundColor: colors,
+                      fill: true
+                    }
+                  ],
+                  labels:months
+                },
+                options: {
+                  legend: {
+                    display: false,
+                  },
+                  responsive: true,
+                  title: {
+                    display: true,
+                    text: "Popularity Changes for : " + this.businessID + " in " + this.selectedYear
+                  }
+                }
+              })
             } else if (this.chartType == 'Pie Chart') {
               var colors: string[] = new Array(12);
               for (var i = 0; i < 12; i++) {
@@ -90,10 +115,10 @@ export class AnalysisBusinessComponent implements OnInit {
                   responsive: true,
                   title: {
                     display: true,
-                    text: "Popularity Changes for : " + this.businessID + " in " + this.selectedYear,
+                    text: "Popularity Changes for : " + this.businessID + " in " + this.selectedYear
                   }
                 }
-              })
+              })  
             } else {
               alert("Oops, there is no matching data");
             }
