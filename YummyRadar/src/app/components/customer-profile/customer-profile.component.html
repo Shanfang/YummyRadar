@@ -1,0 +1,20 @@
+<h3>Update your profiles</h3>
+
+
+<form class="form-group" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+  <div class="">
+    <label for="name">New Customer NAME: </label>
+    <input type="text" id="name" class="form-control" formControlName="name">
+  </div>
+
+  <div class="form-group">
+    <label for="email">New Customer E-mail: </label>
+    <input type="text" id="email" class="form-control" formControlName="email">
+  </div>
+  <button class="btn btn-primary" type="submit">Submit </button>
+</form>
+
+<form [formGroup]="myForm1" (ngSubmit)="onDestroy()">
+  <button class="btn btn-primary" type="submit">Destroy myself</button>
+</form>
