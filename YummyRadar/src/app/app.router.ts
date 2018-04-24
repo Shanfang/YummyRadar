@@ -19,18 +19,19 @@ import {AUTH_ROUTES} from "./components/auth/auth.routes";
 
 
 const appRoutes: Routes = [
-    {path: '', redirectTo: 'analysis/business', pathMatch: 'full'},
+    
     {path: 'analysis/location', component: AnalysisLocationComponent},
     {path: 'analysis/business', component: AnalysisBusinessComponent},
     {path: 'analysis/type', component: AnalysisTypeComponent},
     {path: 'searchResult', component: SearchResultComponent},
     {path: 'home', component: SearchingComponent},
     {path: 'business-list', component: BusinessListComponent},
-  { path: 'business/:id', component: BusinessComponent},
+    { path: 'business/:id', component: BusinessComponent},
     //Zun
     { path: 'customers', component: CustomersComponent },
     { path: 'profiles', component: CustomerProfileComponent },
-    { path: 'auth', component: AuthComponent , children: AUTH_ROUTES }
+    { path: 'auth', component: AuthComponent , children: AUTH_ROUTES },
+    { path: '', component: SearchingComponent},
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
