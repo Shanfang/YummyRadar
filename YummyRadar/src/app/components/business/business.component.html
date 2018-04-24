@@ -12,7 +12,6 @@
       <button (click)="onRevieClick()">write a review</button>
     </div>
   </div>
-
   <app-review-edit [hidden]="!isEdited" [business]="this.business"></app-review-edit>
 <hr>
 
@@ -37,8 +36,25 @@
 
   <div class="row">
     <div class="col-sm-8 col-md-8 border-right">
-      <app-review-list [reviews]="this.business.reviews"></app-review-list>
+      <app-review-list [reviews]="this.showReviews"></app-review-list>
+      <div>
+        <div class="form-group col-md-3">
+          <label for="page">Select Page Number: </label>
+          <select
+            id="page"
+            class="form-control"
+            [(ngModel)]="page"
+            name="selectPage"
+            required>
+            <option *ngFor="let page of pageOptions" [ngValue]="page">{{page}}</option>
+          </select>
+        </div>
+
+
+        <button (click)="onNextPage()">Go!!</button>
+      </div>
     </div>
+
     <div class="col-sm-4 col-md-4">
       <app-business-detail [hours]="business.hours"></app-business-detail>
     </div>

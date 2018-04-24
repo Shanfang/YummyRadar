@@ -27,7 +27,10 @@ export class BusinessListComponent implements OnInit {
     '-05uZNVbb8DhFweTEOoDVg'];
 
   businesses: Business[] = [];
-
+  showBusinesses: Business[] = [];
+  page:number = 1;
+  businessCount: number = 0;
+  pageOptions: number[]=[1];
   constructor(private businessService: BusinessService) {
   }
 
@@ -37,16 +40,45 @@ export class BusinessListComponent implements OnInit {
     }
     this.businessService.getBusinesses(this.businessIDArray).subscribe(
       (data: Business[]) => {
+        this.showBusinesses = [];
+        this.businessCount = data.length;
         for (const recBusiness of data) {
           let business: Business = new Business();
           Object.assign(business, recBusiness);
           this.businesses.push(business);
         }
+        for (let i = 2; i <= ((data.length-1)/10) + 1; i++){
+          this.pageOptions.push(i);
+        }
+        if (this.businessCount < 10) {
+          for (let i = 1; i < this.businessCount; i++) {
+            this.showBusinesses.push(this.businesses[i]);
+          }
+        } else {
+          for (let i = (this.page * 10 - 9); i < (this.page * 10); i++) {
+            this.showBusinesses.push(this.businesses[i]);
+          }
+        }
+        console.log(this.businesses);
+        console.log(this.showBusinesses);
       },
       (error: any) => {
         console.error(error);
       }
     );
+  }
+
+  onNextPage() {
+    this.showBusinesses = [];
+    if (this.businessCount < 10) {
+      for (let i = 1; i < this.businessCount; i++) {
+        this.showBusinesses.push(this.businesses[i]);
+      }
+    } else {
+      for (let i = (this.page * 10 - 9); i < (this.page * 10); i++) {
+        this.showBusinesses.push(this.businesses[i]);
+      }
+    }
   }
 }
 

@@ -8,6 +8,7 @@ import {Business} from '../../../models/business.model';
 })
 export class BusinessCardComponent implements OnInit {
   @Input() business: Business;
+  @Input() index: number;
 
   photo_url: string;
 
@@ -17,9 +18,12 @@ export class BusinessCardComponent implements OnInit {
     this.photo_url = (this.business.recent_photo == null)
       ? "http://35.196.58.1/yelp-business-photos/no-image-available.jpg"
       : "http://35.196.58.1/yelp-business-photos/" + this.business.recent_photo + ".jpg";
+    console.log('business/' + this.business.business_id);
   }
 
-  onReadMore() {
 
+
+  getLink() {
+    return "/business/" + this.business.business_id;
   }
 }
