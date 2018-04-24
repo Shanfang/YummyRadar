@@ -10,6 +10,25 @@ import { SearchingComponent } from './components/searching/searching.component';
 import { routing } from './app.router';
 import { DataService } from './Services/data.service';
 
+//zun
+import {CustomersComponent} from "./components/customers/customers.component";
+import {CustomerProfileComponent} from "./components/customer-profile/customer-profile.component";
+import {AuthComponent} from "./components/auth/auth.component";
+import {SigninComponent} from "./components/auth/signin.component";
+import {SignupComponent} from "./components/auth/signup.component";
+import {LogoutComponent} from "./components/auth/logout.component";
+
+
+import {AuthService} from "./Services/auth.service";
+import {CustomerService} from "./Services/customer.service";
+import {ErrorService} from "./Services/error.service";
+import {ReadMoreDirective} from "./read-more.directive";
+import {ReviewComponent} from "./components/review/review.component";
+import {ReviewListComponent} from "./components/review/review-list.component";
+
+
+
+
 import {MatToolbarModule,
   MatInputModule,
   MatMenuModule,
@@ -25,7 +44,6 @@ import {MatToolbarModule,
 import { AnalysisService } from './Services/analysis.service';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { AnalysisLocationComponent } from './components/analysis-location/analysis-location.component';
-import {AuthService} from './Services/auth.service';
 import { GeoInfoService } from './Services/geo-info.service';
 import { AnalysisBusinessComponent } from './components/analysis-business/analysis-business.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
@@ -43,7 +61,21 @@ import { SearchFilterBarComponent } from './components/search-filter-bar/search-
     SearchResultComponent,
     SearchFilterBarComponent,
     AnalysisLocationComponent,
-    AnalysisBusinessComponent
+    AnalysisBusinessComponent,
+
+    //Zun
+    CustomersComponent,
+    CustomerProfileComponent,
+    AuthComponent ,
+    SigninComponent,
+    LogoutComponent,
+    SignupComponent,
+    ReadMoreDirective,
+    ReviewListComponent,
+    ReviewComponent
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -67,7 +99,7 @@ import { SearchFilterBarComponent } from './components/search-filter-bar/search-
   providers: [
     AnalysisService,
     { provide: 'data', useClass: DataService },
-    AuthService, GeoInfoService
+    AuthService, GeoInfoService, CustomerService, ErrorService
   ],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,9 @@ var cors = require('cors');
 var appRoutes = require('./routes/app');
 var analysisRoutes = require('./routes/analysis');
 var searchingRoutes = require('./routes/searching');
+//Zun
+var customerRoutes = require('./routes/customer');
+var userRoutes = require('./routes/user');
 
 const app = express();
 const PORT = 3000;
@@ -19,9 +22,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 // app.use('/analysis', analysisRoutes);
 // app.use('/', appRoutes);
 app.use('/api/searching', searchingRoutes);
-app.use('/', appRoutes);
 app.use('/api/analysis', analysisRoutes);
+app.use('/api/customer', customerRoutes);
+app.use('/api/auth', userRoutes);
+
+
+app.use('/', appRoutes);
 app.use('/api', appRoutes);
+app.use('/api', appRoutes);
+
+
 
 app.listen(PORT, () =>
     console.log(`Server is listening on port ${PORT}`)
