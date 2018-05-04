@@ -1,0 +1,25 @@
+<article class="panel panel-default">
+  <div class="panel-body">
+    <p #textContent [id]="this.tag">
+      {{this.review.TEXT}}
+    </p>
+    <div class="read-more-link">
+      <a readMore [readMore-length]="200" [readMore-element]="textContent">
+        <span class="less">Less <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+        <span class="more">More <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+      </a>
+    </div>
+  </div>
+  <blockquote class="blockquote mb-0">
+    <footer class="row panel-footer">
+      <div class="col-sm-4">
+        {{this.review.RECENT_BUSINESS_NAME}}
+      </div>
+      <div class="col-sm-8">
+        <span>Cool:{{this.review.COOL}}</span>
+        <span>Funny:{{this.review.FUNNY}}</span>
+        <span>Useful:{{this.review.USEFUL}}</span>
+      </div>
+    </footer>
+  </blockquote>
+</article>

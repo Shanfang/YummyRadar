@@ -2,17 +2,23 @@
 <div class="thumbnail text-center">
     <img src="../../../assets/imgs/dishes.jpg" alt="" class="img-responsive">
     <div class="mainnav">
-      <ul class="nav text-light">
-        <li class="nav-item">
-            <a class="nav-link text-light" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" href="#">Write a Review</a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link text-light" href="#">Profile</a>
-        </li>
-      </ul>
+        <div>
+            <label class="text-light">Welcome to YammyRadar</label>
+        </div>
+        <ul class="nav text-light">
+            <li class="nav-item">
+                <a class="nav-link text-light" [routerLink]="['/home']">Home</a>
+            </li>
+            <li class="nav-item" [hidden]="!this.authService.isLoggedIn()">
+                <a class="nav-link text-light" [routerLink]="['/customers']">UserProfile</a>
+            </li>
+            <li class="nav-item" [hidden]="this.authService.isLoggedIn()">
+                <a class="nav-link text-light" [routerLink]="['/auth/signin']">Login</a>
+            </li>
+            <li class="nav-item" [hidden]="!this.authService.isLoggedIn()">
+                <a class="nav-link text-light" (click) = "this.authService.logout()">Log Out</a>
+            </li>
+        </ul>
     </div>
     <div class="header">
       <h1 class="text-light">YummyRadar</h1>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Rx';
@@ -38,23 +38,29 @@ export class DataService {
 
   /**
    * Searching by inputting restaurant name and places.
-   * @param restName 
-   * @param place 
+   * @param restName
+   * @param place
    */
   getRestNameFromRestandAddr(searchInfo): Observable<string>{
     if (searchInfo){
       let headers :  Headers = new Headers({'Content-Type': 'application/json'});
       let options : RequestOptions = new RequestOptions({headers:headers});
       return this.http.post(`${this.apiURL}/api/Searching/basic`, searchInfo ,options)
-        .map(res => res.json())
+        .map(res => {
+          return res.json();
+        })
         .do(res => {
-            if(res.token) {     
+            if(res.token) {
             }
         })
         .catch(this.handleError);
-    } 
+    }
   }
 
+   /**
+   * Searching with option "Open Now"
+   * Diane Xie
+   */
   getRestNameFromRestNameAddrOpenNow(searchInfo): Observable<string>{
     if (searchInfo){
       let headers :  Headers = new Headers({'Content-Type': 'application/json'});
@@ -65,7 +71,64 @@ export class DataService {
 
         })
         .catch(this.handleError);
-    } 
+    }
+  }
+
+  /**
+   * Searching with option "Distance in 5 miles"
+   * Diane Xie
+   */
+  getRestNameFromRestNameAddrDist5Miles(searchInfo): Observable<string>{
+    if (searchInfo){
+      let headers :  Headers = new Headers({'Content-Type': 'application/json'});
+      let options : RequestOptions = new RequestOptions({headers:headers});
+      searchInfo = {"restName": searchInfo.restName,
+                    "place": searchInfo.restPost,
+                    "latituemax": 43.138763,
+                    "latituemin": 43.0,
+                    "longitudemax":-89.3,
+                    "longitudemin":-89.5
+                   };
+      console.log(searchInfo)
+      return this.http.post(`${this.apiURL}/api/searching/dist5miles`, searchInfo ,options)
+        .map(res => res.json())
+        .do(res => {
+
+        })
+        .catch(this.handleError);
+    }
+  }
+
+  /**
+   * Searching with option "Order Delivery"
+   * Diane Xie
+   */
+  getRestNameFromRestNameAddrAndorderDelivery(searchInfo): Observable<string>{
+    if (searchInfo){
+      let headers :  Headers = new Headers({'Content-Type': 'application/json'});
+      let options : RequestOptions = new RequestOptions({headers:headers});
+      console.log(searchInfo);
+      return this.http.post(`${this.apiURL}/api/searching/orderdelivery`, searchInfo ,options)
+        .map(res => res.json())
+        .do(res => {
+
+        })
+        .catch(this.handleError);
+    }
+  }
+
+  searchCategoryOptions(searchInfo): Observable<string>{
+    if (searchInfo){
+      let headers :  Headers = new Headers({'Content-Type': 'application/json'});
+      let options : RequestOptions = new RequestOptions({headers:headers});
+      console.log(searchInfo);
+      return this.http.post(`${this.apiURL}/api/searching/category`, searchInfo ,options)
+        .map(res => res.json())
+        .do(res => {
+
+        })
+        .catch(this.handleError);
+    }
   }
 
 }

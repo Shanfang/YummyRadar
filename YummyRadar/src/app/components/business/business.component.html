@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-9">
+      <div>
+        <h2>{{this.business.name}}</h2>
+      </div>
+      <div>
+        <div>{{this.business.address}},{{this.business.city}},{{this.business.state}}, {{this.business.postal_code}}</div>
+      </div>
+    </div>
+    <div class="col-xs-3 text-right">
+      <button class="btn btn-primary" (click)="onRevieClick()">write a review</button>
+    </div>
+  </div>
+  <app-review-edit [hidden]="!isEdited" [business]="this.business"></app-review-edit>
+<hr>
+
+<div>
+  <div class="row">
+    <div class="col-sm-3 col-md-3">
+      <img class="img-responsive" [src]="getPhotoUrl(this.business.photos[0])">
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <img class="img-responsive" [src]="getPhotoUrl(this.business.photos[1])">
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <img class="img-responsive" [src]="getPhotoUrl(this.business.photos[2])">
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <img class="img-responsive" [src]="getPhotoUrl(this.business.photos[3])">
+    </div>
+  </div>
+</div>
+
+<hr>
+
+  <div class="row">
+    <div class="col-sm-8 col-md-8 border-right">
+      <app-review-business-list [reviews]="this.showReviews"></app-review-business-list>
+      <div>
+        <div class="form-group col-md-3">
+          <label for="page">Select Page Number: </label>
+          <select
+            id="page"
+            class="form-control"
+            [(ngModel)]="page"
+            name="selectPage"
+            required>
+            <option *ngFor="let page of pageOptions" [ngValue]="page">{{page}}</option>
+          </select>
+        </div>
+
+
+        <button (click)="onNextPage()">Go!!</button>
+      </div>
+    </div>
+
+    <div class="col-sm-4 col-md-4">
+      <app-business-detail [hours]="business.hours"></app-business-detail>
+    </div>
+  </div>
+
+</div>
+

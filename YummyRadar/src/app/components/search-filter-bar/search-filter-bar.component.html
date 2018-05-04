@@ -1,16 +1,36 @@
+
 <div class="btn-toolbar" mb-2 aria-label="Restaurant Filter buttons"> 
   <div class='btn-group' mb-2 mr-1>
-    <button type="button" class="btn btn-danger">$</button>
-    <button type="button" class="btn btn-danger">$$</button>
-    <button type="button" class="btn btn-danger">$$$</button>
-    <button type="button" class="btn btn-danger">$$$$</button>
   </div>
   <button type="button" class="btn btn-danger" mr-1 (click)="filterOpenNow()">Open Now</button>
-  <button type="button" class="btn btn-danger" mr-1>Tips</button>
-  <button type="button" class="btn btn-danger" mr-1>Distance in 5 miles</button>
-  <div class="btn-group" mb-2 >
-    <button type="button" class="btn btn-danger">Mexican Food</button>
-    <button type="button" class="btn btn-danger">Chinese Food</button>
-    <button type="button" class="btn btn-danger">American Food</button>
-  </div>
+  <button type="button" class="btn btn-danger" mr-1 (click)="orderDelivery()">Order Delivery</button>
+  <button type="button" class="btn btn-danger" mr-1 (click)="filterDist5miles()">Distance in 5 miles</button>
 </div>
+<div id="checkboxCategory" ml-1>
+  <form class="form-group" >
+      <div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="MexcanFood" (change)="changeSelectMexicanFood()">
+          <label class="form-check-label" for="inlineCheckbox1">Mexcian Food</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="AmericanFood" (change)="changeSelectAmericanFood()">
+          <label class="form-check-label" for="inlineCheckbox2">American Food</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="ChineseFood" (change)="changeSelectChineseFood()">
+          <label class="form-check-label" for="inlineCheckbox3">Chinse Food</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Seafood" (change)="changeSelectSeaFood()">
+          <label class="form-check-label" for="inlineCheckbox2">Sea Food</label>
+        </div>
+        <button type="submit" class="btn btn-danger" (click)="categorySearch()">Submit</button>
+      </div>
+  </form>
+</div>
+
+
+
+
+    
