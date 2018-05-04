@@ -16,7 +16,6 @@ import {CustomersComponent} from "./components/customers/customers.component";
 import {CustomerProfileComponent} from "./components/customer-profile/customer-profile.component";
 import {AuthComponent} from "./components/auth/auth.component";
 import {AUTH_ROUTES} from "./components/auth/auth.routes";
-import {SummaryComponent} from './components/summary/summary.component';
 
 const appRoutes: Routes = [
 
