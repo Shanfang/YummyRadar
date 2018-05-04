@@ -48,8 +48,8 @@ with stars and ratings constraints. This will be used to generate pie chart.
 */
 router.post('/category/distribution', function(req, res, next) {
     handleDBConn(req, res, function(req, res, conn) {
-        console.log("Come to distribution=------");
-        console.log(`The selected state is ${state}`);
+
+        console.log(`The selected city is ${state}`);
         var sqlStatement = `SELECT bc.category, COUNT(*) AS num
                             FROM shanfang.business b, shanfang.business_category bc
                             WHERE b.business_id = bc.business_id AND b.state = 'WI' AND b.city = 'Madison'
@@ -191,7 +191,6 @@ router.get('/summary/total', function(req, res, next) {
             {outFormat: oracledb.OBJECT},
             function (err, result) {
                 if (err) {
-                    console.log(sqlStatement);
                     console.log(err.message);
                     return;
                 }
@@ -227,7 +226,7 @@ function handleDBConn(req, res, callback) {
 function doRelease(conn) {
     conn.release(function(err) {
         if (err) {
-            console.error(err.message)
+            console.error(err.message);
         }
     });
 }

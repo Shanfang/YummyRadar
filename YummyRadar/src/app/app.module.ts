@@ -60,8 +60,9 @@ import { GeoInfoService } from './Services/geo-info.service';
 import { AnalysisBusinessComponent } from './components/analysis-business/analysis-business.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { SearchFilterBarComponent } from './components/search-filter-bar/search-filter-bar.component';
-import {SummaryService} from './Services/summary.service';
-import {SummaryComponent} from './components/summary/summary.component';
+
+import { SummaryComponent } from './components/summary/summary.component';
+import { SummaryService } from './Services/summary.service';
 
 
 @NgModule({
@@ -85,6 +86,8 @@ import {SummaryComponent} from './components/summary/summary.component';
     SearchFilterBarComponent,
     AnalysisLocationComponent,
     AnalysisBusinessComponent,
+    SummaryComponent,
+
 
     //Zun
     CustomersComponent,

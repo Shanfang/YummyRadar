@@ -9,6 +9,7 @@ import { AnalysisTypeComponent } from './components/analysis-type/analysis-type.
 import { AnalysisLocationComponent } from './components/analysis-location/analysis-location.component';
 import { AnalysisBusinessComponent } from './components/analysis-business/analysis-business.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { SummaryComponent } from './components/summary/summary.component';
 
 //Zun
 import {CustomersComponent} from "./components/customers/customers.component";

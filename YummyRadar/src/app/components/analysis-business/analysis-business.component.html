@@ -1,3 +1,4 @@
+<app-nav-bar></app-nav-bar>
 <div class="analysis-container col-md-12 mx-t" style="padding: 20px">
   <form (ngSubmit)='onSubmitInfo()' #f="ngForm"> 
       <div class="form-group col-md-3">
@@ -23,13 +24,13 @@
       </div>
   </form>
 </div>
-<div class="chart-container">
+<div class="chart-container" *ngIf="chart">
   <canvas id="line-chart-business"></canvas>
 </div>
 <br>
-<div class="chart-container">
+<div class="chart-container" *ngIf="chart">
   <canvas id="bar-chart-business"></canvas>
 </div>
-<div class="chart-container">
+<div class="chart-container" *ngIf="chart">
   <canvas id="pie-chart-business"></canvas>
 </div>
