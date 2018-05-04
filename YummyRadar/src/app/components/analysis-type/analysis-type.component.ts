@@ -19,6 +19,8 @@ export class AnalysisTypeComponent implements OnInit {
     city: '',
     zipCode: ''
   };
+  reviewCount = 0;
+  stars = 0;
   businessTpye: string = '';
   chart = [];
   chartType = '';
@@ -33,7 +35,6 @@ export class AnalysisTypeComponent implements OnInit {
   stateOptions = ['IL', 'WI', 'SC'];
   chartOptions = ['Line Graph', 'Bar Chart', 'Pie Chart'];
   businessTypes = ['American (Traditional)', 'American (New)', 'Italian', 'Chinese', 'Mexican','Bars', 'Pizza', 'Burgers', 'Sandwiches'];
-  // charType = '';
 
   ngOnInit() {}
   businessInfo: Object;
@@ -45,7 +46,6 @@ export class AnalysisTypeComponent implements OnInit {
 
 
   onSubmitSelection() {
-    this.chart = [];
     this.location.state = this.locationForm.value.selectedState;
     this.location.city = this.locationForm.value.selectedCity;
     this.businessTpye = this.locationForm.value.selectedBusinessType;
@@ -65,7 +65,7 @@ export class AnalysisTypeComponent implements OnInit {
               colors[i] = this.getRandomColor();
             }
             if (names.length > 0 && this.chartType == 'Pie Chart') {
-              this.chart = new Chart('pie-chart-location'[0], {
+              this.chart = new Chart('pie-chart-location', {
                 type: 'pie',
                 data: {
                   datasets: [
@@ -112,7 +112,7 @@ export class AnalysisTypeComponent implements OnInit {
                 }
               })
             } else if (names.length > 0 && this.chartType == 'Line Graph') {
-              this.chart = new Chart('line-chart-location'[0], {
+              this.chart = new Chart('line-chart-location', {
                 type: 'line',
                 data: {
                   labels: names,
