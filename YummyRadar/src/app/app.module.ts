@@ -46,8 +46,8 @@ import {MatToolbarModule,
   } from '@angular/material';
 import { BusinessComponent } from './components/business/business.component';
 import { ReviewBusinessComponent } from './components/review/review-business.component';
-import {BusinessService} from './Services/business.service';
-import {ReviewBusinessListComponent} from './components/review/review-business-list.component';
+import { BusinessService} from './Services/business.service';
+import { ReviewBusinessListComponent} from './components/review/review-business-list.component';
 import { BusinessDetailComponent } from './components/business/business-detail.component';
 import { BusinessListComponent } from './components/business/business-list.component';
 import { BusinessCardComponent } from './components/business/business-card/business-card.component';
@@ -60,6 +60,8 @@ import { GeoInfoService } from './Services/geo-info.service';
 import { AnalysisBusinessComponent } from './components/analysis-business/analysis-business.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { SearchFilterBarComponent } from './components/search-filter-bar/search-filter-bar.component';
+import {SummaryService} from './Services/summary.service';
+import {SummaryComponent} from './components/summary/summary.component';
 
 
 @NgModule({
@@ -93,7 +95,8 @@ import { SearchFilterBarComponent } from './components/search-filter-bar/search-
     SignupComponent,
     ReadMoreDirective,
     ReviewListComponent,
-    ReviewComponent
+    ReviewComponent,
+    SummaryComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,7 +122,7 @@ import { SearchFilterBarComponent } from './components/search-filter-bar/search-
   providers: [
     AnalysisService,
     { provide: 'data', useClass: DataService },
-    AuthService, GeoInfoService, CustomerService, ErrorService, BusinessService
+    AuthService, GeoInfoService, CustomerService, ErrorService, BusinessService, SummaryService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {AfterContentInit, Component, DoCheck, Inject, Input, OnChanges, OnInit} from '@angular/core';
 import {Business} from '../../models/business.model';
 import {BusinessService} from '../../Services/business.service';
 import {DataService} from '../../Services/data.service';

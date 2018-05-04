@@ -7,20 +7,20 @@
     </div>
   </div>
 <div class="analysis-container col-md-12 mx-t" style="padding: 20px">
-  <form (ngSubmit)='onSubmitSelection()' #f="ngForm"> 
+  <form (ngSubmit)='onSubmitSelection()' #f="ngForm">
         <div class="form-group col-md-2" style="padding: 5px">
           <label for="states">Select a State</label>
           <br>
           <select (change)="onSelectState($event.target.value)" [(ngModel)]="selectState" name="selectedState">
             <option *ngFor="let state of stateOptions" [ngValue]="state">{{state}}</option>
           </select>
-        </div> 
+        </div>
         <div class="form-group col-md-2">
           <label for="city">Select a City</label>
             <select id="city" class="form-control" [(ngModel)]="selectCity" name="selectedCity">
               <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
           </select>
-        </div> 
+        </div>
     <!-- For some cities there are not enough data to specify the location with zipcode
           So I comment out the selection for zip code -->
         <!-- <div class="form-group">
@@ -31,10 +31,10 @@
           </div>  -->
         <div class="form-group col-md-2">
           <label for="stars">Select Range of Stars </label>
-          <select 
-            id="stars" 
-            class="form-control" 
-            [(ngModel)]="selectStars" 
+          <select
+            id="stars"
+            class="form-control"
+            [(ngModel)]="selectStars"
             name="selectedStars"
             required>
             <option>0</option>
@@ -43,13 +43,13 @@
             <option>3</option>
             <option>4</option>
           </select>
-        </div> 
+        </div>
         <div class="form-group col-md-3">
           <label for="reviewCount">Select Range of Review Count </label>
-          <select 
-            id="reviewCount" 
-            class="form-control" 
-            [(ngModel)]="selectReviewCounts" 
+          <select
+            id="reviewCount"
+            class="form-control"
+            [(ngModel)]="selectReviewCounts"
             name="selectedReviewCount"
             required>
             <option>0</option>
@@ -59,7 +59,7 @@
             <option>40</option>
             <option>50</option>
           </select>
-        </div> 
+        </div>
         <div class="form-group col-md-3">
             <label for="charts">Please Select Type of Chart</label>
             <select id="chart" class="form-control" [(ngModel)]="chartType" name="selectType">

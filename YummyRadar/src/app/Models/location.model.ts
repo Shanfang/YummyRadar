@@ -1,15 +1,11 @@
 export class Location {
-    public state: string;
-    public city: string;
-    public zipCode: string;
-    public reviewCount: number;
-    public stars: number;
+    public state?: string;
+    public city?: string;
+    public zipCode?: string;
 
-    constructor(state: string, city: string, zipCode: string, stars: number, reviewCount: number) {
+    constructor(state: string, city: string, zipCode: string) {
         this.state = state;
         this.city = city;
         this.zipCode = zipCode;
-        this.reviewCount = reviewCount;
-        this.stars = stars;
     }
 }

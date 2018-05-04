@@ -48,7 +48,8 @@ export class SearchingComponent implements OnInit {
         console.log(searchList);
         localStorage.setItem('searchList', searchList);
         this.searchRestList = searchList;
-        this._route.navigate(['/searchResult']);
+
+          this._route.navigate(['/searchResult']);
       },
 
         // err => {

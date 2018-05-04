@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject,} from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-filter-bar',
@@ -11,7 +12,8 @@ export class SearchFilterBarComponent implements OnInit {
 
   myForm: FormGroup;
   homeSearchInfo: Object;
-  constructor(@Inject('data')  private dataservice) { }
+  constructor(@Inject('data')  private dataservice,
+              private _route:Router) { }
 
   /*Checkbox variables */
   selectMexcanFood: boolean;
@@ -35,11 +37,12 @@ export class SearchFilterBarComponent implements OnInit {
         console.log("-----------");
         console.log(searchList);
         localStorage.setItem('searchList', searchList);
+        this._route.navigate(['/fake1']);
       },
 
         // err => {
         //   console.log("cannot find the result");
-        // } 
+        // }
       );
   }
 
@@ -56,11 +59,12 @@ export class SearchFilterBarComponent implements OnInit {
         console.log("-----------");
         console.log(searchList);
         localStorage.setItem('searchList', searchList);
+          this._route.navigate(['/fake2']);
       },
 
     );
   }
-  
+
   /**
    * Searching with option "Order Delivery"
    * Diane Xie
@@ -74,6 +78,7 @@ export class SearchFilterBarComponent implements OnInit {
         console.log("-----------");
         console.log(searchList);
         localStorage.setItem('searchList', searchList);
+          this._route.navigate(['/fake3']);
       },
 
     );
@@ -121,6 +126,7 @@ export class SearchFilterBarComponent implements OnInit {
         console.log("-----------");
         console.log(searchList);
         localStorage.setItem('searchList', searchList);
+          this._route.navigate(['/fake3']);
       },
     );
   }

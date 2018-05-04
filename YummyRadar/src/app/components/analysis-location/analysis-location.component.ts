@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AnalysisService } from '../../Services/analysis.service';
 import { GeoInfoService } from '../../Services/geo-info.service';
-import { Location } from '../../Models/location.model';
+import { Location } from '../../models/location.model';
 import { NgForm } from '@angular/forms';
 import { Chart } from 'chart.js';
 
@@ -16,10 +16,12 @@ export class AnalysisLocationComponent implements OnInit {
   private location: Location = {
     state: '',
     city: '',
-    zipCode: '',
-    reviewCount: 0,
-    stars: 0,
+    zipCode: ''
+    // reviewCount: 0,
+    // stars: 0,
   };
+  reviewCount = 0;
+  stars = 0;
   chart = [];
   chartType = '';
 
@@ -32,6 +34,7 @@ export class AnalysisLocationComponent implements OnInit {
   cities: string[] = [];
   zipCodes: number[] = [];
   selectedState = 'IL';
+  selectCity = 'Madison';
   chartOptions = ['Line Graph', 'Bar Chart', 'Pie Chart'];
   charType = '';
 
@@ -48,8 +51,8 @@ export class AnalysisLocationComponent implements OnInit {
     this.location.state = this.locationForm.value.selectedState;
     this.location.city = this.locationForm.value.selectedCity;
     // this.location.zipCode = this.locationForm.value.selectedZipCode;
-    this.location.reviewCount = this.locationForm.value.selectedReviewCount;
-    this.location.stars = this.locationForm.value.selectedStars;
+    this.reviewCount = this.locationForm.value.selectedReviewCount;
+    this.stars = this.locationForm.value.selectedStars;
 
     this._analysisService.getBusinesses(this.location)
       .subscribe(
@@ -116,7 +119,7 @@ export class AnalysisLocationComponent implements OnInit {
                 type: 'line',
                 data: {
                   labels: categories,
-                  datasets: [                   
+                  datasets: [
                     {
                       data: numbers,
                       borderColor: '#ffcc00',

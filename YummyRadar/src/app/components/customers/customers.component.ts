@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import {Customer} from "../../Models/customer";
-import {Review} from "../../Models/review";
+import {Customer} from "../../models/customer";
+import {Review} from "../../models/review";
 import {CustomerService} from "../../Services/customer.service";
 import {AuthService} from "../../Services/auth.service";
 import {Router} from '@angular/router';

@@ -15,12 +15,14 @@ import {CustomersComponent} from "./components/customers/customers.component";
 import {CustomerProfileComponent} from "./components/customer-profile/customer-profile.component";
 import {AuthComponent} from "./components/auth/auth.component";
 import {AUTH_ROUTES} from "./components/auth/auth.routes";
+import {SummaryComponent} from './components/summary/summary.component';
 
 const appRoutes: Routes = [
-    
+
     {path: 'analysis/location', component: AnalysisLocationComponent},
     {path: 'analysis/business', component: AnalysisBusinessComponent},
     {path: 'analysis/type', component: AnalysisTypeComponent},
+    {path: 'analysis/summary', component: SummaryComponent},
     {path: 'searchResult', component: SearchResultComponent},
     {path: 'home', component: SearchingComponent},
     {path: 'business-list', component: BusinessListComponent},
@@ -29,6 +31,10 @@ const appRoutes: Routes = [
     { path: 'customers', component: CustomersComponent },
     { path: 'profiles', component: CustomerProfileComponent },
     { path: 'auth', component: AuthComponent , children: AUTH_ROUTES },
+     { path: 'fake1', component: SearchResultComponent },
+    { path: 'fake2', component: SearchResultComponent },
+     { path: 'fake3', component: SearchResultComponent },
+      { path: 'fake4', component: SearchResultComponent },
     { path: '', component: SearchingComponent},
 ];
 

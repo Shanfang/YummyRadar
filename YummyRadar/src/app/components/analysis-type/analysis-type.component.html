@@ -1,1 +1,47 @@
-<p>Analysis restaurants type</p>
+<div class="analysis-container col-md-12 mx-t" style="padding: 20px">
+  <form (ngSubmit)='onSubmitSelection()' #f="ngForm">
+        <div class="form-group col-md-2" style="padding: 5px">
+          <label>Select a State</label>
+          <br>
+          <select (change)="onSelectState($event.target.value)" [(ngModel)]="selectState" name="selectedState">
+            <option *ngFor="let state of stateOptions" [ngValue]="state">{{state}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="city">Select a City</label>
+            <select id="city" class="form-control" [(ngModel)]="selectCity" name="selectedCity">
+              <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+        <label for="business-type">Select a Business Type</label>
+            <select id="business-type" class="form-control" [(ngModel)]="businessType" name="selectedBusinessType">
+            <option *ngFor="let type of businessTypes" [ngValue]="type">{{type}}</option>
+        </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Please Select Type of Chart</label>
+            <select id="chart" class="form-control" [(ngModel)]="chartType" name="selectType">
+              <option *ngFor="let chart of chartOptions" [ngValue]="chart">{{chart}}</option>
+            </select>
+        </div>
+    <div class="row">
+      <div>
+          <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="chart-container" *ngIf="chart">
+    <canvas id="pie-chart-location"></canvas>
+</div>
+  <br>
+<div class="chart-container" *ngIf="chart">
+    <canvas id="bar-chart-location"></canvas>
+</div>
+  <br>
+<div class="chart-container" *ngIf="chart">
+    <canvas id="line-chart-location"></canvas>
+</div>
+
