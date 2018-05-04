@@ -85,7 +85,7 @@ import { SummaryService } from './Services/summary.service';
     SearchFilterBarComponent,
     AnalysisLocationComponent,
     AnalysisBusinessComponent,
-    SummaryComponent
+    SummaryComponent,
 
 
     //Zun
